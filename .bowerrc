@@ -1,3 +1,4 @@
 {
-  "directory": "front/vendor"
+  "directory": "bower_components",
+  "analytics": false
 }

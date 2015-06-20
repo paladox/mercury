@@ -95,7 +95,7 @@ To test on your mobile device, connect both your development machine and your de
 
 ## Troubleshooting
 ### Errors while running `npm run dev`
-Sometimes it helps to just delete the npm_modules folder and reinstall. 
+Sometimes it helps to just delete the npm_modules folder and reinstall.
 ```
 rm -rf node_modules
 npm cache clear
@@ -112,12 +112,12 @@ So far, we've encountered one error connected to compiling `libsass`. It happene
 Debian (the issue was found on version: `Debian 3.16.7-ckt4-3 (2015-02-03)`) installs node.js interpreter binary as `nodejs` instead of `node` because of name conflicts with other applications. The `/usr/share/doc/nodejs/README.Debian` reads:
 > nodejs command
 > --------------
-> 
+>
 > The upstream name for the Node.js interpreter command is "node".
 > In Debian the interpreter command has been changed to "nodejs".
-> 
+>
 > This was done to prevent a namespace collision: other commands use the same name in their upstreams, such as ax25-node from the "node" package.
-> 
+>
 > Scripts calling Node.js as a shell command must be changed to instead use the "nodejs" command.
 However, changing dependencies scripts does not sound right way. I suggest creating a symlink in `/usr/bin`:
 ```sh
@@ -127,3 +127,58 @@ node
 node-gyp
 nodejs
 ```
+
+
+# Cli
+
+This README outlines the details of collaborating on this Ember application.
+A short introduction of this app could easily go here.
+
+## Prerequisites
+
+You will need the following things properly installed on your computer.
+
+* [Git](http://git-scm.com/)
+* [Node.js](http://nodejs.org/) (with NPM)
+* [Bower](http://bower.io/)
+* [Ember CLI](http://www.ember-cli.com/)
+* [PhantomJS](http://phantomjs.org/)
+
+## Installation
+
+* `git clone <repository-url>` this repository
+* change into the new directory
+* `npm install`
+* `bower install`
+
+## Running / Development
+
+* `ember server`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
+
+### Code Generators
+
+Make use of the many generators for code, try `ember help generate` for more details
+
+### Running Tests
+
+* `ember test`
+* `ember test --server`
+
+### Building
+
+* `ember build` (development)
+* `ember build --environment production` (production)
+
+### Deploying
+
+Specify what it takes to deploy your app.
+
+## Further Reading / Useful Links
+
+* [ember.js](http://emberjs.com/)
+* [ember-cli](http://www.ember-cli.com/)
+* Development Browser Extensions
+  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+

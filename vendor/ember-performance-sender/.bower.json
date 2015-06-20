@@ -1,0 +1,35 @@
+{
+  "name": "ember-performance-sender",
+  "main": "ember-performance-sender.js",
+  "version": "1.1.0",
+  "homepage": "https://github.com/Wikia/ember-performance-sender.git",
+  "authors": [
+    "Igor Rogatty <igor@wikia-inc.com>",
+    "Kenneth Kouot <kenneth@wikia-inc.com"
+  ],
+  "moduleType": [
+    "globals",
+    "node",
+    "amd"
+  ],
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "ember": "~1.11.1"
+  },
+  "_release": "1.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.0",
+    "commit": "8b28d67c73a5710a6255937f12906b41a15d8a35"
+  },
+  "_source": "git://github.com/Wikia/ember-performance-sender.git",
+  "_target": "1.1.0",
+  "_originalSource": "ember-performance-sender"
+}
