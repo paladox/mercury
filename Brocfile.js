@@ -5,6 +5,11 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 var app = new EmberApp({
 	fingerprint: {
 		enabled: true
+	},
+	autoprefixer: {
+		browsers: ['last 2 version', '> 1%', 'ie 9'],
+		cascade: false,
+		map: false
 	}
 });
 
