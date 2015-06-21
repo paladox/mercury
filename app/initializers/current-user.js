@@ -1,10 +1,11 @@
+import currentUser from '../models/current-user';
+
 export function initialize(container, application) {
-	application.register('currentUser:main', App.CurrentUser);
+	application.register('currentUser:main', currentUser);
 	application.inject('controller', 'currentUser', 'currentUser:main');
 }
 
 export default {
-  name: 'current-user',
-	after: 'performanceMonitoring',
-  initialize: initialize
+	name: 'current-user',
+	initialize: initialize
 };

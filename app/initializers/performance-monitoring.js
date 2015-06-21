@@ -21,7 +21,7 @@ export function initialize() {
 }
 
 export default {
-  name: 'performance-monitoring',
+	name: 'performance-monitoring',
 	after: 'preload',
-  initialize: initialize
+	initialize: initialize
 };
