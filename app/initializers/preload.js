@@ -1,5 +1,4 @@
 import env from '../config/environment';
-import App from '../app';
 
 export function initialize(container, application) {
 	var debug = env.environment === 'development',
@@ -9,19 +8,8 @@ export function initialize(container, application) {
 		//loaded language name is the first key of the Mercury.state.translations object
 		loadedLanguage = Object.keys(loadedTranslations)[0];
 
-	// turn on debugging with querystring ?debug=1
-	if (window.location.search.match(/debug=1/)) {
-		debug = true;
-	}
-
 	application.setProperties({
-		//TODO: unhardcode that
-		apiBase: 'api/v1',
-		language: loadedLanguage || 'en',
-		LOG_ACTIVE_GENERATION: debug,
-		LOG_VIEW_LOOKUPS: debug,
-		LOG_TRANSITIONS: debug,
-		LOG_TRANSITIONS_INTERNAL: debug
+		language: loadedLanguage || 'en'
 	});
 
 	$('html').removeClass('preload');
