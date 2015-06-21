@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'cli',
+    modulePrefix: 'mercury',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
