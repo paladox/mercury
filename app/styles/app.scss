@@ -1,12 +1,12 @@
 // DO NOT CHANGE:
 // load order of files below is intentional
-@import '../../vendor/wikia-style-guide/src/scss/main';
+@import 'bower_components/wikia-style-guide/src/scss/main.scss';
 @import 'settings';
 @import 'foundation-imports';
 @import 'wikia-variables';
 @import 'mixin/index';
 
-@import '../common/placeholder/index';
+@import 'common/placeholder/index';
 @import 'base/index';
 @import 'layout/index';
 @import 'state/index';

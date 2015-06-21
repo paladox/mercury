@@ -56,7 +56,8 @@
 	"globals": {
 		"Wikia": false,
 		"require": false,
-		"Em": false
+		"Em": false,
+	    "M": false
 	},
 	"jquery": true,
 	"node": true,

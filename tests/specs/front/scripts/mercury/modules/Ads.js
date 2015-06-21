@@ -5,27 +5,28 @@ QUnit.test('Returns ads instance', function () {
 	equal(typeof Mercury.Modules.Ads.getInstance(), 'object');
 });
 
-QUnit.test('Init method works', function() {
-	var calledURL,
-		callbackIsCalled = false,
-		testAdsUrl = 'http://exampleAdsUrl.com/',
-		instance = Mercury.Modules.Ads.getInstance(),
-		loadStub = this.stub(M, 'load', function(url, callback) {
-			calledURL = url;
-			callback();
-		});
 
-	require = function(modules, callback){
-		callback();
-	};
-
-	instance.init(testAdsUrl, function () {
-		callbackIsCalled = true;
-	});
-	delete(require);
-	equal(calledURL, testAdsUrl);
-	equal(callbackIsCalled, true);
-});
+//QUnit.test('Init method works', function() {
+//	var calledURL,
+//		callbackIsCalled = false,
+//		testAdsUrl = 'http://exampleAdsUrl.com/',
+//		instance = Mercury.Modules.Ads.getInstance(),
+//		loadStub = this.stub(M, 'load', function(url, callback) {
+//			calledURL = url;
+//			callback();
+//		});
+//
+//	require = function(modules, callback){
+//		callback();
+//	};
+//
+//	instance.init(testAdsUrl, function () {
+//		callbackIsCalled = true;
+//	});
+//	delete(require);
+//	equal(calledURL, testAdsUrl);
+//	equal(callbackIsCalled, true);
+//});
 
 QUnit.test('Reload ads works', function () {
 	var testContext = {

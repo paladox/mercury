@@ -5,7 +5,7 @@
  * @example
  * var localConfig = require('./config').localSettings
  */
-var Utils = require('../server/lib/Utils');
+var Utils = require('../backend/lib/Utils');
 var deepExtend = require('deep-extend');
 var localSettings = {
     apiBase: '/api/v1',

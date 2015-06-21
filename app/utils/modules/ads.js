@@ -1,10 +1,4 @@
-
-
-
-
-
-
-
+/* global M */
 var Mercury;
 (function (Mercury) {
     var Modules;
@@ -44,7 +38,12 @@ var Mercury;
                             'ext.wikia.adEngine.config.mobile',
                             'ext.wikia.adEngine.adLogicPageViewCounter',
                             'wikia.krux'
-                        ], function (adEngineModule, adContextModule, adConfigMobile, adLogicPageViewCounterModule, krux) {
+                        ], function (adEngineModule,
+									 adContextModule,
+									 adConfigMobile,
+									 adLogicPageViewCounterModule,
+									 krux)
+						{
                             _this.adEngineModule = adEngineModule;
                             _this.adContextModule = adContextModule;
                             _this.adConfigMobile = adConfigMobile;
@@ -128,7 +127,7 @@ var Mercury;
                     return slot[0] && slot[0] === name;
                 }, true);
             };
-            Ads.prototype.openLightbox = function (contents) {
+            Ads.prototype.openLightbox = function () {
                 /**
                  * This method is being overwritten in ApplicationRoute for ads needs.
                  * To learn more check ApplicationRoute.ts file.

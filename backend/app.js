@@ -15,7 +15,7 @@ var path = require('path');
 var url = require('url');
 var fs = require('fs');
 //Counter for maxRequestPerChild
-var counter = 1, isDevbox = localSettings.environment === Utils.Environment.Dev, plugins, 
+var counter = 1, isDevbox = localSettings.environment === Utils.Environment.Dev, plugins,
 /* Creates new `hapi` server */
 server = new Hapi.Server({
     connections: {
@@ -50,7 +50,7 @@ plugins = [
         register: require('hapi-i18next'),
         options: {
             i18nextOptions: {
-                resGetPath: path.join(__dirname, '..', 'front/locales/__lng__/__ns__.json'),
+                resGetPath: path.join(__dirname, '..', 'public/locales/__lng__/__ns__.json'),
                 ns: {
                     namespaces: ['main', 'auth'],
                     defaultNs: 'main'
@@ -243,5 +243,5 @@ function setupLogging(server) {
  * Get list of supported languages based on locales directories
  */
 function getSupportedLangs() {
-    return fs.readdirSync('front/locales');
+    return fs.readdirSync('public/locales');
 }

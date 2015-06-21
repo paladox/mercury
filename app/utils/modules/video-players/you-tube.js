@@ -1,10 +1,10 @@
 
 
-var __extends = this.__extends || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+var __extends = window.__extends || function (d, b) {
+    for (var p in b) { if (b.hasOwnProperty(p)) { d[p] = b[p];}}
+    function Extender() { this.constructor = d; }
+		Extender.prototype = b.prototype;
+    d.prototype = new Extender();
 };
 var Mercury;
 (function (Mercury) {
@@ -12,7 +12,7 @@ var Mercury;
     (function (Modules) {
         var VideoPlayers;
         (function (VideoPlayers) {
-            var YouTubePlayer = (function (_super) {
+           var YouTubePlayer = (function (_super) {
                 __extends(YouTubePlayer, _super);
                 function YouTubePlayer(provider, params) {
                     _super.call(this, provider, params);
