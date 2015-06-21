@@ -1,10 +1,10 @@
-/// <reference path="../../baseline/mercury.d.ts" />
+
 /**
  * @define calculation
  *
  * Library with generic calculation functions
  */
-'use strict';
+
 var Mercury;
 (function (Mercury) {
     var Utils;

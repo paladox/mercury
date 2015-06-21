@@ -1,5 +1,5 @@
-/// <reference path="../../baseline/mercury.d.ts" />
-'use strict';
+
+
 var Mercury;
 (function (Mercury) {
     var Utils;

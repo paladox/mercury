@@ -1,5 +1,3 @@
-/// <reference path="./app.ts" />
-'use strict';
 App.Router.map(function () {
     /*
     This can be either '/*title' or '/wiki/*title' and is based on configuration
@@ -8,7 +6,7 @@ App.Router.map(function () {
 
     ensure that it has trailing / also
      */
-    var articlePath = Em.getWithDefault(Mercury, 'wiki.articlePath', '/wiki/').replace(/\/?$/, '/');
+    var articlePath = Ember.getWithDefault(Mercury, 'wiki.articlePath', '/wiki/').replace(/\/?$/, '/');
     this.route('mainPage', {
         path: '/'
     });
@@ -28,14 +26,13 @@ App.Router.map(function () {
             path: '/*url'
         });
     }
-});
-App.Router.reopen({
+});App.Router.reopen({
     /**
      * Sets location API depending on user agent with special case for Catchpoint tests
      * @see http://emberjs.com/guides/routing/specifying-the-location-api/
      */
-    location: Em.computed(function () {
-        var ua = Em.get(window, 'navigator.userAgent');
+    location: Ember.computed(function () {
+        var ua = Ember.get(window, 'navigator.userAgent');
         return (ua && ua.match(/Catchpoint/)) ? 'none' : 'history';
     })
 });

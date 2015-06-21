@@ -1,5 +1,5 @@
-/// <reference path="../../baseline/mercury.d.ts" />
-'use strict';
+
+
 /**
 * @description This module is an alias for whatever script loader implementation
 * we are using. Use this stub to normalize/expose the features available to Wikia

@@ -1,6 +1,6 @@
-/// <reference path='./isPrimitive.ts' />
-/// <reference path='../../mercury.ts' />
-/// <reference path='../../mw.ts' />
+
+
+
 var Mercury;
 (function (Mercury) {
     var Utils;

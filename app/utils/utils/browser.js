@@ -1,8 +1,8 @@
-/// <reference path="../../baseline/mercury.d.ts" />
+
 /**
  * @define browser
  */
-'use strict';
+
 var Mercury;
 (function (Mercury) {
     var Utils;
