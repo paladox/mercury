@@ -19,8 +19,8 @@ var Mercury;
                 };
                 BaseTracker.prototype.appendScript = function () {
                     var elem = document.createElement('script');
-                    elEmber.async = true;
-                    elEmber.src = this.url();
+                    elem.async = true;
+                    elem.src = this.url();
                     BaseTracker.script.parentNode.insertBefore(elem, BaseTracker.script);
                 };
                 BaseTracker.script = document.getElementsByTagName('script')[0];
