@@ -13,6 +13,8 @@ var app = new EmberApp({
 	}
 });
 
+app.import('bower_components/i18next/i18next.js');
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
