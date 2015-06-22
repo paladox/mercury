@@ -1,4 +1,4 @@
-
+import Ember from 'ember';
 
 /**
  * @desc Helper to give textual representation of time interval between past date
@@ -8,8 +8,10 @@
  *
  * which returns something like '2 days ago'
  */
-Ember.Handlebars.registerBoundHelper('timeAgo', function (unixTimestamp) {
-    var fromDate = new Date(unixTimestamp * 1000), interval = M.DateTime.timeAgo(fromDate);
+export function timeAgoHelper (unixTimestamp) {
+    var fromDate = new Date(unixTimestamp * 1000),
+		interval = M.DateTime.timeAgo(fromDate);
+
     switch (interval.type) {
         case M.DateTime.Interval.Now:
             return i18n.t('app.now-label');
@@ -29,4 +31,6 @@ Ember.Handlebars.registerBoundHelper('timeAgo', function (unixTimestamp) {
             Ember.Logger.error('Unexpected date interval for timestamp', unixTimestamp);
             return '';
     }
-});
+}
+
+export default Ember.HTMLBars.registerBoundHelper(timeAgoHelper);

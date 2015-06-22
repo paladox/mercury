@@ -1,3 +1,4 @@
+/* global i18n */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -7,25 +8,31 @@ export default Ember.Component.extend({
 	isCollapsed: true,
 	isInSearchMode: false,
 	searchQuery: '',
-	searchPlaceholderLabel: Ember.computed(function () {
-		return i18n.t('app.search-label');
-	}),
+
+	searchPlaceholderLabel: Ember.computed(() =>
+		i18n.t('app.search-label')
+	),
+
 	actions: {
-		clearSearch: function () {
+		clearSearch () {
 			this.set('searchQuery', '');
 		},
-		collapse: function () {
+
+		collapse () {
 			this.set('isCollapsed', true);
 			this.send('searchCancel');
 		},
-		expand: function () {
+
+		expand () {
 			this.set('isCollapsed', false);
 		},
-		searchCancel: function () {
+
+		searchCancel () {
 			this.set('isInSearchMode', false);
 			this.send('clearSearch');
 		},
-		searchFocus: function () {
+
+		searchFocus () {
 			this.set('isInSearchMode', true);
 			// Track when search is opened
 			M.track({
@@ -33,28 +40,33 @@ export default Ember.Component.extend({
 				category: 'search'
 			});
 		},
-		loadRandomArticle: function () {
+
+		loadRandomArticle () {
 			this.sendAction('loadRandomArticle');
 		},
+
 		/**
 		 * TODO: Refactor, use api
 		 *
 		 * Temporary solution for enter on search, will be refactored to be a route in mercury
 		 * @param value of input
 		 */
-		enter: function (value) {
-			if (value === void 0) { value = ''; }
-			window.location.assign('%@Special:Search?search=%@&fulltext=Search'.fmt(Mercury.wiki.articlePath, value));
+		enter (value = '') {
+			window.location.assign('%@Special:Search?search=%@&fulltext=Search'
+				.fmt(Mercury.wiki.articlePath, value));
 		}
 	},
+
 	isCollapsedObserver: Ember.observer('isCollapsed', function () {
 		var trackLabel = this.get('isCollapsed') ? 'close' : 'open';
+
 		M.track({
 			action: M.trackActions.click,
 			category: 'menu',
 			label: trackLabel
 		});
 	}),
+
 	/**
 	 * Every time we exit search mode, regardless of if it was through the Cancel
 	 * link or through clicking a search result, we want to clear out the query

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import VisibilityStateManager from '../mixins/visibility-state-manager';
 
 export default Ember.Controller.extend({
     needs: ['application'],
@@ -7,20 +8,26 @@ export default Ember.Controller.extend({
         }],
     commentsPage: null,
     noAds: Ember.computed.alias('controllers.application.noAds'),
-    init: function () {
+
+	init () {
         this.setProperties({
             mainPageTitle: Ember.get(Mercury, 'wiki.mainPageTitle'),
             siteName: Ember.getWithDefault(Mercury, 'wiki.siteName', 'Wikia')
         });
     },
+
     actions: {
-        updateHeaders: function (headers) {
+        updateHeaders (headers) {
             var article = this.get('model');
+
             article.set('sections', headers);
         },
-        edit: function (title, sectionIndex) {
-            App.VisibilityStateManager.reset();
+
+        edit (title, sectionIndex) {
+            VisibilityStateManager.reset();
+
             this.transitionToRoute('edit', title, sectionIndex);
+
             M.track({
                 action: M.trackActions.click,
                 category: 'sectioneditor',
@@ -28,6 +35,7 @@ export default Ember.Controller.extend({
                 value: sectionIndex
             });
         },
+
         articleRendered: function () {
             this.send('handleLightbox');
         }

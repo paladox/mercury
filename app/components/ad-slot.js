@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Ads from '../utils/modules/ads';
 
 export default Ember.Component.extend({
 	classNames: ['ad-slot-wrapper'],
@@ -6,6 +7,7 @@ export default Ember.Component.extend({
 	//This component is created dynamically, and this won't work without it
 	layoutName: 'components/ad-slot',
 	name: null,
+
 	nameLowerCase: Ember.computed('name', function () {
 		return this.get('name').toLowerCase().dasherize();
 	}),
@@ -27,17 +29,20 @@ export default Ember.Component.extend({
 			return value !== '' && value !== '0';
 		}
 	}),
-	didInsertElement: function () {
+
+	didInsertElement() {
 		if (this.get('noAds') === true) {
 			Ember.Logger.info('Ad disabled for:', this.get('name'));
 		} else {
 			Ember.Logger.info('Injected ad:', this.get('name'));
-			Mercury.Modules.Ads.getInstance().addSlot(this.get('name'));
+			Ads.getInstance().addSlot(this.get('name'));
 		}
 	},
-	willDestroyElement: function () {
+
+	willDestroyElement () {
 		var name = this.get('name');
-		Mercury.Modules.Ads.getInstance().removeSlot(this.get('name'));
+
+		Ads.getInstance().removeSlot(this.get('name'));
 		this.$().remove();
 		Ember.Logger.info('Will destroy ad:', name);
 	}

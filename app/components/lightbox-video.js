@@ -1,11 +1,12 @@
 import Ember from 'ember';
+import VideoLoader from '../utils/modules/video-loader';
 
 export default Ember.Component.extend({
-
 	classNames: ['lightbox-video', 'lightbox-content-inner'],
 	classNameBindings: ['provider'],
 	videoLoader: null,
-	didInsertElement: function () {
+
+	didInsertElement () {
 		this.initVideoPlayer();
 	},
 	/**
@@ -24,14 +25,17 @@ export default Ember.Component.extend({
 	 * @desc Used to instantiate a video player
 	 */
 	initVideoPlayer: function () {
-		var videoLoader = new Mercury.Modules.VideoLoader(this.get('model.embed')), selector = Ember.get(videoLoader, 'player.containerSelector');
+		var videoLoader = new VideoLoader(this.get('model.embed')),
+			selector = Ember.get(videoLoader, 'player.containerSelector');
+
 		// Stop bubbling it up to the lightbox
 		this.$(selector).click(function () {
 			return false;
-
-			this.set('videoLoader', videoLoader);
 		});
+
+		this.set('videoLoader', videoLoader);
 	},
+
 	articleContentWidthObserver: Ember.observer('articleContent.width', function () {
 		if (this.get('videoLoader')) {
 			this.get('videoLoader').onResize();

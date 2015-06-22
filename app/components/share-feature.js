@@ -1,3 +1,4 @@
+/* global Headroom */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -18,6 +19,7 @@ export default Ember.Component.extend({
 
 		return 0;
 	}),
+
 	/**
 	 * Observes smartBannerVisible property which is controlled by SmartBannerComponent
 	 * and goes through ApplicationController. Reinitializes Headroom when it changes.
@@ -27,10 +29,12 @@ export default Ember.Component.extend({
 		headroom.destroy();
 		this.initHeadroom();
 	}),
-	didInsertElement: function () {
+
+	didInsertElement () {
 		this.initHeadroom();
 	},
-	initHeadroom: function () {
+
+	initHeadroom () {
 		var headroom = new Headroom(this.get('element'), {
 			classes: {
 				initial: 'pinned',
@@ -42,16 +46,27 @@ export default Ember.Component.extend({
 		headroom.init();
 		this.set('headroom', headroom);
 	},
-	lineShare: Ember.computed('title', function () {
-		return "http://line.me/R/msg/text/?" + encodeURIComponent(this.get('title')) + " " + encodeURIComponent(Mercury.wiki.basePath + Mercury.wiki.articlePath + this.get('title'));
-	}),
-	facebookShare: Ember.computed('title', function () {
-		return "http://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(Mercury.wiki.basePath + Mercury.wiki.articlePath + this.get('title'));
-	}),
-	twitterShare: Ember.computed('title', function () {
-		return "https://twitter.com/share?url=" + encodeURIComponent(Mercury.wiki.basePath + Mercury.wiki.articlePath + this.get('title'));
-	}),
-	googleShare: Ember.computed('title', function () {
-		return "https://plus.google.com/share?url=" + encodeURIComponent(Mercury.wiki.basePath + Mercury.wiki.articlePath + this.get('title'));
-	})
+
+	shareUrl: Ember.computed('title', () =>
+		encodeURIComponent(Mercury.wiki.basePath + Mercury.wiki.articlePath + this.get('title'))
+	),
+
+	lineShare: Ember.computed('shareUrl', () =>
+		'http://line.me/R/msg/text/?' +
+			encodeURIComponent(this.get('title')) +
+			' ' +
+			this.get('shareUrl')
+	),
+
+	facebookShare: Ember.computed('title', () =>
+		'http://www.facebook.com/sharer/sharer.php?u=' + this.get('shareUrl')
+	),
+
+	twitterShare: Ember.computed('title', () =>
+		'https://twitter.com/share?url=' + this.get('shareUrl')
+	),
+
+	googleShare: Ember.computed('title', () =>
+		'https://plus.google.com/share?url=' + this.get('shareUrl')
+	)
 });

@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
 	classNames: ['wikia-footer'],
 	tagName: 'footer',
 	links: [

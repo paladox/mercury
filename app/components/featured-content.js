@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
 	classNames: ['featured-content'],
 	currentItemIndex: 0,
 	// should it be here?
@@ -12,34 +11,39 @@ export default Ember.Component.extend({
 		pan_velocity: 0.1,
 		pan_threshold: 1
 	},
+
 	currentItem: Ember.computed('model', 'currentItemIndex', function () {
 		//@TODO evaluate better solution
 		return this.getWithDefault('model', [])[this.get('currentItemIndex')];
 	}),
+
 	lastIndex: Ember.computed('model', function () {
 		return this.getWithDefault('model', []).length - 1;
 	}),
-	rightClickHandler: function () {
+
+	rightClickHandler () {
 		this.nextItem();
 		return true;
 	},
-	leftClickHandler: function () {
+	leftClickHandler () {
 		this.prevItem();
 		return true;
 	},
-	centerClickHandler: function () {
+	centerClickHandler () {
 		this.trackClick('modular-main-page', 'featured-content');
 		return false;
 	},
+
 	gestures: {
-		swipeLeft: function () {
+		swipeLeft () {
 			this.nextItem();
 		},
-		swipeRight: function () {
+		swipeRight () {
 			this.prevItem();
 		}
 	},
-	click: function (event) {
+
+	click (event) {
 		this.callClickHandler(event, true);
 	},
 	/**
@@ -47,18 +51,20 @@ export default Ember.Component.extend({
 	 */
 	currentItemIndexObserver: Ember.observer('currentItemIndex', function () {
 		var $pagination = this.$('.featured-content-pagination');
+
 		$pagination.find('.current').removeClass('current');
-		$pagination.find("li[data-index=" + this.get('currentItemIndex') + "]").addClass('current');
+		$pagination.find('li[data-index=' + this.get('currentItemIndex') + ']').addClass('current');
 	}).on('didInsertElement'),
-	prevItem: function () {
+
+	prevItem () {
 		if (this.get('currentItemIndex') === 0) {
 			this.set('currentItemIndex', this.get('lastIndex'));
-		}
-		else {
+		} else {
 			this.decrementProperty('currentItemIndex');
 		}
 	},
-	nextItem: function () {
+
+	nextItem () {
 		if (this.get('currentItemIndex') >= this.get('lastIndex')) {
 			this.set('currentItemIndex', 0);
 		}
@@ -66,6 +72,4 @@ export default Ember.Component.extend({
 			this.incrementProperty('currentItemIndex');
 		}
 	}
-
-
 });

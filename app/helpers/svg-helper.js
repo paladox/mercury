@@ -1,4 +1,4 @@
-
+import Ember from 'ember';
 
 /**
  * @desc Helper to generate SVGs in the form:
@@ -12,17 +12,21 @@
  * 	<use xlink:href="#chevron"></use>
  * </svg>
  */
-Ember.Handlebars.registerHelper('svg', function (name, options) {
+export function svgHelper (name, options) {
     var optionalParams = [
-        'class',
-        'role',
-        'viewBox'
-    ], ret = '<svg';
+			'class',
+			'role',
+			'viewBox'
+		],
+		ret = '<svg';
+
     optionalParams.forEach(function (param) {
         if (param in options.hash) {
-            ret += " " + param + '="' + options.hash[param] + '"';
+            ret += ' ' + param + '="' + options.hash[param] + '"';
         }
     });
     ret += '><use xlink:href="#' + name + '"></use></svg>';
     return new Ember.Handlebars.SafeString(ret);
-});
+}
+
+export default Ember.HTMLBars.registerBoundHelper(svgHelper);

@@ -22,7 +22,7 @@
 	"quotmark": "single",
 	"undef": true,
 	"unused": true,
-	"strict": true,
+	"strict": false,
 	"trailing": true,
 
 	// Relaxing
@@ -30,11 +30,11 @@
 	"boss": false,
 	"debug": false,
 	"eqnull": false,
-	"esnext": false,
+	"esnext": true,
 	"evil": false,
 	"expr": false,
 	"funcscope": false,
-	"globalstrict": false,
+	"globalstrict": true,
 	"iterator": false,
 	"lastsemic": false,
 	"laxbreak": false,

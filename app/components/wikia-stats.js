@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
 	classNames: ['wikia-stats'],
 	items: Ember.computed('model', function () {
 		return [
@@ -10,6 +9,4 @@ export default Ember.Component.extend({
 			{ 'label': 'app.videos-label', 'value': this.get('model.videos') }
 		];
 	})
-
-
 });

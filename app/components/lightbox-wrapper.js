@@ -13,15 +13,19 @@ export default Ember.Component.extend({
 	footer: null,
 	type: null,
 	model: null,
+
 	status: Ember.computed('type', function () {
 		return (this.get('type')) ? 'open' : 'hidden';
 	}),
+
 	lightboxComponent: Ember.computed('type', function () {
 		var type = this.get('type');
+
 		return type ? 'lightbox-' + type : null;
 	}),
-	click: function (event) {
+	click (event) {
 		var $target = this.$(event.target);
+
 		if ($target.is('.lightbox-footer')) {
 			this.send('toggleFooter');
 		} else if ($target.is('.lightbox-close-wrapper')) {
@@ -30,13 +34,15 @@ export default Ember.Component.extend({
 			this.send('toggleUI');
 		}
 	},
-	keyDown: function (event) {
+
+	keyDown (event) {
 		if (event.keyCode === 27) {
 			this.send('close');
 		}
 	},
+
 	actions: {
-		close: function () {
+		close () {
 			this.setProperties({
 				footer: null,
 				header: null,
@@ -45,24 +51,25 @@ export default Ember.Component.extend({
 
 			this.sendAction('closeLightbox');
 		},
-		setFooter: function (footer) {
+		setFooter (footer) {
 			this.set('footer', footer);
 		},
-		setHeader: function (header) {
+		setHeader (header) {
 			this.set('header', header);
 		},
-		setQueryParam: function (name, value) {
+		setQueryParam (name, value) {
 			this.sendAction('setQueryParam', name, value);
 		},
-		toggleFooter: function () {
+		toggleFooter () {
 			this.toggleProperty('footerExpanded');
 		},
-		toggleUI: function () {
+		toggleUI () {
 			this.toggleProperty('footerHidden');
 			this.toggleProperty('headerHidden');
 		}
 	},
-	didInsertElement: function () {
+
+	didInsertElement () {
 		// This is needed for keyDown event to work
 		this.$().focus();
 	}

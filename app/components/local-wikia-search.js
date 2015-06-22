@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
 
 export default Ember.Component.extend({
 	classNames: ['local-wikia-search'],
@@ -30,7 +31,7 @@ export default Ember.Component.extend({
 	// key: query string, value: Array<SearchSuggestionItem>
 	cachedResults: {},
 	actions: {
-		collapseSideNav: function () {
+		collapseSideNav () {
 			this.setProperties({
 				sideNavCollapsed: true,
 				isInSearchMode: false,
@@ -38,14 +39,14 @@ export default Ember.Component.extend({
 
 			});
 		},
-		setSearchSuggestionItems: function (suggestions) {
+		setSearchSuggestionItems (suggestions) {
 			suggestions.forEach(function (suggestion, index, suggestionsArr) {
 				suggestionsArr[index].uri = encodeURIComponent(suggestion.title);
 
 				this.set('suggestions', suggestions);
 			});
 		},
-		setEmptySearchSuggestionItems: function () {
+		setEmptySearchSuggestionItems () {
 			this.setProperties({
 				suggestions: [],
 				isLoadingSearchResults: false,
@@ -57,8 +58,8 @@ export default Ember.Component.extend({
 		 * @param {string} query - search string
 		 * @return {string} uri to send an ajax request to
 		 */
-		getSearchURI: function (query) {
-			return App.get('apiBase') + '/search/' + encodeURIComponent(query);
+		getSearchURI (query) {
+			return ENV.apiBase + '/search/' + encodeURIComponent(query);
 		},
 		/**
 		 * @desc Wrapper for query observer that also checks the cache
@@ -92,12 +93,13 @@ export default Ember.Component.extend({
 				Ember.run.debounce(this, this.searchWithoutDebounce, this.get('debounceDuration'));
 			}
 		}),
+
 		/**
 		 * @desc query observer which makes ajax request for search suggestions based on query
 		 */
-		searchWithoutDebounce: function () {
-			var _this = this;
-			var query = this.get('query'), uri = this.getSearchURI(query);
+		searchWithoutDebounce () {
+			var query = this.get('query'),
+				uri = this.getSearchURI(query);
 			/**
 			 * This was queued to run before the user has finished typing, and when they
 			 * finished typing it may have turned out that they were just backspacing OR
@@ -109,31 +111,32 @@ export default Ember.Component.extend({
 				return;
 			}
 			this.startedRequest(query);
-			Ember.$.getJSON(uri).then(function (data) {
+			Ember.$.getJSON(uri).then((data) => {
 				/**
 				 * If the user makes one request, request A, and then keeps typing to make
 				 * reqeust B, but request A takes a long time while request B returns quickly,
 				 * then we don't want request A to dump its info into the window after B has
 				 * already inserted the relevant information.
 				 */
-				if (query === _this.get('query')) {
-					_this.setSearchSuggestionItems(data.items);
+				if (query === this.get('query')) {
+					this.setSearchSuggestionItems(data.items);
 				}
-				_this.cacheResult(query, data.items);
+				this.cacheResult(query, data.items);
 				// When we get a 404, it means there were no results
-			}).fail(function (reason) {
-				if (query === _this.get('query')) {
-					_this.setEmptySearchSuggestionItems();
+			}).fail(() => {
+				if (query === this.get('query')) {
+					this.setEmptySearchSuggestionItems();
 				}
-				_this.cacheResult(query);
-			}).always(function () {
+				this.cacheResult(query);
+			}).always(() => {
 				// We have a response, so we're no longer loading the results
-				if (query === _this.get('query')) {
-					_this.set('isLoadingSearchResults', false);
+				if (query === this.get('query')) {
+					this.set('isLoadingSearchResults', false);
 				}
-				_this.endedRequest(query);
+				this.endedRequest(query);
 			});
 		},
+
 		/**
 		 * Methods that modify requestsInProgress to record what requests are currently
 		 * being executed so we don't do them more than once.
@@ -142,7 +145,7 @@ export default Ember.Component.extend({
 		 * @desc records that we have submitted an ajax request for a query term
 		 * @param {string} query - the query string that we submitted an ajax request for
 		 */
-		startedRequest: function (query) {
+		startedRequest (query) {
 			this.get('requestsInProgress')[query] = true;
 		},
 		/**
@@ -150,14 +153,14 @@ export default Ember.Component.extend({
 		 * @param {string} query - query the query to check
 		 * @return {boolean}
 		 */
-		requestInProgress: function (query) {
+		requestInProgress (query) {
 			return this.get('requestsInProgress').hasOwnProperty(query);
 		},
 		/**
 		 * @desc records that we have finished a request
 		 * @param {string} query - query the string we searched for that we're now done with
 		 */
-		endedRequest: function (query) {
+		endedRequest (query) {
 			delete this.get('requestsInProgress')[query];
 			// Track when search is submitted. To avoid spamming this event, track only
 			// when a search request has ended.
@@ -171,14 +174,14 @@ export default Ember.Component.extend({
 		 * @desc returns whether or not the number of cached results is equal to our limit on cached results
 		 * @return {boolean}
 		 */
-		needToEvict: function () {
+		needToEvict () {
 			return this.cachedResultsQueue.length === this.cachedResultsLimit;
 		},
 		/**
 		 * @desc Evicts via FIFO from cachedResultsQueue cachedResults, based on what the first
 		 * (and therefore least recently cached) query string is.
 		 */
-		evictCachedResult: function () {
+		evictCachedResult () {
 			// Query string to evict
 			var toEvict = this.cachedResultsQueue.shift();
 			delete this.get('cachedResults')[toEvict];
@@ -188,7 +191,7 @@ export default Ember.Component.extend({
 		 * @param {string} query - the query string that was used in the search API request
 		 * @param {Array<SearchSuggestionItem>} suggestions - if not provided, then there were zero results
 		 */
-		cacheResult: function (query, suggestions) {
+		cacheResult (query, suggestions) {
 			if (this.needToEvict()) {
 				this.evictCachedResult();
 			}
@@ -200,14 +203,14 @@ export default Ember.Component.extend({
 		 * @param {string} query
 		 * @return {boolean}
 		 */
-		hasCachedResult: function (query) {
+		hasCachedResult (query) {
 			return this.get('cachedResults').hasOwnProperty(query);
 		},
 		/**
 		 * @param {string} query - the query string to search the cache with
 		 * @return {Array<SearchSuggestionItem>|null} the cached result or null if there were no results
 		 */
-		getCachedResult: function (query) {
+		getCachedResult (query) {
 			return this.get('cachedResults')[query];
 		}
 	}

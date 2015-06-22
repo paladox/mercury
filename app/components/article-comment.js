@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Thumbnailer from '../utils/modules/thumbnailer';
 
 export default Ember.Component.extend({
 	tagName: 'li',
@@ -7,19 +8,25 @@ export default Ember.Component.extend({
 	users: null,
 	comment: null,
 	thumbnailWidth: 480,
+
 	text: Ember.computed('comment.text', function () {
-		var $text = $('<div/>').html(this.get('comment.text')), $figure = $text.find('figure');
+		var $text = $('<div/>').html(this.get('comment.text')),
+			$figure = $text.find('figure');
+
 		if ($figure.length) {
 			this.convertThumbnails($figure);
 		}
+
 		return $text.html();
 	}),
+
 	user: Ember.computed('users', function () {
 		var users = this.get('users');
 		if (users) {
 			return users[this.get('comment.userName')] || {};
 		}
 	}),
+
 	userName: Ember.computed('comment.userName', function () {
 		// Checks for an IP address to identify an anonymous user. This is very crude and obviously doesn't check IPv6.
 		var userName = this.get('comment.userName'), regex = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
@@ -30,8 +37,9 @@ export default Ember.Component.extend({
 			return userName;
 		}
 	}),
+
 	actions: {
-		toggleExpand: function () {
+		toggleExpand () {
 			this.toggleProperty('isExpanded');
 		}
 	},
@@ -44,30 +52,42 @@ export default Ember.Component.extend({
 	 *
 	 * @param {JQuery} $originalFigure
 	 */
-	convertThumbnails: function ($originalFigure) {
-		var _this = this;
-		var thumbnailsData, thumbnailer = Mercury.Modules.Thumbnailer, newFigures = [];
+	convertThumbnails ($originalFigure) {
+		var thumbnailsData,
+			newFigures = [];
+
 		try {
 			thumbnailsData = JSON.parse($originalFigure.find('img[data-params]').attr('data-params'));
 		}
 		catch (exception) {
 			return;
 		}
-		thumbnailsData.forEach(function (thumbnailData) {
-			var thumbnailURL = thumbnailer.getThumbURL(thumbnailData.full, {
-				mode: thumbnailer.mode.scaleToWidth,
-				width: _this.thumbnailWidth
-			}), $thumbnail = $('<img/>').attr('src', thumbnailURL), href = '%@%@:%@'.fmt(Ember.get(Mercury, 'wiki.articlePath'), Ember.getWithDefault(Mercury, 'wiki.namespaces.6', 'File'), thumbnailData.name), $anchor = $('<a/>').attr('href', href).append($thumbnail), $figcaption, $figure = $('<figure/>');
+
+		thumbnailsData.forEach((thumbnailData) => {
+			var thumbnailURL = Thumbnailer.getThumbURL(thumbnailData.full, {
+					mode: Thumbnailer.mode.scaleToWidth,
+					width: this.thumbnailWidth
+				}),
+				$thumbnail = $('<img/>').attr('src', thumbnailURL),
+				href = '%@%@:%@'.fmt(Ember.get(Mercury, 'wiki.articlePath'),
+					Ember.getWithDefault(Mercury, 'wiki.namespaces.6', 'File'), thumbnailData.name),
+				$anchor = $('<a/>').attr('href', href).append($thumbnail),
+				$figcaption, $figure = $('<figure/>');
+
 			if (thumbnailData.type === 'video') {
 				$figure.addClass('comment-video');
 			}
+
 			$figure.append($anchor);
+
 			if (thumbnailData.capt) {
 				$figcaption = $('<figcaption/>').text(thumbnailData.capt);
 				$figure.append($figcaption);
 			}
+
 			newFigures.push($figure);
 		});
+
 		$originalFigure.replaceWith(newFigures);
 	}
 });

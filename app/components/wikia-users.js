@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Thumbnailer from '../utils/modules/thumbnailer';
 
 export default Ember.Component.extend({
 	avatarHeight: 100,
@@ -7,8 +8,7 @@ export default Ember.Component.extend({
 	isVisible: Ember.computed.notEmpty('users'),
 	label: null,
 	limit: 5,
-	thumbMode: Mercury.Modules.Thumbnailer.mode.fixedAspectRatio,
+	thumbMode: Thumbnailer.mode.fixedAspectRatio,
 	trackingEvent: null,
 	users: []
-
 });

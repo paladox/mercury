@@ -12,11 +12,13 @@ export default Ember.Component.extend({
 	model: Ember.computed(function () {
 		return Mercury.wiki.navData;
 	}),
+
 	menuRoot: Ember.computed('model', function () {
 		return {
 			children: this.get('model.navigation.wiki')
 		};
 	}),
+
 	currentMenuItem: Ember.computed.oneWay('menuRoot'),
 	parentItem: Ember.computed.alias('currentMenuItEmber.parent'),
 	actions: {
@@ -25,36 +27,45 @@ export default Ember.Component.extend({
 		 * `currentMenuItem`'s children
 		 * @param index The index of the item to change to
 		 */
-		changeMenuItem: function (index) {
+		changeMenuItem (index) {
 			var curr = this.get('currentMenuItem');
+
 			this.set('currentMenuItem', curr.children[index]);
+
 			M.track({
 				action: M.trackActions.click,
 				category: 'wiki-nav',
 				label: 'header-' + (index + 1)
 			});
 		},
-		collapseSideNav: function () {
+
+		collapseSideNav () {
 			this.set('sideNavCollapsed', true);
 		},
-		gotoRoot: function () {
+
+		gotoRoot () {
 			this.set('currentMenuItem', this.get('menuRoot'));
 		},
-		goBack: function () {
+
+		goBack () {
 			this.set('currentMenuItem', this.get('parentItem'));
 		},
-		loadRandomArticle: function () {
+
+		loadRandomArticle () {
 			this.trackClick('randomArticle', 'click');
 			this.sendAction('loadRandomArticle');
 		},
+
 		sideNavCollapsedObserver: Ember.observer('sideNavCollapsed', function () {
 			if (this.get('sideNavCollapsed')) {
 				this.send('gotoRoot');
 			}
 		}),
-		willInsertElement: function () {
+
+		willInsertElement () {
 			this.injectParentPointersAndIndices();
 		},
+
 		/**
 		 * @desc function which recursively sets the 'parent' property
 		 * of all of the items in the navData tree. It also sets the index
@@ -64,13 +75,18 @@ export default Ember.Component.extend({
 		 * We need this because JSON can store child nav objects,
 		 * but cannot store references to parent objects.
 		 */
-		injectParentPointersAndIndices: function () {
+		injectParentPointersAndIndices () {
 			// topLevel is almost a NavItem but it has no href or text
-			var topLevel = this.get('menuRoot'), children = topLevel.children || [], i, len = children.length;
+			var topLevel = this.get('menuRoot'),
+				children = topLevel.children || [],
+				i,
+				len = children.length;
+
 			for (i = 0; i < len; i++) {
 				this.injectParentPointersAndIndicesHelper(topLevel, children[i], i);
 			}
 		},
+
 		/**
 		 * Recursive helper for the `injectParentPointersAndIndices` function.
 		 * @param parent The parent of curr
@@ -79,8 +95,9 @@ export default Ember.Component.extend({
 		 * @param index The index of this item in its parent's children array, because
 		 * we need it to link to the correct child
 		 */
-		injectParentPointersAndIndicesHelper: function (parent, curr, index) {
+		injectParentPointersAndIndicesHelper (parent, curr, index) {
 			var i, len;
+
 			curr.parent = parent;
 			curr.index = index;
 			if (!curr.hasOwnProperty('children')) {

@@ -6,20 +6,23 @@ export default Ember.Component.extend({
 	alert: null,
 	notificationExpiry: 10000,
 	timeout: null,
-	didInsertElement: function () {
-		var _this = this;
-		this.set('timeout', Ember.run.later(this, function () {
-			_this.dismissNotification();
+
+	didInsertElement () {
+		this.set('timeout', Ember.run.later(this, () => {
+			this.dismissNotification();
 		}, this.get('notificationExpiry')));
 	},
-	willDestroyElement: function () {
+
+	willDestroyElement () {
 		Ember.run.cancel(this.get('timeout'));
 	},
-	dismissNotification: function () {
+
+	dismissNotification () {
 		this.sendAction('action', this.get('alert'));
 	},
+
 	actions: {
-		close: function () {
+		close () {
 			this.dismissNotification();
 		}
 	}

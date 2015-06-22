@@ -1,5 +1,7 @@
+import Ember from 'ember';
 
-
-Ember.Handlebars.registerBoundHelper('numeral', function (numberToFormat, format) {
+export function numeralHelper (numberToFormat, format) {
     return numeral(numberToFormat).format(format);
-});
+}
+
+export default Ember.HTMLBars.registerBoundHelper(numeralHelper);

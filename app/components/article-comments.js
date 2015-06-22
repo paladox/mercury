@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ArticleCommentsModel from '../models/article-comments';
 
 export default Ember.Component.extend({
 	page: null,
@@ -10,42 +11,53 @@ export default Ember.Component.extend({
 	nextButtonShown: false,
 	prevButtonShown: false,
 	showComments: Ember.computed.bool('page'),
+
 	/**
 	 * @desc scrolls to top of article's container, used for pagination
 	 */
-	scrollToTop: function () {
+	scrollToTop () {
 		window.scrollTo(0, this.$().offset().top);
 	},
-	didInsertElement: function () {
-		this.set('model', App.ArticleCommentsModel.create({
+	didInsertElement () {
+		this.set('model', ArticleCommentsModel.create({
 			articleId: this.get('articleId')
 		}));
+
 		if (this.get('page')) {
 			this.scrollToTop();
 		}
 	},
+
 	/**
 	 * @desc observes changes to page property, applies limit `1 <= page <= model.pagesCount`
 	 * and updates model, so it can load a page of comments
 	 */
 	pageObserver: Ember.observer('page', 'model.comments', function () {
-		var _this = this;
-		Ember.run.scheduleOnce('afterRender', this, function () {
-			var page = _this.get('page'), count = _this.get('model.pagesCount'), currentPage = page, currentPageInteger, isFirstPage;
+		Ember.run.scheduleOnce('afterRender', this, () => {
+			var page = this.get('page'),
+				count = this.get('model.pagesCount'),
+				currentPage = page,
+				currentPageInteger,
+				isFirstPage;
+
 			// since those can be null we intentionally correct the types
 			if (page != null && count != null) {
 				currentPage = Math.max(Math.min(page, count), 1);
 			}
+
 			currentPageInteger = parseInt(currentPage, 10);
 			isFirstPage = currentPageInteger === 1;
-			_this.setProperties({
+
+			this.setProperties({
 				nextButtonShown: (isFirstPage || currentPageInteger < count) && count > 1,
 				prevButtonShown: !isFirstPage && (currentPageInteger > 1),
 				page: currentPage
 			});
-			_this.set('model.page', currentPage);
+
+			this.set('model.page', currentPage);
 		});
 	}),
+
 	/**
 	 * @desc watches changes to model, and scrolls to top of comments
 	 */
@@ -54,6 +66,7 @@ export default Ember.Component.extend({
 			this.scrollToTop();
 		}
 	}),
+
 	/**
 	 * @desc if articleId changes, updates model
 	 */
@@ -64,16 +77,18 @@ export default Ember.Component.extend({
 		});
 		this.rerender();
 	}),
+
 	actions: {
-		nextPage: function () {
+		nextPage () {
 			this.incrementProperty('page');
 		},
-		prevPage: function () {
+		prevPage () {
 			this.decrementProperty('page');
 		},
-		toggleComments: function () {
+		toggleComments () {
 			this.set('page', this.get('page') ? null : 1);
 			this.toggleProperty('isCollapsed');
+
 			M.track({
 				action: M.trackActions.click,
 				category: 'comments',

@@ -1,7 +1,7 @@
+
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
 	classNames: ['smart-banner'],
 	classNameBindings: ['noIcon'],
 	options: {
@@ -14,31 +14,41 @@ export default Ember.Component.extend({
 	},
 	day: 86400000,
 	isVisible: false,
-	appId: Ember.computed('config', 'system', function () {
-		return this.get('config.appId.' + this.get('system'));
-	}),
-	appScheme: Ember.computed('config', 'system', function () {
-		return this.get('config.appScheme.' + this.get('system'));
-	}),
-	config: Ember.computed(function () {
-		return Ember.getWithDefault(Mercury, 'wiki.smartBanner', {});
-	}),
-	dbName: Ember.computed(function () {
-		return Ember.get(Mercury, 'wiki.dbName');
-	}),
+
+	appId: Ember.computed('config', 'system', () =>
+		this.get('config.appId.' + this.get('system'))
+	),
+
+	appScheme: Ember.computed('config', 'system', () =>
+		this.get('config.appScheme.' + this.get('system'))
+	),
+
+	config: Ember.computed(() =>
+		Ember.getWithDefault(Mercury, 'wiki.smartBanner', {})
+	),
+
+	dbName: Ember.computed(() =>
+		Ember.get(Mercury, 'wiki.dbName')
+	),
+
 	description: Ember.computed.alias('config.description'),
 	icon: Ember.computed.alias('config.icon'),
-	iconStyle: Ember.computed('icon', function () {
-		return 'background-image: url(%@)'.fmt(this.get('icon'));
-	}),
-	labelInStore: Ember.computed('system', function () {
-		return i18n.t('app.smartbanner-store-' + this.get('system'));
-	}),
-	labelInstall: Ember.computed('system', function () {
-		return i18n.t('app.smartbanner-install-' + this.get('system'));
-	}),
+	iconStyle: Ember.computed('icon', () =>
+		'background-image: url(%@)'.fmt(this.get('icon'))
+	),
+
+	labelInStore: Ember.computed('system', () =>
+		i18n.t('app.smartbanner-store-' + this.get('system'))
+	),
+
+	labelInstall: Ember.computed('system', () =>
+		i18n.t('app.smartbanner-install-' + this.get('system'))
+	),
+
 	link: Ember.computed('appId', 'dbName', 'system', function () {
-		var link, appId = this.get('appId');
+		var link,
+			appId = this.get('appId');
+
 		if (this.get('system') === 'android') {
 			link = 'https://play.google.com/store/apps/details?id=' +
 				appId +
@@ -52,18 +62,20 @@ export default Ember.Component.extend({
 		}
 		return link;
 	}),
+
 	noIcon: Ember.computed.not('icon'),
 	system: Ember.computed(function () {
 		return Mercury.Utils.Browser.getSystem();
 	}),
+
 	title: Ember.computed.alias('config.name'),
 	actions: {
-		close: function () {
+		close () {
 			this.setSmartBannerCookie(this.get('options.daysHiddenAfterClose'));
 			this.set('isVisible', false);
 			this.track(M.trackActions.close);
 		},
-		view: function () {
+		view () {
 			var appScheme = this.get('appScheme');
 			this.setSmartBannerCookie(this.get('options.daysHiddenAfterView'));
 
@@ -75,15 +87,19 @@ export default Ember.Component.extend({
 			this.set('isVisible', false);
 		}
 	},
-	click: function (event) {
+
+	click (event) {
 		var $target = this.$(event.target);
+
 		if (!$target.is('.sb-close')) {
 			this.send('view');
 		}
 	},
-	didInsertElement: function () {
+	didInsertElement () {
 		// Check if it's already a standalone web app or running within a webui view of an app (not mobile safari)
-		var standalone = Ember.get(navigator, 'standalone'), config = this.get('config');
+		var standalone = Ember.get(navigator, 'standalone'),
+			config = this.get('config');
+
 		// Don't show banner if device isn't iOS or Android, website is loaded in app or user dismissed banner
 		if (this.get('system') &&
 			!standalone &&
@@ -96,37 +112,42 @@ export default Ember.Component.extend({
 			this.destroy();
 		}
 	},
+
 	/**
 	 * Try to open app using custom scheme and if it fails go to fallback function
 	 *
 	 * @param {string} appScheme
 	 */
-	tryToOpenApp: function (appScheme) {
+	tryToOpenApp (appScheme) {
 		this.track(M.trackActions.open);
 		window.document.location.href = appScheme + '://';
 		Ember.run.later(this, this.fallbackToStore, 300);
 	},
+
 	/**
 	 * Open app store
 	 */
-	fallbackToStore: function () {
+	fallbackToStore () {
 		this.track(M.trackActions.install);
 		window.open(this.get('link'), '_blank');
 	},
+
 	/**
 	 * Sets sb-closed=1 cookie for given number of days
 	 *
 	 * @param {number} days
 	 */
-	setSmartBannerCookie: function (days) {
+	setSmartBannerCookie (days) {
 		var date = new Date();
+
 		date.setTime(date.getTime() + (days * this.get('day')));
 		$.cookie('sb-closed', 1, {
 			expires: date,
 			path: '/'
 		});
 	},
-	track: function (action) {
+
+	track (action) {
 		M.track({
 			action: action,
 			category: 'smart-banner',

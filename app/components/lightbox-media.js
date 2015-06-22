@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import MediaModel from '../models/media';
 
 export default Ember.Component.extend({
 	classNames: ['lightbox-media', 'lightbox-content-inner'],
@@ -6,6 +7,7 @@ export default Ember.Component.extend({
 	attributeBindings: ['tabindex'],
 	tabindex: 0,
 	videoPlayer: null,
+
 	/**
 	 * @desc gets current media from model
 	 *
@@ -13,14 +15,15 @@ export default Ember.Component.extend({
 	 */
 	current: Ember.computed('model.media', 'model.mediaRef', function () {
 		var mediaModel = this.get('model.media');
-		if (mediaModel instanceof App.MediaModel) {
+
+		if (mediaModel instanceof MediaModel) {
 			return mediaModel.find(this.get('model.mediaRef'));
-		}
-		else {
+		} else {
 			Ember.Logger.error('Media model is not an instance of App.MediaModel');
 			return null;
 		}
 	}),
+
 	/**
 	 * @desc gets current media or current media from gallery
 	 *
@@ -28,26 +31,31 @@ export default Ember.Component.extend({
 	 */
 	currentMedia: Ember.computed('current', 'isGallery', 'currentGalleryRef', function () {
 		var current = this.get('current');
+
 		return this.get('isGallery') ? current[this.get('currentGalleryRef')] : current;
 	}),
+
 	currentGalleryRef: Ember.computed('model.galleryRef', {
-		get: function () {
+		get () {
 			return this.get('model.galleryRef') || 0;
 		},
-		set: function (key, value) {
+		set (key, value) {
 			var galleryLength = this.get('galleryLength') - 1;
+
 			if (value < 0) {
 				return galleryLength;
-			}
-			else if (value > galleryLength) {
+			} else if (value > galleryLength) {
 				return 0;
 			}
+
 			return value;
 		}
 	}),
+
 	galleryLength: Ember.computed('isGallery', 'current', function () {
 		return this.get('isGallery') ? this.get('current').length : -1;
 	}),
+
 	/**
 	 * @desc checks if current displayed media is a gallery
 	 *
@@ -56,6 +64,7 @@ export default Ember.Component.extend({
 	isGallery: Ember.computed('current', function () {
 		return Ember.isArray(this.get('current'));
 	}),
+
 	/**
 	 * @desc checks if current media is a video or image
 	 * and which lightbox component to render
@@ -66,31 +75,30 @@ export default Ember.Component.extend({
 		var currentMedia = this.get('currentMedia');
 		return currentMedia && currentMedia.url && currentMedia.type ? 'lightbox-' + currentMedia.type : null;
 	}),
+
 	modelObserver: Ember.observer('model', 'currentMedia', function () {
 		this.updateHeader();
 		this.updateFooter();
 		this.sendAction('setQueryParam', 'file', M.String.sanitize(this.get('currentMedia.title')));
 	}).on('didInsertElement'),
 
-	didInsertElement: function () {
+	didInsertElement () {
 		// This is needed for keyDown event to work
 		this.$().focus();
 	},
-	click: function (event) {
+	click (event) {
 		if (this.get('isGallery')) {
 			this.callClickHandler(event, true);
-		}
-		else {
+		} else {
 			this._super(event);
 		}
 	},
-	keyDown: function (event) {
+	keyDown (event) {
 		if (this.get('isGallery')) {
 			if (event.keyCode === 39) {
 				//handle right arrow
 				this.nextMedia();
-			}
-			else if (event.keyCode === 37) {
+			} else if (event.keyCode === 37) {
 				//handle left arrow
 				this.prevMedia();
 			}
@@ -98,57 +106,63 @@ export default Ember.Component.extend({
 		this._super(event);
 	},
 	gestures: {
-		swipeLeft: function () {
+		swipeLeft () {
 			if (this.get('isGallery')) {
 				this.nextMedia();
 			}
 		},
-		swipeRight: function () {
+		swipeRight () {
 			if (this.get('isGallery')) {
 				this.prevMedia();
 			}
 		}
 	},
-	rightClickHandler: function () {
+	rightClickHandler () {
 		this.nextMedia();
 		return true;
 	},
-	leftClickHandler: function () {
+	leftClickHandler () {
 		this.prevMedia();
 		return true;
 	},
-	centerClickHandler: function () {
+	centerClickHandler () {
 		// Bubble up
 		return false;
 	},
-	nextMedia: function () {
+	nextMedia () {
 		this.incrementProperty('currentGalleryRef');
+
 		M.track({
 			action: M.trackActions.paginate,
 			category: 'lightbox',
 			label: 'next'
 		});
 	},
-	prevMedia: function () {
+	prevMedia () {
 		this.decrementProperty('currentGalleryRef');
+
 		M.track({
 			action: M.trackActions.paginate,
 			category: 'lightbox',
 			label: 'previous'
 		});
 	},
-	updateHeader: function () {
+	updateHeader () {
 		var header = null;
+
 		if (this.get('isGallery')) {
 			header = (this.get('currentGalleryRef') + 1) + ' / ' + this.get('galleryLength');
 		}
 		this.sendAction('setHeader', header);
 	},
-	updateFooter: function () {
-		var currentMedia = this.get('currentMedia'), footer = null;
+	updateFooter () {
+		var currentMedia = this.get('currentMedia'),
+			footer = null;
+
 		if (currentMedia && currentMedia.caption) {
 			footer = currentMedia.caption.htmlSafe();
 		}
+
 		this.sendAction('setFooter', footer);
 	}
 });

@@ -88,6 +88,7 @@
 	"debug": false,
 	"devel": true,
 	"eqeqeq": true,
+  "eqnull": true,
 	"evil": true,
 	"forin": false,
 	"immed": false,

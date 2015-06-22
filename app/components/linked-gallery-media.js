@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
 	tagName: 'div',
 	classNames: ['linked-gallery'],
 	layoutName: 'components/linked-gallery-media',
@@ -9,13 +8,16 @@ export default Ember.Component.extend({
 	// This is set the same as the limit property to prevent "empty" images
 	// from showing before "View more" button is clicked
 	incrementLimitValue: 4,
+
 	canShowMore: Ember.computed('media', 'limit', function () {
 		return this.get('media').length > this.get('limit');
 	}),
-	setUp: function () {
+
+	setUp () {
 		this._super();
 		this.set('media', this.get('media').sort(this.sortMedia));
 	},
+
 	/**
 	 * Sorts media by a simple criterion: if it's linked or not; use this method as compression function
 	 *
@@ -23,7 +25,7 @@ export default Ember.Component.extend({
 	 * @param {ArticleMedia} b
 	 * @returns {number}
 	 */
-	sortMedia: function (a, b) {
+	sortMedia (a, b) {
 		if (a.link && typeof b.link === 'undefined') {
 			return 1;
 		}
@@ -32,15 +34,17 @@ export default Ember.Component.extend({
 		}
 		return 0;
 	},
-	load: function () {
-		var _this = this;
+
+	load () {
 		this.setUp();
 		this.loadImages(0, this.limit);
-		this.$().on('scroll', function () { return _this.onScroll; });
+		this.$().on('scroll', () => this.onScroll);
 	},
 	actions: {
-		showMore: function () {
-			var previousLimit = this.get('limit'), mediaLength = this.get('media').length;
+		showMore () {
+			var previousLimit = this.get('limit'),
+				mediaLength = this.get('media').length;
+
 			this.set('limit', mediaLength);
 			this.loadImages(previousLimit, (previousLimit + mediaLength));
 			this.$('button').remove();

@@ -14,8 +14,9 @@ export default Ember.Component.extend({
 	trackingEvent: null,
 	// End component property
 	actions: {
-		toggleMenu: function () {
+		toggleMenu () {
 			this.toggleProperty('isCollapsed');
+
 			// Track opening and closing menu
 			if (this.trackingEvent !== null) {
 				M.track({
@@ -26,13 +27,16 @@ export default Ember.Component.extend({
 			}
 		}
 	},
-	didInsertElement: function () {
+
+	didInsertElement () {
 		Ember.addObserver(this, 'observe', this, this.titleDidChange);
 	},
-	willDestroyElement: function () {
+
+	willDestroyElement () {
 		Ember.removeObserver(this, 'observe', this, this.titleDidChange);
 	},
-	titleDidChange: function () {
+
+	titleDidChange () {
 		if (!this.get('isCollapsed')) {
 			this.set('isCollapsed', true);
 		}

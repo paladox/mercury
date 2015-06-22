@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import EditModel from '../models/edit';
 
 export default Ember.Controller.extend({
     needs: ['application'],
@@ -6,6 +7,7 @@ export default Ember.Controller.extend({
     publishDisabled: Ember.computed('isPublishing', 'model.isDirty', function () {
         return (this.get('isPublishing') === true || this.get('model.isDirty') === false);
     }),
+
     // FIXME: Cover more errors
     errorCodeMap: {
         'autoblockedtext': 'app.edit-publish-error-autoblockedtext',
@@ -14,43 +16,58 @@ export default Ember.Controller.extend({
         'noedit-anon': 'app.edit-publish-error-noedit-anon',
         'protectedpage': 'app.edit-publish-error-protectedpage'
     },
-    handlePublishSuccess: function (data) {
-        var _this = this;
+
+    handlePublishSuccess ()  {
         var title = this.get('model.title');
+
         this.transitionToRoute('article', title).then(function () {
-            _this.get('controllers.application').addAlert('success', i18n.t('app.edit-success', { pageTitle: title }));
-            _this.set('isPublishing', false);
+            this.get('controllers.application')
+				.addAlert('success', i18n.t('app.edit-success', { pageTitle: title }));
+
+            this.set('isPublishing', false);
         });
+
         M.track({
             action: M.trackActions.impression,
             category: 'sectioneditor',
             label: 'success'
         });
     },
-    handlePublishError: function (error) {
-        var appController = this.get('controllers.application'), errorMsg = this.errorCodeMap[error] || 'app.edit-publish-error';
+
+    handlePublishError (error) {
+        var appController = this.get('controllers.application'),
+			errorMsg = this.errorCodeMap[error] || 'app.edit-publish-error';
+
         appController.addAlert('alert', i18n.t(errorMsg));
         appController.hideLoader();
+
         this.set('isPublishing', false);
+
         M.track({
             action: M.trackActions.impression,
             category: 'sectioneditor',
             label: error || 'edit-publish-error'
         });
     },
+
     actions: {
-        publish: function () {
+        publish () {
             this.set('isPublishing', true);
             this.get('controllers.application').showLoader();
-            App.EditModel.publish(this.get('model')).then(this.handlePublishSuccess.bind(this), this.handlePublishError.bind(this));
+
+            EditModel.publish(this.get('model'))
+				.then(this.handlePublishSuccess.bind(this), this.handlePublishError.bind(this));
+
             M.track({
                 action: M.trackActions.click,
                 category: 'sectioneditor',
                 label: 'publish'
             });
         },
-        back: function () {
+
+        back () {
             this.transitionToRoute('article', this.get('model.title'));
+
             M.track({
                 action: M.trackActions.click,
                 category: 'sectioneditor',

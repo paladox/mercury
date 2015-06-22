@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Thumbnailer from '../utils/modules/thumbnailer';
 
 export default Ember.Component.extend({
 	classNames: ['article-gallery'],
@@ -8,7 +9,7 @@ export default Ember.Component.extend({
 	limit: 2,
 	incrementLimitValue: 10,
 
-	setUp: function () {
+	setUp () {
 		var mediaArray = Ember.A(),
 			emptyGif = this.get('emptyGif');
 
@@ -36,26 +37,24 @@ export default Ember.Component.extend({
 		return this.get('media');
 	}),
 
-	loadImages: function (imageOrGalleryRef, limit, thumbSize) {
-		if (limit === void 0) { limit = 2; }
-		if (thumbSize === void 0) { thumbSize = this.get('thumbSize'); }
-
+	loadImages (imageOrGalleryRef, limit = 2, thumbSize = this.get('thumbSize')) {
 		var galleryRef = typeof imageOrGalleryRef === 'number' ?
 				imageOrGalleryRef :
-				~~imageOrGalleryRef.getAttribute('data-gallery-ref'),
+				parseInt(imageOrGalleryRef.getAttribute('data-gallery-ref'), 10) || 0,
 			image,
-			limit = Math.min(galleryRef + limit, this.get('galleryLength') - 1),
-		//if this gallery is inside infobox it has to be set of icons
+			//if this gallery is inside infobox it has to be set of icons
 			setOfIcons = this.isInsideInfobox(),
-			mode = Mercury.Modules.Thumbnailer.mode.topCrop,
+			mode = Thumbnailer.mode.topCrop,
 			height = thumbSize,
 			width = thumbSize;
+
+		limit = Math.min(galleryRef + limit, this.get('galleryLength') - 1);
 
 		for (; galleryRef <= limit; galleryRef++) {
 			image = this.get('media').get(galleryRef);
 
 			if (setOfIcons) {
-				mode = Mercury.Modules.Thumbnailer.mode.scaleToWidth;
+				mode = Thumbnailer.mode.scaleToWidth;
 				height = this.get('infoboxIconSize.height');
 				width = Math.floor(height * image.width / image.height);
 			}
@@ -70,11 +69,11 @@ export default Ember.Component.extend({
 			});
 		}
 	},
+
 	/**
 	 * Loads media and certain amount of images depending on the gallery width and thumbSize sets also onscroll handler
 	 */
 	load: function () {
-		var _this = this;
 		var $this = this.$(),
 			galleryWidth = $this.width(),
 			thumbSize = this.get('thumbSize'),
@@ -84,19 +83,19 @@ export default Ember.Component.extend({
 		this.loadImages(0, maxImages);
 
 		$this.on('scroll', function () {
-			Ember.run.debounce(_this, 'onScroll', maxImages, 100);
+			Ember.run.debounce(this, 'onScroll', maxImages, 100);
 		});
 	},
-	onScroll: function (maxImages) {
-		var _this = this;
+
+	onScroll (maxImages) {
 		var $this = this.$(),
 			imagesToLoad = $this.find('img:not(.loaded)'),
 			galleryOffset = $this.scrollLeft() + $this.width();
 
 		if (imagesToLoad.length) {
-			imagesToLoad.each(function (index, image) {
+			imagesToLoad.each((index, image) => {
 				if (image.offsetLeft < galleryOffset) {
-					_this.loadImages(image, maxImages);
+					this.loadImages(image, maxImages);
 				}
 			});
 		} else if (this.get('limit') < this.get('galleryLength')) {

@@ -18,7 +18,8 @@ export default Ember.Controller.extend(loadingSpinnerMixin, alertNotificationMix
     fullPage: false,
     lightboxType: null,
     lightboxModel: null,
-    init: function () {
+
+    init () {
         this.setProperties({
             domain: Ember.get(Mercury, 'wiki.dbName') || window.location.href.match(/^https?:\/\/(.*?)\./)[1],
             language: Ember.get(Mercury, 'wiki.language'),
@@ -37,7 +38,7 @@ export default Ember.Controller.extend(loadingSpinnerMixin, alertNotificationMix
          * @desc Handles query params that should open a lightbox.
          * If you add another param to the app you should modify this function.
          */
-        handleLightbox: function () {
+        handleLightbox () {
             var file = this.get('file'),
 				map = this.get('map');
 
@@ -54,7 +55,7 @@ export default Ember.Controller.extend(loadingSpinnerMixin, alertNotificationMix
          * @param lightboxType
          * @param lightboxModel
          */
-        openLightbox: function (lightboxType, lightboxModel) {
+        openLightbox (lightboxType, lightboxModel) {
             this.setProperties({
                 lightboxModel: lightboxModel,
                 lightboxType: lightboxType,
@@ -65,7 +66,7 @@ export default Ember.Controller.extend(loadingSpinnerMixin, alertNotificationMix
          * @desc Resets properties related to lightbox which causes it to close.
          * Also unblocks scrolling.
          */
-        closeLightbox: function () {
+        closeLightbox () {
             this.setProperties({
                 lightboxModel: null,
                 lightboxType: null,
@@ -80,8 +81,9 @@ export default Ember.Controller.extend(loadingSpinnerMixin, alertNotificationMix
          * @param name
          * @param value
          */
-        setQueryParam: function (name, value) {
+        setQueryParam (name, value) {
             var queryParamsWhitelist = ['file', 'map'];
+
             if (queryParamsWhitelist.indexOf(name) === -1) {
                 Ember.Logger.error('Something tried to set query param that is not on the whitelist', {
                     name: name,
@@ -93,14 +95,19 @@ export default Ember.Controller.extend(loadingSpinnerMixin, alertNotificationMix
             this.set(name, value);
         }
     },
+
     /**
      * @desc Finds media in article model by the file query param and sends proper data to openLightbox action.
      * TODO: It currently opens the first found image with the given title (file qp), we should improve it some day.
      *
      * @param file
      */
-    openLightboxForMedia: function (file) {
-        var mediaModel = this.get('controllers.article.model.media'), lightboxMediaRefs = mediaModel ? mediaModel.getRefsForLightboxByTitle(M.String.normalize(file)) : null;
+    openLightboxForMedia (file) {
+        var mediaModel = this.get('controllers.article.model.media'),
+			lightboxMediaRefs = mediaModel ?
+				mediaModel.getRefsForLightboxByTitle(M.String.normalize(file)) :
+				null;
+
         if (!Ember.isEmpty(lightboxMediaRefs)) {
             this.send('openLightbox', 'media', {
                 media: mediaModel,
@@ -109,13 +116,15 @@ export default Ember.Controller.extend(loadingSpinnerMixin, alertNotificationMix
             });
         }
     },
+
     /**
      * @desc Find the map element in DOM by given map id and sends proper data to openLightbox action.
      *
      * @param map
      */
-    openLightboxForMap: function (map) {
-        var $map = Ember.$("a[data-map-id=" + map + "]");
+    openLightboxForMap (map) {
+        var $map = Ember.$('a[data-map-id=' + map + ']');
+
         this.send('openLightbox', 'map', {
             title: $map.data('map-title'),
             url: $map.data('map-url'),
