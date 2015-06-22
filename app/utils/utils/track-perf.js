@@ -1,30 +1,23 @@
-
-
-
 /**
-* @description Instantiates performance tracker
-*/
-var Mercury;
-(function (Mercury) {
-    var Utils;
-    (function (Utils) {
-        var instance;
-        function getInstance() {
-            if (Mercury.Modules.Trackers.Perf.checkDependencies()) {
-                instance = instance || new Mercury.Modules.Trackers.Perf();
-                return instance;
-            }
-            throw new Error('no instance found');
-        }
-        function trackPerf(obj) {
-            return getInstance().track(obj);
-        }
-        Utils.trackPerf = trackPerf;
-        function sendPagePerformance() {
-            // Initializes Weppy context
-            getInstance();
-            Weppy.sendPagePerformance();
-        }
-        Utils.sendPagePerformance = sendPagePerformance;
-    })(Utils = Mercury.Utils || (Mercury.Utils = {}));
-})(Mercury || (Mercury = {}));
+ * @description Instantiates performance tracker
+ */
+
+import Perf from '../modules/trackers/perf';
+
+function getInstance() {
+	if (Perf.checkDependencies()) {
+		instance = instance || new Perf();
+		return instance;
+	}
+	throw new Error('no instance found');
+}
+
+export function trackPerf(obj) {
+	return getInstance().track(obj);
+}
+
+export function sendPagePerformance() {
+	// Initializes Weppy context
+	getInstance();
+	Weppy.sendPagePerformance();
+}

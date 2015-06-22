@@ -1,12 +1,14 @@
 import Ember from 'ember';
+import loadingSpinnerMixin from '../mixins/loading-spinner';
+import alertNotificationMixin from '../mixins/alert-notifications';
 
-export default Ember.Controller.extend(App.LoadingSpinnerMixin, App.AlertNotificationsMixin, {
+export default Ember.Controller.extend(loadingSpinnerMixin, alertNotificationMixin, {
     // This has to be here because we need to access media from ArticleController model to open lightbox
     // TODO: Should be refactored when decoupling article from application
     needs: ['article'],
     queryParams: ['file', 'map', {
-            noAds: 'noads'
-        }],
+		noAds: 'noads'
+	}],
     file: null,
     map: null,
     noAds: '',
@@ -36,11 +38,12 @@ export default Ember.Controller.extend(App.LoadingSpinnerMixin, App.AlertNotific
          * If you add another param to the app you should modify this function.
          */
         handleLightbox: function () {
-            var file = this.get('file'), map = this.get('map');
+            var file = this.get('file'),
+				map = this.get('map');
+
             if (!Ember.isEmpty(file)) {
                 this.openLightboxForMedia(file);
-            }
-            else if (!Ember.isEmpty(map)) {
+            } else if (!Ember.isEmpty(map)) {
                 this.openLightboxForMap(map);
             }
         },

@@ -3,6 +3,9 @@
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp({
+	babel: {
+		stage: 0
+	},
 	fingerprint: {
 		enabled: true
 	},

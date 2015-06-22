@@ -3,7 +3,7 @@
 module.exports = function(environment) {
 	var ENV = {
 		//TODO: unhardcode that
-		// apiBase: 'api/v1',
+		apiBase: 'api/v1',
 		modulePrefix: 'mercury',
 		environment: environment,
 		baseURL: '/',
@@ -17,6 +17,10 @@ module.exports = function(environment) {
 		APP: {
 				// Here you can pass flags/options to your application instance
 				// when it is created
+		},
+		contentSecurityPolicy: {
+			//TODO: investigate why this needs to be here
+			'style-src': "'self' 'unsafe-inline'",
 		}
 	};
 

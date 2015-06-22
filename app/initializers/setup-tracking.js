@@ -1,9 +1,25 @@
+import UA from '../utils/modules/trackers/universal-analytics';
+import Ads from '../utils/modules/ads';
+import M from '../utils/utils/state';
+import variantTesting from '../utils/utils/variant-testing';
+
 export function initialize () {
-	var UA = Mercury.Modules.Trackers.UniversalAnalytics, dimensions = [], adsContext = Mercury.Modules.Ads.getInstance().getContext();
+	var dimensions = [],
+		adsContext = Ads.getInstance().getContext();
+
 	function getPageType() {
-		var mainPageTitle = Mercury.wiki.mainPageTitle, isMainPage = window.location.pathname.split('/').indexOf(mainPageTitle);
+		var mainPageTitle = Mercury.wiki.mainPageTitle,
+			isMainPage = window.location.pathname.split('/').indexOf(mainPageTitle);
+
 		return isMainPage >= 0 ? 'home' : 'article';
 	}
+
+	var Mercury = {
+		wiki: {
+			language: {}
+		}
+	}
+
 	/**** High-Priority Custom Dimensions ****/
 	dimensions[1] = Mercury.wiki.dbName; // dbName
 	dimensions[2] = Mercury.wiki.language.content; // ContentLanguage
@@ -23,7 +39,7 @@ export function initialize () {
 	if (Mercury.wiki.wikiCategories instanceof Array) {
 		dimensions[18] = Mercury.wiki.wikiCategories.join(','); // Categories
 	}
-	dimensions = Mercury.Utils.VariantTesting.integrateOptimizelyWithUA(dimensions);
+	dimensions = variantTesting.integrateOptimizelyWithUA(dimensions);
 	UA.setDimensions(dimensions);
 }
 

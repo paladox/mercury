@@ -1,29 +1,31 @@
 import Ember from 'ember';
 import trackClickMixin from '../mixins/track-click';
+import variantTesting from '../utils/utils/variant-testing';
+import M from '../utils/utils/state';
+import Ads from '../utils/modules/ads';
 
 export default Ember.Route.extend(Ember.TargetActionSupport, trackClickMixin, {
     model: function (params) {
         return params;
     },
     activate: function () {
-        var _this = this;
         /**
          * This global function is being used by our AdEngine code to provide prestitial/interstitial ads
          * It works in similar way on Oasis: we call ads server (DFP) to check if there is targeted ad unit for a user.
          * If there is and it's in a form of prestitial/interstitial the ad server calls our exposed JS function to
          * display the ad in a form of modal. The ticket connected to the changes: ADEN-1834.
          */
-        Mercury.Modules.Ads.getInstance().openLightbox = function (contents) {
-            _this.send('openLightbox', 'ads', { contents: contents });
+        Ads.getInstance().openLightbox = (contents) => {
+            this.send('openLightbox', 'ads', { contents: contents });
         };
     },
     actions: {
         loading: function () {
-            this.controller.showLoader();
+            //this.controller.showLoader();
         },
         didTransition: function () {
             // Activate any A/B tests for the new route
-            M.VariantTesting.activate();
+			variantTesting.activate();
             this.controller.hideLoader();
             /*
              * This is called after the first route of any application session has loaded
@@ -42,8 +44,7 @@ export default Ember.Route.extend(Ember.TargetActionSupport, trackClickMixin, {
             domainNameRegExpMatchArray = /\.[a-z0-9\-]+\.[a-z0-9]{2,}$/i.exec(window.location.hostname), cookieDomain = domainNameRegExpMatchArray ? '; domain=' + domainNameRegExpMatchArray[0] : '', defaultSkin = Ember.getWithDefault(Mercury, 'wiki.defaultSkin', 'oasis');
             if (currentRoute === 'article') {
                 title = this.controllerFor('article').get('model').get('title');
-            }
-            else {
+            } else {
                 title = '';
             }
             trackingCategory = target.dataset.trackingCategory;

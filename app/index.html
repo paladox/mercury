@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Appy</title>
+    <title>Mercury</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,6 +16,12 @@
   </head>
   <body>
     {{content-for 'body'}}
+    <!--
+	Ember must render out to a specific div above the scripts, otherwise
+	Google PageSpeed will mistakenly believe that we have scripts loading and blocking content
+	DO NOT REMOVE THE FOLLOWING LINE:
+	-->
+    <div id="ember-container"></div>
 
     <script src="assets/vendor.js"></script>
     <script src="assets/mercury.js"></script>
