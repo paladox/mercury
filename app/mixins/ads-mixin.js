@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import AdSlotComponent from '../components/ad-slot';
+import Ads from '../utils/modules/ads';
 
 export default Ember.Mixin.create({
     adsData: {
@@ -22,41 +24,62 @@ export default Ember.Mixin.create({
         }
     },
     adViews: [],
-    appendAd: function (adSlotName, place, element) {
+    appendAd (adSlotName, place, element) {
         // Keep in mind we always want to pass noAds parameter to the AdSlot component
         // Right now we've got three ad slots and it doesn't make sense to add assertion
         // in willInsertElement hook of the component to check if the parameters is really defined
-        var view = this.createChildView(App.AdSlotComponent, {
+        var view = this.createChildView(AdSlotComponent, {
             name: adSlotName,
             noAds: this.get('controller.noAds')
         }).createElement();
+
         element[place](view.$());
         this.adViews.push(view);
         view.trigger('didInsertElement');
     },
-    clearAdViews: function () {
-        var adView;
-        while (adView = this.adViews.pop()) {
+
+    clearAdViews () {
+        var adView = this.adViews.pop();
+
+        while (adView) {
             adView.destroyElement();
+			adView = this.adViews.pop();
         }
     },
+
     /**
      * Inject MOBILE_IN_CONTENT_EXTRA_* ads on selected wikis
      */
-    injectMoreInContentAds: function () {
-        var config = this.adsData.moreInContentAds, minDistanceBetweenAds = config.minOffsetDiffBetweenAds, expectedAdHeight = config.adHeight, slotNamePrefix = config.slotNamePrefix, maxSlots = config.maxSlots,
-        // Sorted list of top positions of ads:
-        adPositions = [].concat(
-        // MOBILE_TOP_LEADERBOARD:
-        [0],
-        // in content ads:
-        this.adViews.map(function (adView) {
-            return adView.$().offset().top;
-        })),
-        // Sorted list of top positions of headers:
-        $headers = $('.article-content').find('> h2, > h3'), headerPositions = $headers.map(function () {
-            return $(this).offset().top;
-        }).get(), goodHeaders = [], adsToInject = 0, prevAdPosition, nextAdPosition, headerPosition, i = 0, headerLen = headerPositions.length, adIndex = 0, adLen = adPositions.length;
+    injectMoreInContentAds () {
+        var config = this.adsData.moreInContentAds,
+			minDistanceBetweenAds = config.minOffsetDiffBetweenAds,
+			expectedAdHeight = config.adHeight,
+			slotNamePrefix = config.slotNamePrefix,
+			maxSlots = config.maxSlots,
+			// Sorted list of top positions of ads:
+			adPositions = [].concat(
+				// MOBILE_TOP_LEADERBOARD:
+				[0],
+				// in content ads:
+				this.adViews.map((adView) =>
+					adView.$().offset().top
+				)
+			),
+			// Sorted list of top positions of headers:
+			$headers = $('.article-content').find('> h2, > h3'),
+			headerPositions = $headers.map(() =>
+				$(this).offset().top
+			).get(),
+			goodHeaders = [],
+			adsToInject = 0,
+			prevAdPosition,
+			nextAdPosition,
+			headerPosition,
+			i = 0,
+			headerLen = headerPositions.length,
+			adIndex = 0,
+			adLen = adPositions.length;
+
         // Find headers to inject ads before
         while (i < headerLen && adIndex < adLen && adsToInject < maxSlots) {
             prevAdPosition = adPositions[adIndex];
@@ -79,50 +102,70 @@ export default Ember.Mixin.create({
             // We need to find a header that's below the next ad, thus:
             adIndex += 1;
         }
+
         // Inject the ads now
         for (i = 0; i < adsToInject; i += 1) {
             Ember.Logger.info('Injecting an extra in content ad before ' + goodHeaders[i].attr('id'));
             this.appendAd(slotNamePrefix + (i + 1), 'before', goodHeaders[i]);
         }
+
         if (!adsToInject) {
             Ember.Logger.info('The page is long, but no extra in content ads were injected');
         }
     },
-    injectAds: function () {
-        var $firstSection = this.$('.article-content > h2').first(), $articleBody = this.$('.article-body'), firstSectionTop = ($firstSection.length && $firstSection.offset().top) || 0, articleBodyHeight = $articleBody.height(), showInContent = firstSectionTop > this.adsData.minZerothSectionLength, showPreFooter = !showInContent || articleBodyHeight > this.adsData.minPageLength, showMoreInContentAds = this.adsData.moreInContentAds.enabled &&
+
+    injectAds () {
+        var $firstSection = this.$('.article-content > h2').first(),
+			$articleBody = this.$('.article-body'),
+			firstSectionTop = ($firstSection.length && $firstSection.offset().top) || 0,
+			articleBodyHeight = $articleBody.height(),
+			showInContent = firstSectionTop > this.adsData.minZerothSectionLength,
+			showPreFooter = !showInContent || articleBodyHeight > this.adsData.minPageLength,
+			showMoreInContentAds = this.adsData.moreInContentAds.enabled &&
             articleBodyHeight > this.adsData.moreInContentAds.minPageLength;
+
         this.clearAdViews();
         if (showInContent) {
             this.appendAd(this.adsData.mobileInContent, 'before', $firstSection);
         }
+
         if (showPreFooter) {
             this.appendAd(this.adsData.mobilePreFooter, 'after', $articleBody);
         }
+
         if (showMoreInContentAds) {
             this.injectMoreInContentAds();
-        }
-        else if (this.adsData.moreInContentAds.enabled) {
+        } else if (this.adsData.moreInContentAds.enabled) {
             Ember.Logger.info('The page is not long enough for extra in content ads: ' + articleBodyHeight);
         }
     },
+
     /**
      * @desc Load ads for main page.
      * InContent ad should be displayed below curated content only when it's available.
      * Prefooter ad should be loaded above footer
      * only when trending articles and/or trending videos are loaded.
      */
-    injectMainPageAds: function () {
-        var $curatedContent = this.$('.curated-content'), $trendingArticles = this.$('.trending-articles'), $trendingVideos = this.$('.trending-videos'), showInContent = $curatedContent.length > 0, showPreFooter = $trendingArticles.length || $trendingVideos.length, $showPreFooterAfter;
+    injectMainPageAds () {
+        var $curatedContent = this.$('.curated-content'),
+			$trendingArticles = this.$('.trending-articles'),
+			$trendingVideos = this.$('.trending-videos'),
+			showInContent = $curatedContent.length > 0,
+			showPreFooter = $trendingArticles.length || $trendingVideos.length,
+			$showPreFooterAfter;
+
         this.clearAdViews();
         if (showInContent) {
             this.appendAd(this.adsData.mobileInContent, 'after', $curatedContent);
         }
+
         if (showPreFooter) {
             $showPreFooterAfter = $trendingVideos.length ? $trendingVideos : $trendingArticles;
             this.appendAd(this.adsData.mobilePreFooter, 'after', $showPreFooterAfter);
         }
     },
+
     setupAdsContext: function (adsContext) {
-        Mercury.Modules.Ads.getInstance().reload(adsContext);
+		Ads.getInstance().reload(adsContext);
     }
 });
