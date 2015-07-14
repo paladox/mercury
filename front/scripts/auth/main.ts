@@ -39,6 +39,10 @@ window.document.addEventListener('DOMContentLoaded', function ():void {
 		new GoogleLogin(<HTMLAnchorElement> document.querySelector('.signup-provider-google'));
 	}
 
+	if (document.body.className.indexOf('register-fb-page') !== -1) {
+		new FacebookRegistration(<HTMLFormElement> document.querySelector('form'));
+	}
+
 	if (birthdateContainer) {
 		new BirthdateInput(birthdateContainer, formElement).init();
 	}
