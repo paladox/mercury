@@ -206,7 +206,7 @@ authenticatedRoutes = [
 	{
 		method: 'GET',
 		path: '/login',
-		handler: require('./facets/auth/registerfb').get
+		handler: require('./facets/auth/registerWithFacebook').get
 	},
 	{
 		method: 'GET',
