@@ -193,7 +193,7 @@ authenticatedRoutes = [
 	},
 	{
 		method: 'GET',
-		path: '/registerfb',
+		path: '/register/facebook',
 		handler: require('./facets/auth/registerfb').get,
 		config: {
 			pre: [
@@ -206,9 +206,7 @@ authenticatedRoutes = [
 	{
 		method: 'GET',
 		path: '/login',
-		handler: function (request: Hapi.Request, reply: any): Hapi.Response {
-			return reply.redirect(authUtils.getRedirectUrlWithQueryString('signin', request));
-		}
+		handler: require('./facets/auth/registerfb').get
 	},
 	{
 		method: 'GET',
