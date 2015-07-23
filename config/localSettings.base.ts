@@ -107,6 +107,9 @@ var localSettings: LocalSettings = {
 	asyncArticle: [],
 	facebook: {
 		appId: 112328095453510
+	},
+	google: {
+		appId: 0
 	}
 };
 
