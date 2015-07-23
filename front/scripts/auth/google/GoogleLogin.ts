@@ -30,13 +30,12 @@ class GoogleLogin {
     public init (): void {
         this.loginButton.addEventListener('click', this.login.bind(this));
         window.gapi.load('auth2', function(){
-            alert("dupa");
             // Retrieve the singleton for the GoogleAuth library and set up the client.
-            window.auth2 = window.gapi.auth2.init({
+            window.googleAuth  = window.gapi.auth2.init({
                 client_id: M.prop('googleAppId') + '.apps.googleusercontent.com'
                 //cookiepolicy: 'single_host_origin',
             });
-            window.auth2.attachClickHandler(this.loginButton, {}, this.onSuccessfulLogin, this.onFailedLogin);
+            window.googleAuth.attachClickHandler(this.loginButton, {}, this.onSuccessfulLogin, this.onFailedLogin);
         });
         this.redirect = this.urlHelper.urlDecode(window.location.search.substr(1))['redirect'] || '/';
     }

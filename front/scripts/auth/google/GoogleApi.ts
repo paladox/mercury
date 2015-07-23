@@ -1,6 +1,10 @@
+interface GoogleAuth {
+	attachClickHandler?: Function;
+}
+
 interface Window {
 	gapi?: any;
-	auth2?: any;
+	googleAuth?: GoogleAuth;
 	googleApiInit?: Function;
 }
 
