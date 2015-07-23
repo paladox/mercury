@@ -1,4 +1,4 @@
-import localSettings = require('../../../config/localSettings');
+
 
 interface GoogleErrorResponse {
 }
@@ -33,7 +33,7 @@ class GoogleLogin {
             alert("dupa");
             // Retrieve the singleton for the GoogleAuth library and set up the client.
             window.auth2 = window.gapi.auth2.init({
-                client_id: localSettings.google.appId + '.apps.googleusercontent.com'
+                client_id: M.prop('googleAppId') + '.apps.googleusercontent.com'
                 //cookiepolicy: 'single_host_origin',
             });
             window.auth2.attachClickHandler(this.loginButton, {}, this.onSuccessfulLogin, this.onFailedLogin);
