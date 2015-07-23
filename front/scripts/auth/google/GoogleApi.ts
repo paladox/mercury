@@ -1,8 +1,12 @@
 interface Window {
-	googleInit?: Function;
+	gapi?: any;
+	auth2?: any;
+	googleApiInit?: Function;
 }
 
 class GoogleApi {
+
+	version: string = 'v2.0';
 
 	constructor (onLoad: Function = Function.prototype) {
 		var js: HTMLScriptElement,
@@ -12,10 +16,10 @@ class GoogleApi {
 		}
 		js = window.document.createElement('script');
 		js.id = 'google-jsapi';
-		js.src = "https://apis.google.com/js/platform.js?onload=googleInit";
+		js.src = "https://apis.google.com/js/platform.js?onload=googleApiInit";
 		firstJS.parentNode.insertBefore(js, firstJS);
 
-		window.googleInit = function(): void {
+		window.googleApiInit = function(): void {
 			onLoad();
 		}.bind(this);
 	}

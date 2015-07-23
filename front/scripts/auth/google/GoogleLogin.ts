@@ -1,6 +1,10 @@
-interface GoogleResponse {
-    status: string;
-    authResponse: GoogleAuthData;
+import localSettings = require('../../../config/localSettings');
+
+interface GoogleErrorResponse {
+}
+
+interface GoogleUser {
+    getAuthResponse?: any;
 }
 
 interface GoogleAuthData {
@@ -25,21 +29,20 @@ class GoogleLogin {
 
     public init (): void {
         this.loginButton.addEventListener('click', this.login.bind(this));
-
+        window.gapi.load('auth2', function(){
+            alert("dupa");
+            // Retrieve the singleton for the GoogleAuth library and set up the client.
+            window.auth2 = window.gapi.auth2.init({
+                client_id: localSettings.google.appId + '.apps.googleusercontent.com'
+                //cookiepolicy: 'single_host_origin',
+            });
+            window.auth2.attachClickHandler(this.loginButton, {}, this.onSuccessfulLogin, this.onFailedLogin);
+        });
         this.redirect = this.urlHelper.urlDecode(window.location.search.substr(1))['redirect'] || '/';
     }
 
     public login (): void {
-        // G+ login
         this.deactivateButton();
-    }
-
-    public onLogin(response: GoogleResponse): void {
-        if (response.status === 'connected') {
-            this.onSuccessfulLogin(response);
-        } else {
-            this.onFailedLogin(response);
-        }
     }
 
     private activateButton(): void {
@@ -52,13 +55,16 @@ class GoogleLogin {
         this.loginButton.classList.add('disabled');
     }
 
-    private onSuccessfulLogin(response: GoogleResponse): void {
+    private onSuccessfulLogin(user: GoogleUser): void {
         alert("hura");
-        this.getHeliosInfoFromGoogleToken(response.authResponse);
+        console.log(user);
+        console.log(user.getAuthResponse().access_token);
+        //this.getHeliosInfoFromGoogleToken(response.authResponse);
     }
 
-    private onFailedLogin(response: GoogleResponse): void {
+    private onFailedLogin(error: GoogleErrorResponse): void {
         alert("be");
+        console.log(JSON.stringify(error, undefined, 2));
         this.activateButton();
     }
 
