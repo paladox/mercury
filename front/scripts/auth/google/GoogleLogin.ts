@@ -20,11 +20,11 @@ class GoogleLogin {
     constructor(loginButton:HTMLAnchorElement) {
         this.loginButton = loginButton;
         this.urlHelper = new UrlHelper();
+        new GoogleApi(this.init.bind(this));
     }
 
     public init (): void {
         this.loginButton.addEventListener('click', this.login.bind(this));
-
 
         this.redirect = this.urlHelper.urlDecode(window.location.search.substr(1))['redirect'] || '/';
     }
