@@ -9,6 +9,7 @@ interface JoinViewContext extends authView.AuthViewContext {
 	loginRoute: string;
 	signupHref: string;
 	heliosFacebookUri: string;
+	heliosGoogleUri: string;
 	facebookAppId?: number;
 }
 
@@ -30,7 +31,9 @@ function get (request: Hapi.Request, reply: any): Hapi.Response {
 			signupHref: authUtils.getRegisterUrl(request),
 			bodyClasses: 'splash join-page',
 			heliosFacebookUri: localSettings.helios.host + '/facebook/token',
-			facebookAppId: localSettings.facebook.appId
+			heliosGoogleUri: localSettings.helios.host + '/google/token',
+			facebookAppId: localSettings.facebook.appId,
+			googleAppId: localSettings.google.appId
 		}
 	);
 

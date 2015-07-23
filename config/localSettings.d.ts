@@ -78,4 +78,7 @@ interface LocalSettings {
 	facebook: {
 		appId: number;
 	};
+	google: {
+		appId: number;
+	};
 }
