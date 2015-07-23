@@ -9,7 +9,7 @@ interface GoogleAuthData {
 }
 
 interface HeliosGoogleToken {
-    fb_access_token: string;
+    google_access_token: string;
 }
 
 class GoogleLogin {
@@ -20,11 +20,11 @@ class GoogleLogin {
     constructor(loginButton:HTMLAnchorElement) {
         this.loginButton = loginButton;
         this.urlHelper = new UrlHelper();
-        new FacebookSDK(this.init.bind(this));
     }
 
     public init (): void {
         this.loginButton.addEventListener('click', this.login.bind(this));
+
 
         this.redirect = this.urlHelper.urlDecode(window.location.search.substr(1))['redirect'] || '/';
     }
@@ -34,7 +34,7 @@ class GoogleLogin {
         this.deactivateButton();
     }
 
-    public onLogin(response: FacebookResponse): void {
+    public onLogin(response: GoogleResponse): void {
         if (response.status === 'connected') {
             this.onSuccessfulLogin(response);
         } else {
@@ -52,17 +52,17 @@ class GoogleLogin {
         this.loginButton.classList.add('disabled');
     }
 
-    private onSuccessfulLogin(response: FacebookResponse): void {
+    private onSuccessfulLogin(response: GoogleResponse): void {
         alert("hura");
-        this.getHeliosInfoFromFBToken(response.authResponse);
+        this.getHeliosInfoFromGoogleToken(response.authResponse);
     }
 
-    private onFailedLogin(response: FacebookResponse): void {
+    private onFailedLogin(response: GoogleResponse): void {
         alert("be");
         this.activateButton();
     }
 
-    private getHeliosInfoFromFBToken(facebookAuthData: FacebookAuthData): void {
+    private getHeliosInfoFromGoogleToken(googleAuthData: GoogleAuthData): void {
 
     }
 }
