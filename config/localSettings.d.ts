@@ -79,6 +79,6 @@ interface LocalSettings {
 		appId: number;
 	};
 	google: {
-		appId: number;
+		appId: string;
 	};
 }

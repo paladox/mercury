@@ -11,6 +11,7 @@ interface JoinViewContext extends authView.AuthViewContext {
 	heliosFacebookUri: string;
 	heliosGoogleUri: string;
 	facebookAppId?: number;
+	googleAppId?: string;
 }
 
 function get (request: Hapi.Request, reply: any): Hapi.Response {

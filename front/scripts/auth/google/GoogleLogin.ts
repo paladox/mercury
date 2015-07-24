@@ -4,70 +4,75 @@ interface GoogleErrorResponse {
 }
 
 interface GoogleUser {
-    getAuthResponse?: any;
+	getAuthResponse?: any;
 }
 
 interface GoogleAuthData {
-    accessToken: string;
-    expiresIn: number;
+	accessToken: string;
+	expiresIn: number;
 }
 
 interface HeliosGoogleToken {
-    google_access_token: string;
+	google_access_token: string;
 }
 
 class GoogleLogin {
-    redirect:string;
-    loginButton:HTMLAnchorElement;
-    urlHelper:UrlHelper;
+	redirect:string;
+	loginButton:HTMLAnchorElement;
+	urlHelper:UrlHelper;
 
-    constructor(loginButton:HTMLAnchorElement) {
-        this.loginButton = loginButton;
-        this.urlHelper = new UrlHelper();
-        new GoogleApi(this.init.bind(this));
-    }
+	constructor(loginButton:HTMLAnchorElement) {
+		this.loginButton = loginButton;
+		this.urlHelper = new UrlHelper();
+		new GoogleApi(this.init.bind(this));
+	}
 
-    public init (): void {
-        this.loginButton.addEventListener('click', this.login.bind(this));
-        window.gapi.load('auth2', function(){
-            // Retrieve the singleton for the GoogleAuth library and set up the client.
-            window.googleAuth  = window.gapi.auth2.init({
-                client_id: M.prop('googleAppId') + '.apps.googleusercontent.com'
-                //cookiepolicy: 'single_host_origin',
-            });
-            window.googleAuth.attachClickHandler(this.loginButton, {}, this.onSuccessfulLogin, this.onFailedLogin);
-        });
-        this.redirect = this.urlHelper.urlDecode(window.location.search.substr(1))['redirect'] || '/';
-    }
+	public init (): void {
+		var googleLogin:GoogleLogin = this;
 
-    public login (): void {
-        this.deactivateButton();
-    }
+		this.loginButton.addEventListener('click', this.login.bind(this));
+		window.gapi.load('auth2', function(){
+			var googleAuth:any = window.gapi.auth2.init({
+				client_id: M.prop('googleAppId') + '.apps.googleusercontent.com',
+				cookie_policy: 'single_host_origin'
+			});
 
-    private activateButton(): void {
-        this.loginButton.classList.remove('on');
-        this.loginButton.classList.remove('disabled');
-    }
+			googleAuth.attachClickHandler(
+				googleLogin.loginButton,
+				{},
+				googleLogin.onSuccessfulLogin,
+				googleLogin.onFailedLogin
+			);
+		});
+		this.redirect = this.urlHelper.urlDecode(window.location.search.substr(1))['redirect'] || '/';
+	}
 
-    private deactivateButton(): void {
-        this.loginButton.classList.add('on');
-        this.loginButton.classList.add('disabled');
-    }
+	public login (): void {
+		console.log('aaa');
+		this.deactivateButton();
+	}
 
-    private onSuccessfulLogin(user: GoogleUser): void {
-        alert("hura");
-        console.log(user);
-        console.log(user.getAuthResponse().access_token);
-        //this.getHeliosInfoFromGoogleToken(response.authResponse);
-    }
+	private activateButton(): void {
+		this.loginButton.classList.remove('on');
+		this.loginButton.classList.remove('disabled');
+	}
 
-    private onFailedLogin(error: GoogleErrorResponse): void {
-        alert("be");
-        console.log(JSON.stringify(error, undefined, 2));
-        this.activateButton();
-    }
+	private deactivateButton(): void {
+		this.loginButton.classList.add('on');
+		this.loginButton.classList.add('disabled');
+	}
 
-    private getHeliosInfoFromGoogleToken(googleAuthData: GoogleAuthData): void {
+	private onSuccessfulLogin(user: GoogleUser): void {
+		console.log(user, user.getAuthResponse());
+		//this.getHeliosInfoFromGoogleToken(response.authResponse);
+	}
 
-    }
+	private onFailedLogin(error: GoogleErrorResponse): void {
+		console.log(JSON.stringify(error, undefined, 2));
+		this.activateButton();
+	}
+
+	private getHeliosInfoFromGoogleToken(googleAuthData: GoogleAuthData): void {
+
+	}
 }

@@ -49,7 +49,7 @@ var localSettings: LocalSettings = {
 	},
 	qualaroo: {
 		enabled: true,
-		scriptUrlDev:  '//s3.amazonaws.com/ki.js/52510/dlS.js',
+		scriptUrlDev: '//s3.amazonaws.com/ki.js/52510/dlS.js',
 		scriptUrlProd: '//s3.amazonaws.com/ki.js/52510/bgJ.js'
 	},
 	port: process.env.PORT || 8000,
@@ -109,7 +109,7 @@ var localSettings: LocalSettings = {
 		appId: 112328095453510
 	},
 	google: {
-		appId: 0
+		appId: '857618777567-cf1fu28q2gving1b5s0orrb1hjkpn38r'
 	}
 };
 
