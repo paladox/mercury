@@ -40,8 +40,8 @@ class GoogleLogin {
 			googleAuth.attachClickHandler(
 				googleLogin.loginButton,
 				{},
-				googleLogin.onSuccessfulLogin,
-				googleLogin.onFailedLogin
+				googleLogin.onSuccessfulLogin.bind(googleLogin),
+				googleLogin.onFailedLogin.bind(googleLogin)
 			);
 		});
 		this.redirect = this.urlHelper.urlDecode(window.location.search.substr(1))['redirect'] || '/';
@@ -63,6 +63,7 @@ class GoogleLogin {
 
 	private onSuccessfulLogin(user: GoogleUser): void {
 		console.log(user, user.getAuthResponse());
+        this.activateButton();
 		//this.getHeliosInfoFromGoogleToken(response.authResponse);
 	}
 
