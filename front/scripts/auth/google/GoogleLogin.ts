@@ -48,7 +48,6 @@ class GoogleLogin {
 	}
 
 	public login (): void {
-		console.log('aaa');
 		this.deactivateButton();
 	}
 

@@ -62,7 +62,8 @@ input[type='date']:valid + .floating-label {
 }
 
 button[type="submit"].on,
-.signup-provider-facebook.on {
+.signup-provider-facebook.on,
+.signup-provider-google.on {
 	padding-left: 0;
 	padding-right: 0;
 
