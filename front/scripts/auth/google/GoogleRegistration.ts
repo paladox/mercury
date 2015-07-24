@@ -1,15 +1,3 @@
-interface window {
-	FB: {
-		getLoginStatus: Function;
-		getAccessToken: Function;
-		api: Function;
-	}
-}
-
-interface FacebookUserData {
-	email?: string;
-}
-
 interface HeliosGoogleRegistrationData {
 	birthdate: string;
 	email: string;
@@ -44,15 +32,13 @@ class GoogleRegistration {
 	}
 
 	public init (): void {
-		var googleLogin:GoogleRegistration = this;
-
 		window.gapi.load('auth2', (function() {
 			var googleAuth:any = window.gapi.auth2.init({
 				client_id: M.prop('googleAppId') + '.apps.googleusercontent.com',
 				cookie_policy: 'single_host_origin'
 			});
 
-			googleAuth.currentUser.listen((function(user){
+			googleAuth.currentUser.listen((function(user:GoogleUser){
 				this.gToken = user.getAuthResponse().id_token;
 
 				this.setUpEmailInput(user.getBasicProfile().getEmail());
@@ -86,13 +72,13 @@ class GoogleRegistration {
 		};
 	}
 
-	private loginWithFacebookAccessToken (gToken: string, heliosTokenUrl: string): void {
-			var facebookTokenXhr = new XMLHttpRequest(),
-			data = <HeliosFacebookToken> {
+	private loginWithGoogleAccessToken (gToken: string, heliosTokenUrl: string): void {
+			var tokenXhr = new XMLHttpRequest(),
+			data = <HeliosGoogleToken> {
 				g_access_token: gToken
 			};
 
-		facebookTokenXhr.onload = (e: Event): void => {
+		tokenXhr.onload = (e: Event): void => {
 			var status: number = (<XMLHttpRequest> e.target).status;
 
 			if (status === HttpCodes.OK) {
@@ -104,28 +90,28 @@ class GoogleRegistration {
 			}
 		};
 
-		facebookTokenXhr.onerror = (e: Event): void => {
+		tokenXhr.onerror = (e: Event): void => {
 			//ToDo show the "unable to login" error
 		};
 
-		facebookTokenXhr.open('POST', heliosTokenUrl, true);
-		facebookTokenXhr.withCredentials = true;
-		facebookTokenXhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		facebookTokenXhr.send(this.urlHelper.urlEncode(data));
+		tokenXhr.open('POST', heliosTokenUrl, true);
+		tokenXhr.withCredentials = true;
+		tokenXhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		tokenXhr.send(this.urlHelper.urlEncode(data));
 	}
 
 	public onSubmit (event: Event): void {
 		event.preventDefault();
 
-		var facebookRegistrationXhr = new XMLHttpRequest(),
+		var registrationXhr = new XMLHttpRequest(),
 			data = <HeliosGoogleRegistrationData> this.getHeliosRegistrationDataFromForm(),
 			url = this.form.getAttribute('action');
 
-		facebookRegistrationXhr.onload = (e: Event) => {
+		registrationXhr.onload = (e: Event) => {
 			var status: number = (<XMLHttpRequest> e.target).status;
 
 			if (status === HttpCodes.OK) {
-				this.loginWithFacebookAccessToken(this.gToken, url.replace('/users', '/token'));
+				this.loginWithGoogleAccessToken(this.gToken, url.replace('/users', '/token'));
 			} else if (status === HttpCodes.BAD_REQUEST) {
 				//ToDo: show validation errors
 			} else {
@@ -133,13 +119,13 @@ class GoogleRegistration {
 			}
 		};
 
-		facebookRegistrationXhr.onerror = (e: Event) => {
+		registrationXhr.onerror = (e: Event) => {
 			//ToDo: show unhealthy backed message
 		};
 
-		facebookRegistrationXhr.open('POST', url, true);
-		facebookRegistrationXhr.withCredentials = true;
-		facebookRegistrationXhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		facebookRegistrationXhr.send(this.urlHelper.urlEncode(data));
+		registrationXhr.open('POST', url, true);
+		registrationXhr.withCredentials = true;
+		registrationXhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		registrationXhr.send(this.urlHelper.urlEncode(data));
 	}
 }

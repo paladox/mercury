@@ -4,7 +4,8 @@ interface GoogleErrorResponse {
 }
 
 interface GoogleUser {
-	getAuthResponse?: any;
+	getAuthResponse?: Function;
+	getBasicProfile?: Function;
 }
 
 interface AuthResponse {
@@ -33,22 +34,20 @@ class GoogleLogin {
 	}
 
 	public init (): void {
-		var googleLogin:GoogleLogin = this;
-
 		this.loginButton.addEventListener('click', this.login.bind(this));
-		window.gapi.load('auth2', function(){
+		window.gapi.load('auth2', (function(){
 			var googleAuth:any = window.gapi.auth2.init({
 				client_id: M.prop('googleAppId') + '.apps.googleusercontent.com',
 				cookie_policy: 'single_host_origin'
 			});
 
 			googleAuth.attachClickHandler(
-				googleLogin.loginButton,
+				this.loginButton,
 				{},
-				googleLogin.onSuccessfulLogin.bind(googleLogin),
-				googleLogin.onFailedLogin.bind(googleLogin)
+				this.onSuccessfulLogin.bind(this),
+				this.onFailedLogin.bind(this)
 			);
-		});
+		}).bind(this));
 		this.redirect = this.urlHelper.urlDecode(window.location.search.substr(1))['redirect'] || '/';
 	}
 
