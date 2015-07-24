@@ -76,6 +76,18 @@ class GoogleLogin {
 		this.activateButton();
 	}
 
+	private getGoogleRegistrationUrl(): string {
+		var href = '/register',
+			search = window.location.search;
+		if (search.indexOf('?') !== -1) {
+			search += '&method=google';
+		} else {
+			search += '?method=google';
+		}
+
+		return href + search;
+	}
+
 	private getHeliosInfoFromGoogleToken(googleAuthResponse: AuthResponse): void {
         var googleTokenXhr = new XMLHttpRequest(),
             data = <HeliosGoogleToken> {
@@ -89,7 +101,7 @@ class GoogleLogin {
             if (status === HttpCodes.OK) {
                 window.location.href = this.redirect;
             } else if (status === HttpCodes.BAD_REQUEST) {
-                //ToDo: assume there's no user associated with the account and go to facebook registration
+				window.location.href = this.getGoogleRegistrationUrl();
             } else {
                 //ToDo: something wrong with Helios backend
                 this.activateButton();
