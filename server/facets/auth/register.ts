@@ -36,6 +36,10 @@ interface RegisterFBViewContext extends authView.AuthViewContext {
 
 }
 
+interface RegisterGViewContext extends RegisterFBViewContext {
+
+}
+
 function getFacebookRegistrationPage (request: Hapi.Request, reply: any): Hapi.Response {
 	var context: RegisterFBViewContext,
 		redirectUrl: string = authView.getRedirectUrl(request),
@@ -63,6 +67,38 @@ function getFacebookRegistrationPage (request: Hapi.Request, reply: any): Hapi.R
 			facebookAppId: localSettings.facebook.appId,
 			defaultBirthdate: '1970-01-01',
 			headerSlogan: 'auth:fb-register.facebook-registration-info'
+		}
+	);
+
+	return authView.view('register-fb', context, request, reply);
+}
+
+function getGoogleRegistrationPage (request: Hapi.Request, reply: any): Hapi.Response {
+	var context: RegisterGViewContext,
+		redirectUrl: string = authView.getRedirectUrl(request),
+		i18n = request.server.methods.i18n.getInstance(),
+		lang = i18n.lng();
+
+	if (request.auth.isAuthenticated) {
+		return reply.redirect(redirectUrl);
+	}
+	context = deepExtend(
+		authView.getDefaultContext(request),
+		{
+			headerText: 'auth:g-register.register-with-google',
+			heliosFacebookRegistrationURL: localSettings.helios.host + '/google/users',
+			title: 'auth:g-register.register-with-google',
+			termsOfUseLink: 'http://www.wikia.com/Terms_of_Use',
+			footerCallout: 'auth:common.signin-callout',
+			footerHref: authUtils.getSignInUrl(request),
+			footerCalloutLink: 'auth:g-register.footer-callout-link',
+			bodyClasses: 'register-fb-page',
+			usernameMaxLength: localSettings.helios.usernameMaxLength,
+			passwordMaxLength: localSettings.helios.passwordMaxLength,
+			langCode: lang,
+			googleAppId: localSettings.google.appId,
+			defaultBirthdate: '1970-01-01',
+			headerSlogan: 'auth:g-register.google-registration-info'
 		}
 	);
 
@@ -103,6 +139,8 @@ function getEmailRegistrationPage (request: Hapi.Request, reply: any): Hapi.Resp
 export function get (request: Hapi.Request, reply: any): void {
 	if (request.query.method === 'facebook') {
 		getFacebookRegistrationPage(request, reply);
+	} else if (request.query.method === 'google') {
+		getGoogleRegistrationPage(request, reply);
 	} else {
 		getEmailRegistrationPage(request, reply);
 	}
