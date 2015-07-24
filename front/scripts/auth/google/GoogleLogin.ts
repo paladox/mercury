@@ -18,7 +18,7 @@ interface AuthResponse {
 }
 
 interface HeliosGoogleToken {
-	google_access_token: string;
+	g_access_token: string;
 }
 
 class GoogleLogin {
@@ -78,10 +78,10 @@ class GoogleLogin {
 
 	private getHeliosInfoFromGoogleToken(googleAuthResponse: AuthResponse): void {
         var googleTokenXhr = new XMLHttpRequest(),
-            data = <HeliosFacebookToken> {
+            data = <HeliosGoogleToken> {
                 g_access_token: googleAuthResponse.id_token
             },
-            url = this.loginButton.getAttribute('data-helios-facebook-uri');
+            url = this.loginButton.getAttribute('data-helios-google-uri');
 
         googleTokenXhr.onload = (e: Event) => {
             var status: number = (<XMLHttpRequest> e.target).status;
