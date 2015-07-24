@@ -17,6 +17,8 @@ export function get (request: Hapi.Request, reply: any): void {
 		),
 		url = MW.createUrl(wikiDomain, 'api/v1/User/Details', request.query);
 
+	console.log(url);
+	console.log(wikiDomain);
 	MW.fetch(url, wikiDomain)
 		.then((result: any): void => {
 			var error = result.exception || null;

@@ -18,10 +18,7 @@ App.UserMenuComponent = Em.Component.extend({
 				textKey: 'user-menu-profile'
 			},
 			{
-				href: M.buildUrl({
-					namespace: 'Special',
-					title: 'UserLogout'
-				}),
+				href: '/logout',
 				textKey: 'user-menu-log-out'
 			}
 		];

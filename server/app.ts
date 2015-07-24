@@ -110,7 +110,7 @@ server.views({
 server.state('access_token', {
 	isHttpOnly: true,
 	clearInvalid: true,
-	domain: localSettings.authCookieDomain
+//	domain: localSettings.authCookieDomain
 });
 
 // instantiate routes
