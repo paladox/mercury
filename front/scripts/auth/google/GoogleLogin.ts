@@ -7,9 +7,14 @@ interface GoogleUser {
 	getAuthResponse?: any;
 }
 
-interface GoogleAuthData {
-	accessToken: string;
-	expiresIn: number;
+interface AuthResponse {
+    access_token: string;
+    id_token: string;
+    login_hint: string;
+    scope: string;
+    expires_in: string;
+    first_issued_at: string;
+    expires_at: string;
 }
 
 interface HeliosGoogleToken {
@@ -64,15 +69,40 @@ class GoogleLogin {
 	private onSuccessfulLogin(user: GoogleUser): void {
 		console.log(user, user.getAuthResponse());
         this.activateButton();
-		//this.getHeliosInfoFromGoogleToken(response.authResponse);
+		this.getHeliosInfoFromGoogleToken(user.getAuthResponse());
 	}
 
 	private onFailedLogin(error: GoogleErrorResponse): void {
-		console.log(JSON.stringify(error, undefined, 2));
 		this.activateButton();
 	}
 
-	private getHeliosInfoFromGoogleToken(googleAuthData: GoogleAuthData): void {
+	private getHeliosInfoFromGoogleToken(googleAuthResponse: AuthResponse): void {
+        var googleTokenXhr = new XMLHttpRequest(),
+            data = <HeliosFacebookToken> {
+                g_access_token: googleAuthResponse.id_token
+            },
+            url = this.loginButton.getAttribute('data-helios-facebook-uri');
 
+        googleTokenXhr.onload = (e: Event) => {
+            var status: number = (<XMLHttpRequest> e.target).status;
+
+            if (status === HttpCodes.OK) {
+                window.location.href = this.redirect;
+            } else if (status === HttpCodes.BAD_REQUEST) {
+                //ToDo: assume there's no user associated with the account and go to facebook registration
+            } else {
+                //ToDo: something wrong with Helios backend
+                this.activateButton();
+            }
+        };
+
+        googleTokenXhr.onerror = (e: Event) => {
+            this.activateButton();
+        };
+
+        googleTokenXhr.open('POST', url, true);
+        googleTokenXhr.withCredentials = true;
+        googleTokenXhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        googleTokenXhr.send(this.urlHelper.urlEncode(data));
 	}
 }
