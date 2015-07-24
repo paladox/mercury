@@ -67,13 +67,6 @@ unauthenticatedRoutes = [
 	},
 	{
 		method: 'GET',
-		path: '/',
-		//Currently / path is not available on production because of redirects from / to /wiki/...
-		// TODO (CONCF-761): we shouldn't load articles for Curated Main Pages
-		handler: require('./facets/showArticle')
-	},
-	{
-		method: 'GET',
 		// Catch invalid paths and redirect to the main page
 		path: '/main/{invalid}',
 		handler: function (request: Hapi.Request, reply: any): Hapi.Response {
@@ -205,6 +198,13 @@ authenticatedRoutes = [
 		handler: function (request: Hapi.Request, reply: any): Hapi.Response {
 			return reply.redirect(authUtils.getRedirectUrlWithQueryString('register', request));
 		}
+	},
+	{
+		method: 'GET',
+		path: '/',
+		//Currently / path is not available on production because of redirects from / to /wiki/...
+		// TODO (CONCF-761): we shouldn't load articles for Curated Main Pages
+		handler: require('./facets/showArticle')
 	}
 ];
 
