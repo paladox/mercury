@@ -32,6 +32,8 @@ exports.getUserLocale = function (/*request*/) {
 exports.getLoginState = function (request) {
 	var accessToken = (request.state) ? request.state.access_token : null; // jshint ignore:line
 
+	request.log('info', 'Access token: ' + accessToken);
+
 	if (accessToken) {
 		return auth.info(accessToken);
 	} else {
@@ -67,12 +69,12 @@ exports.renderWithGlobalData = function (request, reply, data, view) {
 
 	this.getLoginState(request).then(function (data) {
 		request.log('info', 'Got valid access token');
-		request.log(data);
+		request.log('info', JSON.stringify(data));
 
 		return auth.getUserName(data);
 	}).then(function (data) {
 		request.log('info', 'Retrieved user name for logged in user)');
-		request.log('info', data);
+		request.log('info', JSON.stringify(data));
 
 		renderView(true, data.value);
 	}).catch(function () {
