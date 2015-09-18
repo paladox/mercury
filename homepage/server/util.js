@@ -34,9 +34,12 @@ exports.getLoginState = function (request) {
 
 	request.log('info', 'Access token: ' + accessToken);
 
-	if (accessToken) {
+	if (accessToken && typeof(accessToken) !== 'undefined') {
+		request.log('info', 'Validating access token');
 		return auth.info(accessToken);
 	} else {
+		request.log('info', 'User is not logged in');
+
 		return new Promise.Promise(function (resolve, reject) {
 			reject({
 				error: 'not_logged_in',
