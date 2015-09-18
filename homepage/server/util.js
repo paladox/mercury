@@ -31,8 +31,11 @@ exports.getUserLocale = function (/*request*/) {
 
 exports.getLoginState = function (request) {
 	var accessToken = (request.state) ? request.state.access_token : null; // jshint ignore:line
+	//accessToken = '_U3LKqD3Rsi7ikXWTQ_-jg';
 
 	request.log('info', 'Access token: ' + accessToken);
+	request.log('info', 'Helios url: ' + localSettings.helios.host);
+	request.log('info', 'Services url: ' + localSettings.servicesUrl);
 
 	if (accessToken && typeof(accessToken) !== 'undefined') {
 		request.log('info', 'Validating access token');
@@ -71,7 +74,7 @@ exports.renderWithGlobalData = function (request, reply, data, view) {
 	}
 
 	this.getLoginState(request).then(function (data) {
-		request.log('info', 'Got valid access token');
+		request.log('info', 'Got valid access token (user id: ' + data.user_id + ')');
 		request.log('info', JSON.stringify(data));
 
 		return auth.getUserName(data);
@@ -80,8 +83,10 @@ exports.renderWithGlobalData = function (request, reply, data, view) {
 		request.log('info', JSON.stringify(data));
 
 		renderView(true, data.value);
-	}).catch(function () {
-		request.log('info', 'Access token for user is invalid');
+	}).catch(function (error) {
+		if (error.error !== 'not_logged_in') {
+			request.log('info', 'Access token for user is invalid');
+		}
 
 		reply.unstate('access_token');
 		renderView(false, null);

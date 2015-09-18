@@ -11,21 +11,34 @@ var Promise = require('bluebird'),
 function Auth() {
 	this.baseUrl = localSettings.helios.host;
 	this.servicesUrl = localSettings.servicesUrl;
+	this.mediaWikiUrl = "";
 }
 
 function requestWrapper(url) {
 	var deferred = Promise.defer();
 
+	console.log("requestWrapper request");
+	console.log(url);
+
 	request.get(url, function (err, response, body) {
 		if (err) {
+			console.log("requestWrapper response ERROR");
+			console.log(err);
+
 			deferred.reject(err);
 		} else {
 			try {
 				var json = JSON.parse(body);
 
 				if (json.error) {
+					console.log("requestWrapper response");
+					console.log(json);
+
 					deferred.reject(json);
 				} else {
+					console.log("requestWrapper response");
+					console.log(json);
+
 					deferred.resolve(json);
 				}
 			}
@@ -63,6 +76,10 @@ Auth.prototype.validateUser = function (username) {
 Auth.prototype.getUserName = function (heliosInfoResponse) {
 	var url = this.servicesUrl + 'user-attribute/user/' +
 		heliosInfoResponse.user_id  + '/attr/username'; // jshint ignore:line
+
+	console.log("getUserName");
+	console.log(heliosInfoResponse);
+	console.log(url);
 
 	return requestWrapper(url);
 };
