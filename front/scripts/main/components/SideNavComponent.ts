@@ -51,7 +51,9 @@ App.SideNavComponent = Em.Component.extend({
 		 * @param value of input
 		 */
 		enter: function (value = '') {
-			window.location.assign('%@Special:Search?search=%@&fulltext=Search'.fmt(Mercury.wiki.articlePath, value));
+			console.log('enter pressed in search box');
+			this.sendAction('search');
+			//window.location.assign('%@Special:Search?search=%@&fulltext=Search'.fmt(Mercury.wiki.articlePath, value));
 		}
 	},
 
