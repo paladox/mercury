@@ -73,6 +73,10 @@ App.LocalNavMenuComponent = Em.Component.extend(App.TrackClickMixin, {
 		loadRandomArticle: function (): void {
 			this.trackClick('randomArticle', 'click');
 			this.sendAction('loadRandomArticle');
+		},
+
+		search: function () : void {
+			console.log('LocalNavMenuComponent search');
 		}
 	},
 
