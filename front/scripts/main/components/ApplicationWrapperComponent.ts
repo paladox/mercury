@@ -1,6 +1,5 @@
-/// <reference path='../app.ts' />
-/// <reference path="../../mercury/utils/browser.ts" />
-/// <reference path='../../../../typings/headroom/headroom.d.ts' />
+/// <reference path="../../../../typings/ember/ember.d.ts" />
+/// <reference path="../app.ts" />
 
 'use strict';
 
@@ -19,7 +18,7 @@ interface EventTarget {
 	tagName: string;
 }
 
-App.ApplicationView = Em.View.extend({
+App.ApplicationWrapperComponent = Em.Component.extend({
 	classNameBindings: ['systemClass', 'smartBannerVisible', 'verticalClass'],
 
 	verticalClass: Em.computed(function (): string {
@@ -32,9 +31,9 @@ App.ApplicationView = Em.View.extend({
 		return system ? 'system-' + system : '';
 	}),
 
-	smartBannerVisible: Em.computed.alias('controller.smartBannerVisible'),
-	noScroll: Em.computed.alias('controller.noScroll'),
+	noScroll: false,
 	scrollLocation: null,
+	smartBannerVisible: false,
 
 	noScrollObserver: Em.observer('noScroll', function (): void {
 		var $body = Em.$('body'),
@@ -56,15 +55,15 @@ App.ApplicationView = Em.View.extend({
 		}
 	}),
 
-	willInsertElement: function (): void {
+	willInsertElement(): void {
 		$('#preload').remove();
 	},
 
-	didInsertElement: function (): void {
+	didInsertElement(): void {
 		this.trackFirstContent();
 	},
 
-	trackFirstContent: function (): void {
+	trackFirstContent(): void {
 		M.trackPerf({
 			name: 'firstContent',
 			type: 'mark'
@@ -76,7 +75,7 @@ App.ApplicationView = Em.View.extend({
 	 * cancel the click event on the current page, then the mouseUp handler would open
 	 * the external link in a new page _and_ the current page would be set to that external link.
 	 */
-	click: function (event: MouseEvent): void {
+	click(event: MouseEvent): void {
 		/**
 		 * check if the target has a parent that is an anchor
 		 * We do this for links in the form <a href='...'>Blah <i>Blah</i> Blah</a>,
@@ -100,7 +99,7 @@ App.ApplicationView = Em.View.extend({
 	/**
 	 * Determine if we have to apply special logic to the click handler for MediaWiki / UGC content
 	 */
-	shouldHandleClick: function (target: EventTarget): boolean {
+	shouldHandleClick(target: EventTarget): boolean {
 		var $target: JQuery = $(target),
 			isReference: boolean = this.targetIsReference(target);
 
@@ -116,7 +115,7 @@ App.ApplicationView = Em.View.extend({
 	/**
 	 * Determine if the clicked target is an reference/in references list (in text or at the bottom of article)
 	 */
-	targetIsReference: function (target: EventTarget): boolean {
+	targetIsReference(target: EventTarget): boolean {
 		var $target: JQuery = $(target);
 
 		return !!(
@@ -125,9 +124,7 @@ App.ApplicationView = Em.View.extend({
 		);
 	},
 
-	handleLink: function (target: HTMLAnchorElement): void {
-		var controller: typeof App.ApplicationController;
-
+	handleLink(target: HTMLAnchorElement): void {
 		Em.Logger.debug('Handling link with href:', target.href);
 
 		/**
@@ -142,10 +139,8 @@ App.ApplicationView = Em.View.extend({
 			 * pass it up to handleLink
 			 */
 			if (!target.href.match('^' + window.location.origin + '\/a\/.*\/comments$')) {
-				controller = this.get('controller');
-
-				controller.send('closeLightbox');
-				controller.send('handleLink', target);
+				this.sendAction('closeLightbox');
+				this.sendAction('handleLink', target);
 			}
 		}
 	}

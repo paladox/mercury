@@ -1,3 +1,50 @@
+## release-172 (2015-10-01 07:59 UTC)
+* [HG-893](https://wikia-inc.atlassian.net/browse/HG-893) Hg 893 Top-bar design review fixes
+* [XW-472](https://wikia-inc.atlassian.net/browse/XW-472) XW-472 rename AddPhotoModel to ArticleAddPhotoModel
+* [SOC-1355](https://wikia-inc.atlassian.net/browse/SOC-1355) SOC-1355 | Auth fix redirect from /join to /register
+* new-methods-definition: Maintenance | New methods definition syntax
+* [INT-195](https://wikia-inc.atlassian.net/browse/INT-195) Add search action
+* aden-2476-cat-targeting-param-on-mercury: ADEN-2476 | Expose article categories to adsContext
+* [DAT-3294](https://wikia-inc.atlassian.net/browse/DAT-3294) DAT-3294 add infobox-hero-image context handling
+
+## release-171 (2015-09-30 07:59 UTC)
+* [INT-195](https://wikia-inc.atlassian.net/browse/INT-195) Add route for showing google custom search results in Mercury
+* [SOC-1294](https://wikia-inc.atlassian.net/browse/SOC-1294) SOC-1294 Implement rails and the wiki badge
+* [SOC-1118](https://wikia-inc.atlassian.net/browse/SOC-1118) SOC-1118 Fix bad merge with introduction of application-wrapper
+* flipcss-inline: SOC-1371 Replace inline styling per flipcss recommendation
+* [SOC-1118](https://wikia-inc.atlassian.net/browse/SOC-1118) SOC-1118 Decouple share icons from share header
+* [SOC-954](https://wikia-inc.atlassian.net/browse/SOC-954) SOC-954 As a user, I want to upvote posts or replies
+* aden-2393_keep_out_crawlers: ADEN-2393 adding robots metatag
+* [XW-369](https://wikia-inc.atlassian.net/browse/XW-369) XW-369 Use Em.Helper.helper instead of deprecated registerBoundHelper
+* [XW-](https://wikia-inc.atlassian.net/browse/XW-) Xw translations - update translations for curated main pages editor
+* [SOC-1293](https://wikia-inc.atlassian.net/browse/SOC-1293) SOC-1293
+
+## release-170 (2015-09-29 09:39 UTC)
+* [XW-343](https://wikia-inc.atlassian.net/browse/XW-343) XW-343 Add missing attributes
+* [XW-417](https://wikia-inc.atlassian.net/browse/XW-417) XW-417 Revert hotfix as there is a proper fix now on VCL
+* [INT-212](https://wikia-inc.atlassian.net/browse/INT-212) Don't return failure message when invalid cookie is set (Jap…
+* [SOC-1122](https://wikia-inc.atlassian.net/browse/SOC-1122) SOC-1122 Finished implementing "load more" spinner
+* change-tabs-to-spaces-in-locale: Change tabs to spaces to make it compliant with rest of the files from Crowdin
+* add-json-to-editorconfig: Add **.json to .editorconfig
+* [XW-343](https://wikia-inc.atlassian.net/browse/XW-343) XW-343 Stop using Ember.View
+* [XW-435](https://wikia-inc.atlassian.net/browse/XW-435) XW-435 Use layoutName instead of deprecated templateName
+* [XW-213](https://wikia-inc.atlassian.net/browse/XW-213) XW-213 | Add noindex, follow to section/category pages on CMP
+
+## release-169 hotfix 2 (2015-09-28 18:40 UTC)
+* release-169-fix-trending-articles: [HOTFIX] Fix trending articles images
+
+## release-169 hotfix 1 (2015-09-28 11:56 UTC)
+* [XW-442](https://wikia-inc.atlassian.net/browse/XW-442) XW-442 | Fire smartBannerVisibleObserver on willInsertElement
+
+## release-169 (2015-09-28 07:59 UTC)
+* [INT-204](https://wikia-inc.atlassian.net/browse/INT-204) Add UN Global Goals banner to Japan HP
+* top-nav-width: pulling in updated nav styles
+* [XW-417](https://wikia-inc.atlassian.net/browse/XW-417) Xw 417 | pass staging to MWRequest
+* [XW-290](https://wikia-inc.atlassian.net/browse/XW-290) XW-290 | Brazilian Portuguese served for canonical Portuguese
+* missing-type: Add missing type to Utils.ts:clearHost
+* [XW-347](https://wikia-inc.atlassian.net/browse/XW-347) XW-347 | Don't modify element twice before render
+* [XW-105](https://wikia-inc.atlassian.net/browse/XW-105) XW-105 | replace controller#needs with Em.inject.controller()
+
 ## release-168 hotfix 1 (2015-09-25 14:57 UTC)
 * release-168-redirect-hot-fix: Release 168 redirect hot fix
 

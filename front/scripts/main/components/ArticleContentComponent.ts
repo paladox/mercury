@@ -89,8 +89,7 @@ App.ArticleContentComponent = Em.Component.extend(App.AdsMixin, App.PollDaddyMix
 	},
 
 	createArticleContributionComponent: function(section: number): JQuery {
-		var article = this.get('content'),
-			title = this.get('cleanTitle'),
+		var title = this.get('cleanTitle'),
 			component = this.createChildView(App.ArticleContributionComponent.create({
 				section: section,
 				title: title,
@@ -142,18 +141,14 @@ App.ArticleContentComponent = Em.Component.extend(App.AdsMixin, App.PollDaddyMix
 
 	createMediaComponent(element: HTMLElement, model: typeof App.ArticleModel): JQuery {
 		var ref = parseInt(element.dataset.ref, 10),
-			media = model.find(ref);
-
-		// set to true if image is rendered as a part of Portable Infobox Hero Element
-		media.isInfoboxHeroImage = $(element).closest('.pi-hero').length > 0;
-
-		var component = this.createChildView(App.MediaComponent.newFromMedia(media), {
-			ref: ref,
-			width: parseInt(element.getAttribute('width'), 10),
-			height: parseInt(element.getAttribute('height'), 10),
-			imgWidth: element.offsetWidth,
-			media: media
-		}).createElement();
+			media = model.find(ref),
+			component = this.createChildView(App.MediaComponent.newFromMedia(media), {
+				ref: ref,
+				width: parseInt(element.getAttribute('width'), 10),
+				height: parseInt(element.getAttribute('height'), 10),
+				imgWidth: element.offsetWidth,
+				media: media
+			}).createElement();
 
 		return component.$().attr('data-ref', ref);
 	},
