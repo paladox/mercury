@@ -1,22 +1,21 @@
 /// <reference path="../app.ts" />
 /// <reference path="./MediaComponent.ts" />
-/// <reference path="../mixins/ArticleContentMixin.ts" />
+/// <reference path="../mixins/ViewportMixin.ts" />
 'use strict';
 
-interface ArticleMedia extends Em.Object {
-	galleryRef: number;
-	currentNumber: number;
-	thumbUrl: string;
-	captionClass: string;
-}
+// TODO: Look into combining this into GalleryMediaComponent
+App.InfoboxMediaCollectionComponent = App.MediaComponent.extend(App.ViewportMixin, {
+	classNames: ['pi-media-collection'],
+	layoutName: 'components/pi-media-collection',
 
-App.GalleryMediaComponent = App.MediaComponent.extend(App.ArticleContentMixin, {
-	classNames: ['article-gallery'],
-	layoutName: 'components/gallery-media',
-
-	thumbSize: 195,
-	//limit how many images get rendered before user scrolls to a gallery
 	limit: 2,
+	limitHeight: true,
+
+	thumbHeight: 335,
+	thumbWidth: Em.computed('viewportDimensions.width', function(): number {
+		return this.get('viewportDimensions.width') - 30;
+	}),
+
 	incrementLimitValue: 10,
 
 	setUp(): void {
@@ -25,6 +24,7 @@ App.GalleryMediaComponent = App.MediaComponent.extend(App.ArticleContentMixin, {
 
 		this.get('media').forEach((media: ArticleMedia, index: number) => {
 			media.galleryRef = index;
+			media.currentNumber = index + 1;
 			media.thumbUrl = emptyGif;
 			media.captionClass = Em.get(media, 'caption.length') > 0 ? ' has-caption' : '';
 
@@ -38,7 +38,11 @@ App.GalleryMediaComponent = App.MediaComponent.extend(App.ArticleContentMixin, {
 		});
 	},
 
-	limitedMedia: Em.computed('media', 'limit', function (): ArticleMedia[] {
+	collectionWidth: Em.computed('galleryLength', 'thumbWidth', function(): number {
+		return this.get('galleryLength') * this.get('thumbWidth');
+	}),
+
+	limitedMedia: Em.computed('media', function (): ArticleMedia[] {
 		var limit = this.get('limit');
 
 		if (limit > 0) {
@@ -51,25 +55,20 @@ App.GalleryMediaComponent = App.MediaComponent.extend(App.ArticleContentMixin, {
 	loadImages(
 		imageOrGalleryRef: any,
 		limit: number = 2,
-		thumbSize: number = this.get('thumbSize')
+		thumbWidth: number = this.get('thumbWidth'),
+		thumbHeight: number = this.get('thumbHeight')
 	): void {
 		var galleryRef = typeof imageOrGalleryRef === 'number' ?
 				imageOrGalleryRef :
 				~~imageOrGalleryRef.getAttribute('data-gallery-ref'),
 			image: ArticleMedia,
 			limit = Math.min(galleryRef + limit, this.get('galleryLength') - 1),
-			mode = Mercury.Modules.Thumbnailer.mode.topCrop,
-			height = thumbSize,
-			width = thumbSize;
+			mode = Mercury.Modules.Thumbnailer.mode.zoomCrop,
+			height = thumbHeight,
+			width = thumbWidth;
 
 		for (; galleryRef <= limit; galleryRef++) {
 			image = this.get('media').get(galleryRef);
-
-			if (image.context === 'icon') {
-				mode =  Mercury.Modules.Thumbnailer.mode.scaleToWidth;
-				height = this.get('iconHeight');
-				width = this.get('iconWidth');
-			}
 
 			image.setProperties({
 				thumbUrl: this.getThumbURL(image.url, {
@@ -88,8 +87,8 @@ App.GalleryMediaComponent = App.MediaComponent.extend(App.ArticleContentMixin, {
 	load(): void {
 		var $this: JQuery = this.$(),
 			galleryWidth: number = $this.width(),
-			thumbSize: number = this.get('thumbSize'),
-			maxImages: number = Math.ceil(galleryWidth / thumbSize);
+			thumbWidth: number = this.get('thumbWidth'),
+			maxImages: number = Math.ceil(galleryWidth / thumbWidth);
 
 		this.setUp();
 		this.loadImages(0, maxImages);

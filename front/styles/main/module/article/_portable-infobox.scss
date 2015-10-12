@@ -122,6 +122,23 @@ $hero-caption-line-height: 18px;
 		}
 	}
 
+	// infobox gallery
+	.pi-media-collection {
+		height: 335px;
+		overflow-x: scroll;
+		overflow-y: hidden;
+		text-align: left;
+
+		.pi-item {
+			float: left;
+			position: relative;
+		}
+
+		.pi-hero-caption span {
+			padding-left: $infobox-item-margin;
+		}
+	}
+
 	// infobox data fields in tabular layout
 	.pi-data {
 		box-sizing: border-box;

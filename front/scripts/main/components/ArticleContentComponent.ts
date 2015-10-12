@@ -33,6 +33,7 @@ App.ArticleContentComponent = Em.Component.extend(App.AdsMixin, App.PollDaddyMix
 				this.replaceInfoboxesWithInfoboxComponents();
 				this.replaceMapsWithMapComponents();
 				this.replaceMediaPlaceholdersWithMediaComponents(this.get('media'), 4);
+				this.replaceMediaCollectionPlaceholderWithComponent(this.get('media'));
 				this.replaceWikiaWidgetsWithComponents();
 				this.handleWikiaWidgetWrappers();
 				this.handlePollDaddy();
@@ -151,6 +152,32 @@ App.ArticleContentComponent = Em.Component.extend(App.AdsMixin, App.PollDaddyMix
 			}).createElement();
 
 		return component.$().attr('data-ref', ref);
+	},
+
+	replaceMediaCollectionPlaceholderWithComponent(model: typeof App.ArticleModel, numberToProcess: number = -1): void {
+		var $mediaPlaceholders = this.$('.pi-media-collection'),
+			index: number;
+
+		if (numberToProcess < 0 || numberToProcess > $mediaPlaceholders.length) {
+			numberToProcess = $mediaPlaceholders.length;
+		}
+
+		for (index = 0; index < numberToProcess; index++) {
+			var element = $mediaPlaceholders.eq(index),
+				media: typeof App.ArticleModel[] = [];
+			var refs = element.data('refs').split(',');
+
+			refs.forEach((ref: number): void => {
+				var m = model.find(ref);
+				if (m) { media.push(m); }
+			});
+
+			var component = this.createChildView(App.InfoboxMediaCollectionComponent, {
+				media: media
+			}).createElement();
+
+	    element.replaceWith(component.$());
+		}
 	},
 
 	replaceMediaPlaceholdersWithMediaComponents(model: typeof App.ArticleModel, numberToProcess: number = -1): void {

@@ -1,0 +1,12 @@
+<div style="width: {{collectionWidth}}px;">
+	{{#each limitedMedia as |image|}}
+		<div class='pi-item gallery-{{unbound image.type}}'>
+			<img src='{{image.thumbUrl}}' class='{{if image.load 'loaded'}}' data-gallery-ref='{{unbound image.galleryRef}}'>
+			{{#if image.caption}}
+			<hgroup class="pi-hero-title-wrapper pi-item-spacing">
+				<h3 class="pi-hero-caption">{{image.currentNumber}} / {{galleryLength}} <span>{{{image.caption}}}</span></h3>
+			</hgroup>
+			{{/if}}
+		</div>
+	{{/each}}
+</div>
