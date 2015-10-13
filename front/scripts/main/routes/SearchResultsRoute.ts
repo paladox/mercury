@@ -16,6 +16,10 @@ App.SearchResultsRoute = Em.Route.extend({
 	 * @desc Return a promise and resolve only after script is loaded - this way the route won't load before it happens
 	 */
 	beforeModel(): Em.RSVP.Promise {
+		Em.run.scheduleOnce('afterRender', this, (): void => {
+			Em.$('table:not([class*=infobox], .dirbox)').not('table table').css('visibility', 'visible');
+		});
+
 		if (!this.get('googleCustomSearchLoadingInitialized')) {
 			return this.loadGoogleCustomSearch();
 		}
@@ -31,8 +35,6 @@ App.SearchResultsRoute = Em.Route.extend({
 				'//www.google.com/cse/cse.js?cx=' + searchKey;
 
 		this.set('googleCustomSearchLoadingInitialized', true);
-
-		Em.$('table:not([class*=infobox], .dirbox)').not('table table').css('visibility', 'visible');
 
 		return Em.$.getScript(url);
 	},
