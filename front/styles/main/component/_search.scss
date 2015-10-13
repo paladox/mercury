@@ -4,3 +4,7 @@
 .gsc-above-wrapper-area {
 	display: none;
 }
+
+table:not(.infobox, .dirbox) {
+	visibility: visible;
+}
