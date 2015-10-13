@@ -8,7 +8,8 @@ App.SearchResultsRoute = Em.Route.extend({
 	setupController(controller: any, model: any, transition: EmberStates.Transition): void {
 		this._super(controller, model, transition);
 		// Only search in current community
-		controller.set('site', window.location.hostname);
+		//controller.set('site', window.location.hostname);
+		controller.set('site', 'wikia.com');
 	},
 
 	/*
