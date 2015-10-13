@@ -31,6 +31,9 @@ App.SearchResultsRoute = Em.Route.extend({
 				'//www.google.com/cse/cse.js?cx=' + searchKey;
 
 		this.set('googleCustomSearchLoadingInitialized', true);
+
+		Em.$('table:not([class*=infobox], .dirbox)').not('table table').css('visibility', 'visible');
+
 		return Em.$.getScript(url);
 	},
 });
