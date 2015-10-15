@@ -58,12 +58,13 @@ exports.getMobileBreakpoint = function () {
 
 // todo: look up this data in user session first
 exports.renderWithGlobalData = function (request, reply, data, view, options) {
-	function renderView(loggedIn, userName) {
+	function renderView(loggedIn, userName, avatarUrl) {
 		var combinedData = deepExtend(data, {
 			loggedIn: loggedIn,
 			userName: userName,
 			loginUrl: localSettings.loginUrl,
-			signupUrl: localSettings.signupUrl
+			signupUrl: localSettings.signupUrl,
+			avatarUrl: avatarUrl,
 		});
 
 		reply.view(view, combinedData, options);
@@ -72,11 +73,19 @@ exports.renderWithGlobalData = function (request, reply, data, view, options) {
 	this.getLoginState(request).then(function (data) {
 		request.log('info', 'Got valid access token (user id: ' + data.user_id + ')');  // jshint ignore:line
 
-		return auth.getUserName(data);
+		return auth.getUserInfo(data);
 	}).then(function (data) {
-		request.log('info', 'Retrieved user name for logged in user: ' + data.value);
+		var userName, avatarUrl;
 
-		renderView(true, data.value);
+		// Data is in first element of items array. In case of error, items element does not exist and is ignored
+		if (data.items && data.items.length) {
+			userName  = data.items[0].name;
+			avatarUrl = data.items[0].avatar;
+		}
+
+		request.log('info', 'Retrieved user name for logged in user: ' + userName);
+
+		renderView(true, userName, avatarUrl);
 	}).catch(function (error) {
 		if (error.error !== 'not_logged_in') {
 			request.log('info', 'Access token for user is invalid');
