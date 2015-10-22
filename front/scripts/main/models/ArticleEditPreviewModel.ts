@@ -3,7 +3,7 @@
 /// <reference path="../mixins/ArticleEditMixin.ts" />
 'use strict';
 
-App.ArticleEditModel = Em.Object.extend({
+App.ArticleEditPreviewModel = Em.Object.extend({
 	content: null,
 	originalContent: null,
 	timestamp: null,
@@ -14,7 +14,8 @@ App.ArticleEditModel = Em.Object.extend({
 	})
 });
 
-App.ArticleEditModel.reopenClass(App.ArticleEditMixin, {
+App.ArticleEditPreviewModel.reopenClass(App.ArticleEditMixin, {
+	/*
 	publish: function(model: any): Em.RSVP.Promise {
 		console.log('ArticleEditModel.publish');
 
@@ -51,49 +52,22 @@ App.ArticleEditModel.reopenClass(App.ArticleEditMixin, {
 				});
 		});
 	},
+	*/
 
 	load: function(title: string, sectionIndex: number): Em.RSVP.Promise {
-		console.log('ArticleEditModel.load');
+		console.log('ArticleEditPreviewModel.load');
 
 		return new Em.RSVP.Promise((resolve: Function, reject: Function): void => {
-			Em.$.ajax(M.buildUrl({path: '/api.php'}), {
-				dataType: 'json',
-				cache: false,
-				data: {
-					action: 'query',
-					prop: 'revisions',
-					// FIXME: It should be possible to pass props as an array
-					rvprop: 'content|timestamp',
-					titles: title,
-					rvsection: sectionIndex,
-					format: 'json'
-				}
-			})
-			.done((resp): void => {
-				var pages: any,
-					revision: any;
-				if (resp.error) {
-					reject(resp.error.code);
-					return;
-				}
-				pages = Em.get(resp, 'query.pages');
-				if (pages) {
-					// FIXME: MediaWiki API, seriously?
-					revision = pages[Object.keys(pages)[0]].revisions[0];
-					resolve(App.ArticleEditModel.create({
-						title: title,
-						sectionIndex: sectionIndex,
-						content: revision['*'],
-						originalContent: revision['*'],
-						timestamp: revision.timestamp
-					}));
-				} else {
-					reject();
-				}
-			})
-			.fail((err): void => {
-				reject(err);
-			});
+			console.log("here");
+			console.log("here");
+
+			resolve(App.ArticleEditPreviewModel.create({
+				title: title,
+				sectionIndex: sectionIndex,
+				content: 'content',
+				originalContent: 'originalContent',
+				timestamp: 'timestamp'
+			}));
 		});
 	}
 });
