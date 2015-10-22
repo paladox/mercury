@@ -16,6 +16,8 @@ App.ArticleEditModel = Em.Object.extend({
 
 App.ArticleEditModel.reopenClass(App.ArticleEditMixin, {
 	publish: function(model: any): Em.RSVP.Promise {
+		console.log('ArticleEditModel.publish');
+
 		return new Em.RSVP.Promise((resolve: Function, reject: Function): void => {
 			this.getEditToken(model.title)
 				.then((token: any): void => {
@@ -51,6 +53,8 @@ App.ArticleEditModel.reopenClass(App.ArticleEditMixin, {
 	},
 
 	load: function(title: string, sectionIndex: number): Em.RSVP.Promise {
+		console.log('ArticleEditModel.load');
+
 		return new Em.RSVP.Promise((resolve: Function, reject: Function): void => {
 			Em.$.ajax(M.buildUrl({path: '/api.php'}), {
 				dataType: 'json',

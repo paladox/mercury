@@ -66,6 +66,14 @@ App.Router.map(function () {
 		path: articlePath + 'edit/:title/:sectionIndex'
 	});
 
+	this.route('articleEditPreview', {
+		path: articlePath + 'preview/:title/:sectionIndex'
+	});
+
+	this.route('articleEditInformation', {
+		path: articlePath + 'editinfo/:title/:sectionIndex'
+	});
+
 	this.route('articleAddPhoto', {
 		path: articlePath + 'addPhoto/:title'
 	});

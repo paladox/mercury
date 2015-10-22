@@ -21,6 +21,8 @@ App.ArticleEditController = Em.Controller.extend({
 	},
 
 	handlePublishSuccess (): void {
+		console.log('ArticleEditController.handlePublishSuccess');
+
 		var title = this.get('model.title');
 		this.transitionToRoute('article', title).then((): void => {
 			this.get('application').addAlert({
@@ -38,6 +40,8 @@ App.ArticleEditController = Em.Controller.extend({
 	},
 
 	handlePublishError (error: any): void {
+		console.log('ArticleEditController.handlePublishError');
+
 		var appController = this.get('application'),
 			errorMsg = this.errorCodeMap[error] || 'app.edit-publish-error';
 
@@ -58,6 +62,20 @@ App.ArticleEditController = Em.Controller.extend({
 
 	actions: {
 		publish(): void {
+			console.log('ArticleEditController.actions.publish');
+
+			console.log(this.get('model.content'));
+			console.log(this.get('model.originalContent'));
+			console.log('Dirty: ' + this.get('model.isDirty'));
+
+			this.transitionToRoute(
+				'articleEditPreview',
+				this.get('model.title'),
+				this.get('model.sectionIndex')
+			);
+			//this.transitionToRoute('searchResults');
+
+			/*
 			this.set('isPublishing', true);
 			this.get('application').showLoader();
 			App.ArticleEditModel.publish(this.get('model')).then(
@@ -69,8 +87,11 @@ App.ArticleEditController = Em.Controller.extend({
 				category: 'sectioneditor',
 				label: 'publish'
 			});
+			*/
 		},
 		back(): void {
+			console.log('ArticleEditController.actions.back');
+
 			this.transitionToRoute('article', this.get('model.title'));
 			M.track({
 				action: M.trackActions.click,
