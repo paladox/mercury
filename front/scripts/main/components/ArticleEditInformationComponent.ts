@@ -5,13 +5,7 @@
 'use strict';
 
 App.ArticleEditInformationComponent = Em.Component.extend(App.ViewportMixin, {
-	 classNames: ['article-edit-information'],
-
-	/*
-	 viewportHeightObserver: Em.observer('viewportDimensions.height', function () {
-	 this.adjustTextareaHeight();
-	 }),
-	 */
+	classNames: ['article-edit-information'],
 
 	actions: {
 		back(): void {
@@ -22,10 +16,4 @@ App.ArticleEditInformationComponent = Em.Component.extend(App.ViewportMixin, {
 			this.sendAction('publish');
 		}
 	},
-
-	/*
-	 adjustTextareaHeight: Em.on('didInsertElement', function(): void {
-	 Em.$('textarea').css('height', Em.$(window).height() - Em.$('.edit-head').outerHeight());
-	 })
-	 */
 });

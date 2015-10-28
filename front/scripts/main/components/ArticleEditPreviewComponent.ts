@@ -7,14 +7,6 @@
 App.ArticleEditPreviewComponent = Em.Component.extend(App.ViewportMixin, {
 	classNames: ['article-edit-preview'],
 
-	/*
-	classNames: ['article-edit'],
-
-	viewportHeightObserver: Em.observer('viewportDimensions.height', function () {
-		this.adjustTextareaHeight();
-	}),
-	*/
-
 	actions: {
 		back(): void {
 			this.sendAction('back');
@@ -24,10 +16,4 @@ App.ArticleEditPreviewComponent = Em.Component.extend(App.ViewportMixin, {
 			this.sendAction('publish');
 		}
 	},
-
-	/*
-	adjustTextareaHeight: Em.on('didInsertElement', function(): void {
-		Em.$('textarea').css('height', Em.$(window).height() - Em.$('.edit-head').outerHeight());
-	})
-	*/
 });
