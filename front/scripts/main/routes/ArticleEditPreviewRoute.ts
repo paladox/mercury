@@ -4,7 +4,7 @@
 
 'use strict';
 
-App.ArticleEditPreviewRoute = Em.Route.extend(App.FullPageMixin, {
+App.ArticleEditPreviewRoute = Em.Route.extend(App.ViewportMixin, {
 	model: function(params: any): Em.RSVP.Promise {
 		console.log('ArticleEditPreviewRoute.model');
 		console.log(params);

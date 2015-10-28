@@ -9,10 +9,12 @@ App.ArticleEditPreviewComponent = Em.Component.extend(App.ViewportMixin, {
 
 	actions: {
 		back(): void {
+			console.log('ArticleEditPreviewComponent.back');
 			this.sendAction('back');
 		},
 
 		publish(): void {
+			console.log('ArticleEditPreviewComponent.publish');
 			this.sendAction('publish');
 		}
 	},
