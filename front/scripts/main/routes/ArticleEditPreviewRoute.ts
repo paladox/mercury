@@ -5,7 +5,7 @@
 'use strict';
 
 App.ArticleEditPreviewRoute = Em.Route.extend(App.ViewportMixin, {
-	model: function(params: any): Em.RSVP.Promise {
+	model: function (params:any): Em.RSVP.Promise {
 		console.log('ArticleEditPreviewRoute.model');
 		console.log(params);
 		return App.ArticleEditPreviewModel.load(params.title, params.sectionIndex);
@@ -18,4 +18,26 @@ App.ArticleEditPreviewRoute = Em.Route.extend(App.ViewportMixin, {
 			controller: 'articleEditPreview'
 		});
 	},
+
+	actions: {
+		publish(): void {
+			console.log('ArticleEditPreviewRoute.actions.publish');
+
+			this.transitionTo('articleEditInformation',
+				this.currentModel.get('model.title'),
+				this.currentModel.get('model.sectionIndex')
+			);
+		},
+		back(): void {
+			console.log(this.currentModel.get('title'));
+			console.log('ArticleEditPreviewRoute.actions.back');
+			console.log(this.get('model.title'));
+			console.log(this.get('model.sectionIndex'));
+
+			this.transitionTo('articleEdit',
+				this.currentModel.get('title'),
+				this.currentModel.get('sectionIndex')
+			);
+		}
+	}
 });
