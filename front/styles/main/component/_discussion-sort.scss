@@ -5,10 +5,9 @@
 	list-style-type: none;
 	margin: 0;
 	padding: 4px 20px 4px 0;
-	position: absolute;
+	position: fixed;
 	right: 5px;
 	text-align: right;
-	top: 5px;
 	width: 110px;
 	z-index: $z-modal-dialog;
 
