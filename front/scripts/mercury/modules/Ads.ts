@@ -59,39 +59,18 @@ module Mercury.Modules {
 			window.gaTrackAdEvent = this.gaTrackAdEvent;
 			// Load the ads code from MW
 			M.load(adsUrl, () => {
-				if (require) {
-					require([
-						'ext.wikia.adEngine.adEngine',
-						'ext.wikia.adEngine.adContext',
-						'ext.wikia.adEngine.config.mobile',
-						'ext.wikia.adEngine.adLogicPageViewCounter',
-						'ext.wikia.adEngine.sourcePointDetection',
-						'ext.wikia.adEngine.mobile.mercuryListener',
-						'wikia.krux'
-					], (
-						adEngineModule: any,
-						adContextModule: any,
-						adConfigMobile: any,
-						adLogicPageViewCounterModule: any,
-						sourcePointDetectionModule: any,
-						adMercuryListener: any,
-						krux: any
-					) => {
-						this.adEngineModule = adEngineModule;
-						this.adContextModule = adContextModule;
-						this.sourcePointDetectionModule = sourcePointDetectionModule;
-						this.adConfigMobile = adConfigMobile;
-						this.adLogicPageViewCounterModule = adLogicPageViewCounterModule;
-						this.adMercuryListenerModule = adMercuryListener;
-						this.kruxTracker = new Mercury.Modules.Trackers.Krux(krux);
-						this.isLoaded = true;
-						this.addDetectionListeners();
-						this.reloadWhenReady();
-						this.kruxTrackFirstPage();
-					});
-				} else {
-					console.error('Looks like ads asset has not been loaded');
-				}
+				this.adEngineModule = require('ext.wikia.adEngine.adEngine');
+				this.adContextModule = require('ext.wikia.adEngine.adContext');
+				this.sourcePointDetectionModule = require('ext.wikia.adEngine.sourcePointDetection');
+				this.adConfigMobile = require('ext.wikia.adEngine.config.mobile');
+				this.adLogicPageViewCounterModule = require('ext.wikia.adEngine.adLogicPageViewCounter');
+				this.adMercuryListenerModule = require('ext.wikia.adEngine.mobile.mercuryListener');
+				this.kruxTracker = new Mercury.Modules.Trackers.Krux(require('wikia.krux'));
+				this.isLoaded = true;
+
+				this.addDetectionListeners();
+				this.reloadWhenReady();
+				this.kruxTrackFirstPage();
 			});
 		}
 
