@@ -6,18 +6,14 @@ App.CuratedContentEditorRoute = Em.Route.extend(
 		 */
 		beforeModel() {
 			if (!$().cropper || !this.get('cropperLoadingInitialized')) {
-				this.suppressDefineAmd(
-					this.loadCropper()
-				);
+				this.loadCropper();
 			}
 
-			if (window.self !== window.top && (
-					!window.Ponto || !this.get('pontoLoadingInitialized')
-				)
+			if (
+				window.self !== window.top &&
+				(!window.Ponto || !this.get('pontoLoadingInitialized'))
 			) {
-				this.suppressDefineAmd(
-					this.loadPonto()
-				);
+				this.loadPonto();
 			}
 		},
 
@@ -26,28 +22,6 @@ App.CuratedContentEditorRoute = Em.Route.extend(
 		 */
 		model() {
 			return App.CuratedContentEditorModel.load();
-		},
-
-		/**
-		 * This is needed as libs used by us will initialize themself as modules if define.amd is truthy
-		 * define.amd might be truthy here if ads code is loaded before
-		 *
-		 * This will be not needed when we move to module system
-		 *
-		 * @param {JQueryXHR} promise
-		 * @returns {void}
-		 */
-		suppressDefineAmd(promise) {
-			let oldAmd;
-
-			if (window.define) {
-				oldAmd = window.define.amd;
-				window.define.amd = false;
-
-				promise.then(() => {
-					window.define.amd = oldAmd;
-				});
-			}
 		},
 
 		cropperLoadingInitialized: false,
