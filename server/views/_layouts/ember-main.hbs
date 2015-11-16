@@ -113,7 +113,21 @@
 			(function () {
 				document.addEventListener("DOMContentLoaded", function() {
 					loadScript.loadScript('/front/vendor/main.js', function () {
-						loadScript.loadScript('/front/scripts/combined.js');
+//						loadScript.loadScript('/front/scripts/combined.js');
+						System.config({
+							baseURL: '/front/scripts',
+							bundles: {
+								'combined.js': []
+							},
+							meta: {
+								'combined.js': {
+									format: 'register'
+								}
+							}
+						});
+						System.import('combined.js').then(function () {
+							System.import('app');
+						})
 					});
 				});
 			}());
