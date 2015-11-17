@@ -1,6 +1,6 @@
-import App from '../app';
-import TrackClickMixin from './track-click';
-import CuratedContentEditorModel from '../models/curated-content-editor';
+import App from 'app';
+import TrackClickMixin from 'mixins/track-click';
+import CuratedContentEditorModel from 'models/curated-content-editor';
 
 App.CuratedContentEditorSortableItemsMixin = Ember.Mixin.create(
 	TrackClickMixin,

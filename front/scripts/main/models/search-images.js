@@ -1,6 +1,5 @@
-import App from '../app';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+import App from 'app';
+import Thumbnailer from 'modules/Thumbnailer';
 
 /**
  * @typedef {Object} SearchImageResponse

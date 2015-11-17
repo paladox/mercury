@@ -1,7 +1,7 @@
-import App from '../app';
-import MainPageRouteMixin from '../mixins/main-page-route';
-import MetaTagsMixin from '../mixins/meta-tags';
-import CuratedContentModel from '../models/curated-content';
+import App from 'app';
+import MainPageRouteMixin from 'mixins/main-page-route';
+import MetaTagsMixin from 'mixins/meta-tags';
+import CuratedContentModel from 'models/curated-content';
 
 App.MainPageSectionRoute = Ember.Route.extend(MainPageRouteMixin, MetaTagsMixin, {
 	/**

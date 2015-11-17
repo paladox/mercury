@@ -1,6 +1,6 @@
-import App from '../app';
-import TrackClickMixin from '../mixins/track-click';
-import {track, trackActions} from '../../mercury/utils/track';
+import App from 'app';
+import TrackClickMixin from 'mixins/track-click';
+import {track, trackActions} from 'utils/track';
 
 App.CollapsibleMenuComponent = Ember.Component.extend(
 	TrackClickMixin,

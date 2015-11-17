@@ -1,5 +1,4 @@
-import App from '../app';
-import {globalProp} from '../../baseline/mercury/utils/state';
+import App from 'app';
 
 App.DiscussionAppPromotionComponent = Ember.Component.extend({
 	classNames: ['discussion-app-promotion'],

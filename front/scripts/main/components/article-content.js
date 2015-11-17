@@ -1,14 +1,14 @@
-import InfoboxImageMediaComponent from './infobox-image-media';
-import LinkedGalleryMediaComponent from './linked-gallery-media';
-import GalleryMediaComponent from './gallery-media';
-import VideoMediaComponent from './video-media';
-import ImageMediaComponent from './image-media';
-import InfoboxImageCollectionComponent from './infobox-image-collection';
-import WikiaMapComponent from './wikia-map';
-import PortableInfoboxComponent from './portable-infobox';
-import AdsMixin from '../mixins/ads';
-import PollDaddyMixin from '../mixins/poll-daddy';
-import App from '../app';
+import InfoboxImageMediaComponent from 'components/infobox-image-media';
+import LinkedGalleryMediaComponent from 'components/linked-gallery-media';
+import GalleryMediaComponent from 'components/gallery-media';
+import VideoMediaComponent from 'components/video-media';
+import ImageMediaComponent from 'components/image-media';
+import InfoboxImageCollectionComponent from 'components/infobox-image-collection';
+import WikiaMapComponent from 'components/wikia-map';
+import PortableInfoboxComponent from 'components/portable-infobox';
+import AdsMixin from 'mixins/ads';
+import PollDaddyMixin from 'mixins/poll-daddy';
+import App from 'app';
 
 /**
  * HTMLElement

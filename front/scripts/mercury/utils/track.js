@@ -1,9 +1,8 @@
-import Comscore from '../modules/Trackers/Comscore';
-import Internal from '../modules/Trackers/Internal';
-import Krux from '../modules/Trackers/Krux';
-import Quantserve from '../modules/Trackers/Quantserve';
-import UniversalAnalytics from '../modules/Trackers/UniversalAnalytics';
-import {globalProp} from '../../baseline/mercury/utils/state';
+import Comscore from 'modules/Trackers/Comscore';
+import Internal from 'modules/Trackers/Internal';
+import Krux from 'modules/Trackers/Krux';
+import Quantserve from 'modules/Trackers/Quantserve';
+import UniversalAnalytics from 'modules/Trackers/UniversalAnalytics';
 
 /**
  * @typedef {Object} TrackContext

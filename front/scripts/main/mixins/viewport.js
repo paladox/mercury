@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 /**
  * This mixin keeps track of viewport size which is updated on every window resize.

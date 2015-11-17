@@ -1,6 +1,6 @@
-import App from '../app';
-import {track, trackActions} from '../../mercury/utils/track';
-import {getExperimentVariationNumber} from '../../mercury/utils/variantTesting';
+import App from 'app';
+import {track, trackActions} from 'utils/track';
+import {getExperimentVariationNumber} from 'utils/variantTesting';
 
 App.SideNavComponent = Ember.Component.extend({
 	tagName: 'nav',

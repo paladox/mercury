@@ -1,6 +1,6 @@
-import App from '../app';
-import TrackClickMixin from '../mixins/track-click';
-import {track, trackActions} from '../../mercury/utils/track';
+import App from 'app';
+import TrackClickMixin from 'mixins/track-click';
+import {track, trackActions} from 'utils/track';
 
 /**
  * Type for topmost-level nav item, which doesn't have any of the properties defined in NavItem

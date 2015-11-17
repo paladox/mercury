@@ -1,5 +1,5 @@
-import App from '../app';
-import ViewportMixin from '../mixins/viewport';
+import App from 'app';
+import ViewportMixin from 'mixins/viewport';
 
 App.ArticleEditComponent = Ember.Component.extend(
 	ViewportMixin,

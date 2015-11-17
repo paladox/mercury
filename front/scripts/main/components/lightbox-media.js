@@ -1,8 +1,8 @@
-import App from '../app';
-import ThirdsClickMixin from '../mixins/thirds-click';
-import MediaModel from '../models/media';
-import {track, trackActions} from '../../mercury/utils/track';
-import {normalizeToUnderscore} from '../../mercury/utils/string';
+import App from 'app';
+import ThirdsClickMixin from 'mixins/thirds-click';
+import MediaModel from 'models/media';
+import {track, trackActions} from 'utils/track';
+import {normalizeToUnderscore} from 'utils/string';
 
 App.LightboxMediaComponent = Ember.Component.extend(
 	ThirdsClickMixin,

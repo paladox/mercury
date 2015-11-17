@@ -1,6 +1,6 @@
-import App from '../app';
-import FullPageMixin from '../mixins/full-page';
-import {track, trackActions} from '../../mercury/utils/track';
+import App from 'app';
+import FullPageMixin from 'mixins/full-page';
+import {track, trackActions} from 'utils/track';
 
 App.ArticleAddPhotoRoute = Ember.Route.extend(FullPageMixin, {
 	/**

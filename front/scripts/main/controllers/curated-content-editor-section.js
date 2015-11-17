@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 App.CuratedContentEditorSectionController = Ember.Controller.extend({
 	queryParams: {

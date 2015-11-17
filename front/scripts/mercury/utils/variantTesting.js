@@ -1,5 +1,3 @@
-import {globalProp} from '../../baseline/mercury/utils/state';
-
 /**
  * Helper for variant testing using Optimizely
  */

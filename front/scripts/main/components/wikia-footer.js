@@ -1,6 +1,6 @@
-import App from '../app';
-import TrackClickMixin from '../mixins/track-click';
-import {getDomain} from '../../mercury/utils/domain';
+import App from 'app';
+import TrackClickMixin from 'mixins/track-click';
+import {getDomain} from 'utils/domain';
 
 App.WikiaFooterComponent = Ember.Component.extend(
 	TrackClickMixin,

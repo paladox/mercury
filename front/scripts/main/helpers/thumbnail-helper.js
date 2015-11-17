@@ -1,5 +1,5 @@
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
-import App from '../app';
+import Thumbnailer from 'modules/Thumbnailer';
+import App from 'app';
 
 /**
  * Helper to generate img element with link to thumbnail as the src attribute

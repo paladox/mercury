@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 App.DiscussionForumController = Ember.Controller.extend({
 	application: Ember.inject.controller(),

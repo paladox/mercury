@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 /**
  * Helper to generate SVGs in the form:

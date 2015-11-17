@@ -1,6 +1,5 @@
-import App from '../app';
-import ObjectUtilitiesMixin from '../mixins/object-utilities';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
+import App from 'app';
+import ObjectUtilitiesMixin from 'mixins/object-utilities';
 
 /**
  * CuratedContentImageCropSingleData

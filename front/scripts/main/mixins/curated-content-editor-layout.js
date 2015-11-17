@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 App.CuratedContentEditorLayoutMixin = Ember.Mixin.create({
 	imageProperties: {

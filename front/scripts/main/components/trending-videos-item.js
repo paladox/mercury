@@ -1,7 +1,7 @@
-import App from '../app';
-import ViewportMixin from '../mixins/viewport';
-import TrackClickMixin from '../mixins/track-click';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+import App from 'app';
+import ViewportMixin from 'mixins/viewport';
+import TrackClickMixin from 'mixins/track-click';
+import Thumbnailer from 'modules/Thumbnailer';
 
 App.TrendingVideosItemComponent = Ember.Component.extend(
 	ViewportMixin,

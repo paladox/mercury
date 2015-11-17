@@ -1,7 +1,7 @@
 
-import {trackPerf} from '../../mercury/utils/trackPerf';
-import {getSystem} from '../../mercury/utils/browser';
-import App from '../app';
+import {trackPerf} from 'utils/trackPerf';
+import {getSystem} from 'utils/browser';
+import App from 'app';
 
 /**
  * HTMLMouseEvent

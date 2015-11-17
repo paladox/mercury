@@ -1,6 +1,6 @@
-import App from '../app';
-import ImageMediaComponent from './image-media';
-import {track, trackActions} from '../../mercury/utils/track';
+import App from 'app';
+import ImageMediaComponent from 'image-media';
+import {track, trackActions} from 'utils/track';
 
 App.WikiaMapComponent = ImageMediaComponent.extend({
 	classNames: ['wikia-map'],

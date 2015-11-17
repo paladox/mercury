@@ -1,5 +1,5 @@
-import App from '../app';
-import CuratedContentEditorModel from '../models/curated-content-editor';
+import App from 'app';
+import CuratedContentEditorModel from 'models/curated-content-editor';
 
 App.CuratedContentEditorSectionRoute = Ember.Route.extend({
 	/**

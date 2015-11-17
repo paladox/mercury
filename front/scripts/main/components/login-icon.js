@@ -1,6 +1,6 @@
-import App from '../app';
-import LanguagesMixin from '../mixins/languages';
-import {track, trackActions} from '../../mercury/utils/track';
+import App from 'app';
+import LanguagesMixin from 'mixins/languages';
+import {track, trackActions} from 'utils/track';
 
 App.LoginIconComponent = Ember.Component.extend(
 	LanguagesMixin,

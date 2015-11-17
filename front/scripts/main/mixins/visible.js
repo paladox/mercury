@@ -1,5 +1,5 @@
-import App from '../app';
-import VisibilityStateManager from './visibility-state-manager';
+import App from 'app';
+import VisibilityStateManager from 'mixins/visibility-state-manager';
 
 /**
  * Mixin that sends 'onVisible' action when element appears on screen for the first time.

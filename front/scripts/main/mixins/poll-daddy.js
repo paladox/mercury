@@ -1,5 +1,4 @@
-import App from '../app';
-import {loadScript} from '../../baseline/mercury/utils/loadScript';
+import App from 'app';
 
 App.PollDaddyMixin = Ember.Mixin.create({
 	/**

@@ -1,5 +1,5 @@
-import App from '../app';
-import WidgetScriptStateMixin from '../mixins/widget-script-state';
+import App from 'app';
+import WidgetScriptStateMixin from 'mixins/widget-script-state';
 
 App.WidgetFliteComponent = Ember.Component.extend(
 	WidgetScriptStateMixin,

@@ -1,5 +1,4 @@
-import App from '../app';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
+import App from 'app';
 
 App.ArticleEditMixin = Ember.Mixin.create({
 

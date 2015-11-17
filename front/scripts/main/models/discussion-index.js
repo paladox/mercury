@@ -1,5 +1,4 @@
-import App from '../app';
-import {getDiscussionServiceUrl} from '../../baseline/mercury/utils/buildUrl';
+import App from 'app';
 
 App.DiscussionIndexModel = Ember.Object.extend({
 });

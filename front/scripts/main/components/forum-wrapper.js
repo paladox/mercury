@@ -1,5 +1,5 @@
-import App from '../app';
-import DiscussionUpvoteActionSendMixin from '../mixins/discussion-upvote-action-send';
+import App from 'app';
+import DiscussionUpvoteActionSendMixin from 'mixins/discussion-upvote-action-send';
 
 App.ForumWrapperComponent = Ember.Component.extend(
 	DiscussionUpvoteActionSendMixin,

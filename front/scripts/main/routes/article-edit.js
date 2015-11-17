@@ -1,7 +1,7 @@
-import App from '../app';
-import FullPageMixin from '../mixins/full-page';
-import ArticleEditModel from '../models/article-edit';
-import {track, trackActions} from '../../mercury/utils/track';
+import App from 'app';
+import FullPageMixin from 'mixins/full-page';
+import ArticleEditModel from 'models/article-edit';
+import {track, trackActions} from 'utils/track';
 
 App.ArticleEditRoute = Ember.Route.extend(FullPageMixin, {
 	/**

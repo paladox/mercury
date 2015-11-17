@@ -1,6 +1,6 @@
-import App from '../app';
-import ArticleModel from './article';
-import CuratedContentModel from './curated-content';
+import App from 'app';
+import ArticleModel from 'article';
+import CuratedContentModel from 'curated-content';
 
 App.MainPageModel = ArticleModel.extend({
 	curatedContent: null

@@ -1,7 +1,7 @@
-import App from '../app';
-import AlertNotificationsMixin from '../mixins/alert-notifications';
-import TrackClickMixin from '../mixins/track-click';
-import CuratedContentEditorModel from '../models/curated-content-editor';
+import App from 'app';
+import AlertNotificationsMixin from 'mixins/alert-notifications';
+import TrackClickMixin from 'mixins/track-click';
+import CuratedContentEditorModel from 'models/curated-content-editor';
 
 App.CuratedContentEditorComponent = Ember.Component.extend(
 	AlertNotificationsMixin,

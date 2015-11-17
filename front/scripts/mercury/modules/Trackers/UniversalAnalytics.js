@@ -1,5 +1,3 @@
-import {globalProp} from '../../../baseline/mercury/utils/state';
-
 /**
  * @typedef {Object} TrackerOptions
  * @property {string} name

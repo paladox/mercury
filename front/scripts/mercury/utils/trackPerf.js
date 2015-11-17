@@ -1,5 +1,3 @@
-import {globalProp} from '../../baseline/mercury/utils/state';
-
 /**
  * @typedef {Object} PerfTrackerParams
  * @property {string} type

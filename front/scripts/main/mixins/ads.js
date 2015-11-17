@@ -1,6 +1,6 @@
-import AdSlotComponent from '../components/ad-slot';
-import Ads from '../../mercury/modules/Ads';
-import App from '../app';
+import AdSlotComponent from 'components/ad-slot';
+import Ads from 'modules/Ads';
+import App from 'app';
 
 App.AdsMixin = Ember.Mixin.create({
 	adsData: {

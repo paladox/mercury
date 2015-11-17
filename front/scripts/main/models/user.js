@@ -1,5 +1,4 @@
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
-import App from '../app';
+import App from 'app';
 
 /**
  * @typedef {Object} UserModelFindParams

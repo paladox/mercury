@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 App.CuratedContentEditorLabelsMixin = Ember.Mixin.create({
 	isCategory: Ember.computed('isFeaturedItem', 'isSection', function () {

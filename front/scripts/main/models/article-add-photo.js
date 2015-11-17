@@ -1,6 +1,5 @@
-import App from '../app';
-import ArticleEditMixin from '../mixins/article-edit';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
+import App from 'app';
+import ArticleEditMixin from 'mixins/article-edit';
 
 /**
  * @typedef {Object} FileNameSeparated

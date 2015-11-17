@@ -1,7 +1,7 @@
-import App from '../app';
-import MediaComponent from './media';
-import ArticleContentMixin from '../mixins/article-content';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+import App from 'app';
+import MediaComponent from 'media';
+import ArticleContentMixin from 'mixins/article-content';
+import Thumbnailer from 'modules/Thumbnailer';
 
 /**
  * ArticleMedia

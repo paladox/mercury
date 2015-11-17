@@ -1,5 +1,5 @@
-import App from '../app';
-import DateTime from '../../mercury/utils/dateTime';
+import App from 'app';
+import DateTime from 'utils/dateTime';
 
 /**
  * Helper to give textual representation of time interval between past date

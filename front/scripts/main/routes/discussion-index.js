@@ -1,5 +1,5 @@
-import App from '../app';
-import DiscussionIndexModel from '../models/discussion-index';
+import App from 'app';
+import DiscussionIndexModel from 'models/discussion-index';
 
 App.DiscussionIndexRoute = Ember.Route.extend({
 	/**

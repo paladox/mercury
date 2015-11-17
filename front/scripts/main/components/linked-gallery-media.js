@@ -1,5 +1,5 @@
-import App from '../app';
-import GalleryMediaComponent from './gallery-media';
+import App from 'app';
+import GalleryMediaComponent from 'gallery-media';
 
 App.LinkedGalleryMediaComponent = GalleryMediaComponent.extend({
 	tagName: 'div',

@@ -1,5 +1,5 @@
-import {track, trackActions} from '../../mercury/utils/track';
-import App from '../app';
+import {track, trackActions} from 'utils/track';
+import App from 'app';
 
 App.TrackClickMixin = Ember.Mixin.create({
 	/**

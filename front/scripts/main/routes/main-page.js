@@ -1,7 +1,7 @@
-import App from '../app';
-import MainPageModel from '../models/main-page';
-import MainPageRouteMixin from '../mixins/main-page-route';
-import VisibilityStateManager from '../mixins/visibility-state-manager';
+import App from 'app';
+import MainPageModel from 'models/main-page';
+import MainPageRouteMixin from 'mixins/main-page-route';
+import VisibilityStateManager from 'mixins/visibility-state-manager';
 
 App.MainPageRoute = Ember.Route.extend(MainPageRouteMixin, {
 	/**

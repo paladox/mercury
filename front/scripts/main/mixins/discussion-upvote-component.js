@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 /**
  * Handles sending upvote action outside from the component.

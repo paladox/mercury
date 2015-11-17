@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 App.LightboxAdsComponent = Ember.Component.extend({
 	classNames: ['lightbox-ads', 'lightbox-content-inner'],

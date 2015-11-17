@@ -1,6 +1,6 @@
-import App from '../app';
-import ArticleContentMixin from '../mixins/article-content';
-import VideoLoader from '../../mercury/modules/VideoLoader';
+import App from 'app';
+import ArticleContentMixin from 'mixins/article-content';
+import VideoLoader from 'modules/VideoLoader';
 
 App.LightboxVideoComponent = Ember.Component.extend(
 	ArticleContentMixin,

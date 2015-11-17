@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 App.DiscussionSortComponent = Ember.Component.extend({
 	classNames: ['discussion-sort', 'clearfix'],

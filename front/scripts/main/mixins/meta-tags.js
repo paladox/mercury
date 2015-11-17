@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 /**
  * Route mixin for setting head meta tags on transition into/out of route

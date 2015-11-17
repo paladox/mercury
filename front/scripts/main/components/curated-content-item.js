@@ -1,6 +1,6 @@
-import App from '../app';
-import CuratedContentThumbnailMixin from '../mixins/curated-content-thumbnail';
-import ViewportMixin from '../mixins/viewport';
+import App from 'app';
+import CuratedContentThumbnailMixin from 'mixins/curated-content-thumbnail';
+import ViewportMixin from 'mixins/viewport';
 
 App.CuratedContentItemComponent = Ember.Component.extend(
 	CuratedContentThumbnailMixin,

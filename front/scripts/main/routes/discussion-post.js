@@ -1,6 +1,6 @@
-import App from '../app';
-import DiscussionPostModel from '../models/discussion-post';
-import DiscussionRouteUpvoteMixin from '../mixins/discussion-route-upvote';
+import App from 'app';
+import DiscussionPostModel from 'models/discussion-post';
+import DiscussionRouteUpvoteMixin from 'mixins/discussion-route-upvote';
 
 App.DiscussionPostRoute = Ember.Route.extend(DiscussionRouteUpvoteMixin, {
 	/**

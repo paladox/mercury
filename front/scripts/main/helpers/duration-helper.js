@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 /**
  * Formats a number of seconds into a duration, in the form HH:MM:SS

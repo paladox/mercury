@@ -1,11 +1,10 @@
-import {globalProp} from '../baseline/mercury/utils/state';
-import * as trackPerf from '../mercury/utils/trackPerf';
-import {getQueryParam} from '../mercury/utils/queryString';
-import {integrateOptimizelyWithUA} from '../mercury/utils/variantTesting';
-import Ads from '../mercury/modules/Ads';
-import UniversalAnalytics from '../mercury/modules/Trackers/UniversalAnalytics';
-import LinkComponent from './mixins/link-component';
-import CurrentUser from './CurrentUser';
+import * as trackPerf from 'utils/trackPerf';
+import {getQueryParam} from 'utils/queryString';
+import {integrateOptimizelyWithUA} from 'utils/variantTesting';
+import Ads from 'modules/Ads';
+import UniversalAnalytics from 'modules/Trackers/UniversalAnalytics';
+import LinkComponent from 'mixins/link-component';
+//import CurrentUser from 'CurrentUser';
 
 const App = Ember.Application.create({
 	// We specify a rootElement, otherwise Ember appends to the <body> element and Google PageSpeed thinks we are
@@ -44,15 +43,15 @@ App.initializer({
 App.initializer({
 	name: 'optimizely',
 	initialize() {
-		const optimizelyScript = globalProp('optimizelyScript');
-
-		if (!Ember.isEmpty(optimizelyScript) && !getQueryParam('noexternals')) {
-			App.deferReadiness();
-
-			Ember.$.getScript(optimizelyScript).always(() => {
-				App.advanceReadiness();
-			});
-		}
+		//const optimizelyScript = globalProp('optimizelyScript');
+		//
+		//if (!Ember.isEmpty(optimizelyScript) && !getQueryParam('noexternals')) {
+		//	App.deferReadiness();
+		//
+		//	Ember.$.getScript(optimizelyScript).always(() => {
+		//		App.advanceReadiness();
+		//	});
+		//}
 	}
 });
 
@@ -146,20 +145,20 @@ App.initializer({
 	name: 'currentUser',
 	after: 'performanceMonitoring',
 	initialize(container, application) {
-		application.register('currentUser:main', CurrentUser);
-		application.inject('component', 'currentUser', 'currentUser:main');
+		//application.register('currentUser:main', CurrentUser);
+		//application.inject('component', 'currentUser', 'currentUser:main');
 	}
 });
 
 App.initializer({
 	name: 'linkComponent',
 	initialize(container, application) {
-		container.register('linkComponent:attributeBindings', LinkComponent.attributeBindings);
-		container.register('linkComponent:action', LinkComponent.action);
-		container.register('linkComponent:_invoke', LinkComponent._invoke);
-		application.inject('LinkComponent', 'attributeBindings', 'linkComponent:attributeBindings');
-		application.inject('LinkComponent', 'action', 'linkComponent:action');
-		application.inject('LinkComponent', '_invoke', 'linkComponent:_invoke');
+		//container.register('linkComponent:attributeBindings', LinkComponent.attributeBindings);
+		//container.register('linkComponent:action', LinkComponent.action);
+		//container.register('linkComponent:_invoke', LinkComponent._invoke);
+		//application.inject('LinkComponent', 'attributeBindings', 'linkComponent:attributeBindings');
+		//application.inject('LinkComponent', 'action', 'linkComponent:action');
+		//application.inject('LinkComponent', '_invoke', 'linkComponent:_invoke');
 	}
 });
 

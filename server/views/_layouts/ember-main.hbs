@@ -110,24 +110,37 @@
 		</div>
 
 		<script>
+			globalProp = function() {
+				return {
+					weppyConfig: {
+						aggregationInterval: 1,
+						host: '',
+						sample: 1
+					}
+				}
+			};
 			(function () {
 				document.addEventListener("DOMContentLoaded", function() {
 					loadScript.loadScript('/front/vendor/main.js', function () {
-//						loadScript.loadScript('/front/scripts/combined.js');
-						System.config({
-							baseURL: '/front/scripts',
-							bundles: {
-								'combined.js': []
-							},
-							meta: {
-								'combined.js': {
-									format: 'register'
-								}
-							}
+						loadScript.loadScript('/front/scripts/combined.js', function () {
+							System.import('app').then(function () {
+								System.import('controllers/application');
+							});
 						});
-						System.import('combined.js').then(function () {
-							System.import('app');
-						})
+//						System.config({
+//							baseURL: '/front/scripts',
+//							bundles: {
+//								'combined.js': []
+//							},
+//							meta: {
+//								'combined.js': {
+//									format: 'register'
+//								}
+//							}
+//						});
+//						System.import('combined.js').then(function () {
+//							System.import('app');
+//						})
 					});
 				});
 			}());

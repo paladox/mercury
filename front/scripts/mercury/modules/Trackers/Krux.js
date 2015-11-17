@@ -1,5 +1,3 @@
-import {globalProp} from '../../../baseline/mercury/utils/state';
-
 /**
  * @typedef {Object} KruxModule
  * @property {Function} [load]

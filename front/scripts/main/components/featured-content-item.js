@@ -1,7 +1,7 @@
-import App from '../app';
-import CuratedContentThumbnailMixin from '../mixins/curated-content-thumbnail';
-import ViewportMixin from '../mixins/viewport';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+import App from 'app';
+import CuratedContentThumbnailMixin from 'mixins/curated-content-thumbnail';
+import ViewportMixin from 'mixins/viewport';
+import Thumbnailer from 'modules/Thumbnailer';
 
 App.FeaturedContentItemComponent = Ember.Component.extend(
 	CuratedContentThumbnailMixin,

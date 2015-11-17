@@ -1,7 +1,7 @@
-import VisibleMixin from '../mixins/visible';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
-import {track, trackActions} from '../../mercury/utils/track';
-import App from '../app';
+import VisibleMixin from 'mixins/visible';
+import Thumbnailer from 'modules/Thumbnailer';
+import {track, trackActions} from 'utils/track';
+import App from 'app';
 
 /**
  * @typedef {Object} ThumbnailOptions

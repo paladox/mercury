@@ -1,5 +1,4 @@
-import App from '../app';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
+import App from 'app';
 
 App.UserMenuComponent = Ember.Component.extend({
 	classNames: ['user-menu'],

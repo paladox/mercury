@@ -1,11 +1,10 @@
-import TrackClickMixin from '../mixins/track-click';
-import ArticleModel from '../models/article';
-import {globalProp} from '../../baseline/mercury/utils/state';
-import {activate as variantTestingActivate} from '../../mercury/utils/variantTesting';
-import {getLinkInfo} from '../../mercury/utils/articleLink';
-import {normalizeToUnderscore} from '../../mercury/utils/string';
-import Ads from '../../mercury/modules/Ads';
-import App from './../app';
+import TrackClickMixin from 'mixins/track-click';
+import ArticleModel from 'models/article';
+import {activate as variantTestingActivate} from 'utils/variantTesting';
+import {getLinkInfo} from 'utils/articleLink';
+import {normalizeToUnderscore} from 'utils/string';
+import Ads from 'modules/Ads';
+import App from 'app';
 
 App.ApplicationRoute = Ember.Route.extend(
 	Ember.TargetActionSupport,

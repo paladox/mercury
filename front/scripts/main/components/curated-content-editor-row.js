@@ -1,6 +1,6 @@
-import App from '../app';
-import CuratedContentThumbnailMixin from '../mixins/curated-content-thumbnail';
-import CuratedContentEditorLabelsMixin from '../mixins/curated-content-editor-labels';
+import App from 'app';
+import CuratedContentThumbnailMixin from 'mixins/curated-content-thumbnail';
+import CuratedContentEditorLabelsMixin from 'mixins/curated-content-editor-labels';
 
 App.CuratedContentEditorRowComponent = Ember.Component.extend(
 	CuratedContentThumbnailMixin,

@@ -1,6 +1,6 @@
-import App from '../app';
-import DiscussionRouteUpvoteMixin from '../mixins/discussion-route-upvote';
-import DiscussionForumModel from '../models/discussion-forum';
+import App from 'app';
+import DiscussionRouteUpvoteMixin from 'mixins/discussion-route-upvote';
+import DiscussionForumModel from 'models/discussion-forum';
 
 App.DiscussionForumRoute = Ember.Route.extend(DiscussionRouteUpvoteMixin, {
 	defaultSortType: null,

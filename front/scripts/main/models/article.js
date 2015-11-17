@@ -1,7 +1,6 @@
-import App from '../app';
-import MediaModel from './media';
-import {globalProp} from '../../baseline/mercury/utils/state';
-import {normalizeToWhitespace} from '../../mercury/utils/string';
+import App from 'app';
+import MediaModel from 'models/media';
+import {normalizeToWhitespace} from 'utils/string';
 
 /**
  * @typedef {Object} ArticleModelUrlParams

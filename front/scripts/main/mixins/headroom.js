@@ -1,5 +1,5 @@
-import {getSystem} from '../../mercury/utils/browser';
-import App from '../app.js';
+import {getSystem} from 'utils/browser';
+import App from 'app';
 
 App.HeadroomMixin = Ember.Mixin.create({
 	headroom: null,

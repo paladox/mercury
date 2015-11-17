@@ -1,7 +1,7 @@
-import AlertNotificationsMixin from '../mixins/alert-notifications';
-import MediaModel from '../models/media';
-import {track, trackActions} from '../../mercury/utils/track';
-import App from '../app';
+import AlertNotificationsMixin from 'mixins/alert-notifications';
+import MediaModel from 'models/media';
+import {track, trackActions} from 'utils/track';
+import App from 'app';
 
 App.ApplicationController = Ember.Controller.extend(
 	AlertNotificationsMixin,

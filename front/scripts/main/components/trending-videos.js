@@ -1,5 +1,5 @@
-import App from '../app';
-import MediaModel from '../models/media';
+import App from 'app';
+import MediaModel from 'models/media';
 
 App.TrendingVideosComponent = Ember.Component.extend({
 	classNames: ['trending', 'trending-videos', 'mw-content'],

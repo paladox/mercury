@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 App.WikiaStatsComponent = Ember.Component.extend({
 	classNames: ['wikia-stats'],

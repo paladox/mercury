@@ -1,6 +1,4 @@
-import App from './app';
-import {globalProp} from '../baseline/mercury/utils/state';
-import UserModel from '../main/models/user';
+import UserModel from 'models/user';
 
 /**
  * @typedef {Object} QueryUserInfoResponse
@@ -21,7 +19,7 @@ import UserModel from '../main/models/user';
  * @property {*} options
  */
 
-App.CurrentUser = Ember.Object.extend({
+const CurrentUser = Ember.Object.extend({
 	rights: {},
 	isAuthenticated: Ember.computed.bool('userId'),
 	language: null,
@@ -131,4 +129,4 @@ App.CurrentUser = Ember.Object.extend({
 	}
 });
 
-export default App.CurrentUser;
+export default CurrentUser;

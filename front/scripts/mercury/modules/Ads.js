@@ -1,6 +1,6 @@
-import Krux from './Trackers/Krux';
-import UniversalAnalytics from './Trackers/UniversalAnalytics';
-import load from '../utils/load';
+import Krux from 'modules/Trackers/Krux';
+import UniversalAnalytics from 'modules/Trackers/UniversalAnalytics';
+import load from 'utils/load';
 
 /**
  * @typedef {Object} SourcePointDetectionModule

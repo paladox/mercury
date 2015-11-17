@@ -1,6 +1,6 @@
 
-import Ads from '../../mercury/modules/Ads';
-import App from '../app';
+import Ads from 'modules/Ads';
+import App from 'app';
 
 App.AdSlotComponent = Ember.Component.extend({
 	classNames: ['ad-slot-wrapper'],

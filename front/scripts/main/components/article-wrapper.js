@@ -1,10 +1,9 @@
 
-import LanguagesMixin from '../mixins/languages';
-import TrackClickMixin from '../mixins/track-click';
-import ViewportMixin from '../mixins/viewport';
-import {track, trackActions, setTrackContext, updateTrackedUrl, trackPageView} from '../../mercury/utils/track';
-import {globalProp} from '../../baseline/mercury/utils/state';
-import App from '../app';
+import LanguagesMixin from 'mixins/languages';
+import TrackClickMixin from 'mixins/track-click';
+import ViewportMixin from 'mixins/viewport';
+import {track, trackActions, setTrackContext, updateTrackedUrl, trackPageView} from 'utils/track';
+import App from 'app';
 
 /**
  * @typedef {Object} ArticleSectionHeader

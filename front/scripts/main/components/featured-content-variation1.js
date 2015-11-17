@@ -1,7 +1,7 @@
-import App from '../app';
-import FeaturedContentMixin from '../mixins/featured-content';
-import TrackClickMixin from '../mixins/track-click';
-import {trackEvent} from '../../mercury/utils/variantTesting';
+import App from 'app';
+import FeaturedContentMixin from 'mixins/featured-content';
+import TrackClickMixin from 'mixins/track-click';
+import {trackEvent} from 'utils/variantTesting';
 
 App.FeaturedContentVariation1Component = Ember.Component.extend(
 	FeaturedContentMixin,

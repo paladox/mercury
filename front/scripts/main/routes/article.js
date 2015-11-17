@@ -1,7 +1,7 @@
-import ArticleModel from '../models/article';
-import VisibilityStateManager from '../mixins/visibility-state-manager';
-import {normalizeToUnderscore} from '../../mercury/utils/string';
-import App from '../app';
+import ArticleModel from 'models/article';
+import VisibilityStateManager from 'mixins/visibility-state-manager';
+import {normalizeToUnderscore} from 'utils/string';
+import App from 'app';
 
 App.ArticleRoute = Ember.Route.extend({
 	redirectEmptyTarget: false,

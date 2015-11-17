@@ -1,5 +1,5 @@
-import App from '../app';
-import {normalizeToUnderscore} from '../../mercury/utils/string';
+import App from 'app';
+import {normalizeToUnderscore} from 'utils/string';
 
 /**
  * @typedef {Object} ArticleMedia

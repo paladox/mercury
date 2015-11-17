@@ -1,5 +1,5 @@
-import App from '../app';
-import HeadroomMixin from '../mixins/headroom';
+import App from 'app';
+import HeadroomMixin from 'mixins/headroom';
 
 App.DiscussionHeaderComponent = Ember.Component.extend(
 	HeadroomMixin,

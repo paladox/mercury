@@ -1,6 +1,5 @@
-import App from '../app';
-import DiscussionUpvoteActionSendMixin from '../mixins/discussion-upvote-action-send';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
+import App from 'app';
+import DiscussionUpvoteActionSendMixin from 'mixins/discussion-upvote-action-send';
 
 App.PostReplyComponent = Ember.Component.extend(
 	DiscussionUpvoteActionSendMixin,

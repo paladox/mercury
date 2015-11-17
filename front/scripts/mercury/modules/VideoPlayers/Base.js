@@ -1,6 +1,6 @@
-import load from '../../utils/load';
-import {containerSize} from '../../utils/calculation';
-import {track} from '../../utils/track';
+import load from 'utils/load';
+import {containerSize} from 'utils/calculation';
+import {track} from 'utils/track';
 
 export default class BasePlayer {
 	/**

@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 App.ModalDialogComponent = Ember.Component.extend({
 	classNames: ['modal-dialog-wrapper'],

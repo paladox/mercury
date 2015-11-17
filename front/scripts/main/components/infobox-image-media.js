@@ -1,7 +1,7 @@
-import App from '../app';
-import ImageMediaComponent from './image-media';
-import ViewportMixin from '../mixins/viewport';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+import App from 'app';
+import ImageMediaComponent from 'image-media';
+import ViewportMixin from 'mixins/viewport';
+import Thumbnailer from 'modules/Thumbnailer';
 
 App.InfoboxImageMediaComponent = ImageMediaComponent.extend(
 	ViewportMixin,

@@ -1,6 +1,5 @@
-import App from '../app';
-import DiscussionErrorMixin from '../mixins/discussion-error';
-import {buildUrl, getDiscussionServiceUrl} from '../../baseline/mercury/utils/buildUrl';
+import App from 'app';
+import DiscussionErrorMixin from 'mixins/discussion-error';
 
 App.DiscussionForumModel = Ember.Object.extend(
 	DiscussionErrorMixin,

@@ -1,5 +1,4 @@
-import BaseTracker from './BaseTracker';
-import {globalProp} from '../../../baseline/mercury/utils/state';
+import BaseTracker from 'modules/Trackers/BaseTracker';
 
 /**
  * @class Comscore

@@ -1,6 +1,5 @@
-import App from '../app';
-import CuratedContentEditorItemModel from '../models/curated-content-editor-item';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
+import App from 'app';
+import CuratedContentEditorItemModel from 'models/curated-content-editor-item';
 
 /**
  * CuratedContentEditorRawSection

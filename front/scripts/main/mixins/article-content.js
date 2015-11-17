@@ -1,4 +1,4 @@
-import App from '../app';
+import App from 'app';
 
 /**
  * This object keeps track of all components which include ArticleContentMixin.

@@ -1,6 +1,6 @@
-import ArticleAddPhotoModel from '../models/article-add-photo';
-import {track, trackActions} from '../../mercury/utils/track';
-import App from '../app';
+import ArticleAddPhotoModel from 'models/article-add-photo';
+import {track, trackActions} from 'utils/track';
+import App from 'app';
 
 App.ArticleController = Ember.Controller.extend({
 	application: Ember.inject.controller(),

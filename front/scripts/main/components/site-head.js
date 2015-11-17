@@ -1,6 +1,6 @@
-import App from '../app';
-import TrackClickMixin from '../mixins/track-click';
-import HeadroomMixin from '../mixins/headroom';
+import App from 'app';
+import TrackClickMixin from 'mixins/track-click';
+import HeadroomMixin from 'mixins/headroom';
 
 App.SiteHeadComponent = Ember.Component.extend(
 	TrackClickMixin,

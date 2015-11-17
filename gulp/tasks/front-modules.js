@@ -46,7 +46,9 @@ gulp.task('front-modules', function () {
 			presets: ['es2015'],
 			plugins: ['transform-es2015-modules-systemjs'],
 			moduleIds: true,
-			modules: 'system'
+			//getModuleId: function (moduleName) {
+			//	console.log('###', moduleName);
+			//}
 			//resolveModuleSource: function (source, filename) {
 			//	console.log('###', source, filename);
 			//}

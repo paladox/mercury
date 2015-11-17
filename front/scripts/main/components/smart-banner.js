@@ -1,7 +1,7 @@
 
-import {track as mercuryTrack, trackActions} from '../../mercury/utils/track';
-import {getSystem} from '../../mercury/utils/browser';
-import App from '../app';
+import {track as mercuryTrack, trackActions} from 'utils/track';
+import {getSystem} from 'utils/browser';
+import App from 'app';
 
 App.SmartBannerComponent = Ember.Component.extend({
 	classNames: ['smart-banner'],

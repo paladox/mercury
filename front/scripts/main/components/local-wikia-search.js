@@ -1,5 +1,5 @@
-import App from '../app';
-import {track, trackActions} from '../../mercury/utils/track';
+import App from 'app';
+import {track, trackActions} from 'utils/track';
 
 /**
  * Type for search suggestion
