@@ -1,5 +1,3 @@
-import {prop} from '../../../baseline/mercury/utils/state';
-
 /**
  * @typedef {Object} KruxModule
  * @property {Function} [load]
@@ -10,7 +8,7 @@ import {prop} from '../../../baseline/mercury/utils/state';
  *
  * @property {KruxModule} kruxModule
  */
-export default class Krux {
+class Krux {
 	/**
 	 * @param {KruxModule} krux
 	 * @returns {void}
@@ -29,7 +27,7 @@ export default class Krux {
 	 */
 	trackPageView() {
 		if (typeof this.kruxModule.load === 'function') {
-			this.kruxModule.load(prop('tracking.krux.mobileId'));
+			this.kruxModule.load(M.prop('tracking.krux.mobileId'));
 		}
 	}
 }

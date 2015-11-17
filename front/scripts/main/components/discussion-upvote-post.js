@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import DiscussionUpvoteComponentMixin from '../mixins/discussion-upvote-component';
-import DiscussionUpvoteActionSendMixin from '../mixins/discussion-upvote-action-send';
 
-const DiscussionUpvotePostComponent = Ember.Component.extend(
-	DiscussionUpvoteComponentMixin,
+
+
+
+App.DiscussionUpvotePostComponent = Ember.Component.extend(
+	App.DiscussionUpvoteComponentMixin,
 	DiscussionUpvoteActionSendMixin
 );
 
-export default DiscussionUpvotePostComponent;
+

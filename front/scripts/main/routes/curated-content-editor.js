@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import TrackClickMixin from '../mixins/track-click';
-import CuratedContentEditorModel from '../models/curated-content-editor';
+
+
+
 
 const CuratedContentEditorRoute = Ember.Route.extend(
-	TrackClickMixin,
+	App.TrackClickMixin,
 	{
 		/**
 		 * @returns {void}
@@ -254,4 +254,4 @@ const CuratedContentEditorRoute = Ember.Route.extend(
 		}
 	});
 
-export default CuratedContentEditorRoute;
+

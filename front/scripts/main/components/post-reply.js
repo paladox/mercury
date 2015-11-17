@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import DiscussionUpvoteActionSendMixin from '../mixins/discussion-upvote-action-send';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
 
-const PostReplyComponent = Ember.Component.extend(
-	DiscussionUpvoteActionSendMixin,
+
+
+
+App.PostReplyComponent = Ember.Component.extend(
+	App.DiscussionUpvoteActionSendMixin,
 	{
 		classNames: ['post-reply'],
 		post: null,
@@ -17,4 +17,4 @@ const PostReplyComponent = Ember.Component.extend(
 	}
 );
 
-export default PostReplyComponent;
+

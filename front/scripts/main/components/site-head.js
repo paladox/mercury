@@ -1,11 +1,11 @@
-import Ember from 'ember';
-import Mercury from '../../mercury/Mercury';
-import TrackClickMixin from '../mixins/track-click';
-import HeadroomMixin from '../mixins/headroom';
 
-const SiteHeadComponent = Ember.Component.extend(
-	TrackClickMixin,
-	HeadroomMixin,
+
+
+
+
+App.SiteHeadComponent = Ember.Component.extend(
+	App.TrackClickMixin,
+	App.HeadroomMixin,
 	{
 		classNames: ['site-head'],
 		classNameBindings: ['themeBar'],
@@ -31,4 +31,4 @@ const SiteHeadComponent = Ember.Component.extend(
 	}
 );
 
-export default SiteHeadComponent;
+

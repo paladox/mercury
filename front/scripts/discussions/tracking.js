@@ -1,6 +1,6 @@
-import {provide} from '../baseline/mercury/utils/state';
-import {track as mercuryTrack, trackActions, trackPageView, setTrackContext} from '../mercury/utils/track';
-import UniversalAnalytics from '../mercury/modules/Trackers/UniversalAnalytics';
+
+
+
 
 (function () {
 	/**
@@ -11,7 +11,7 @@ import UniversalAnalytics from '../mercury/modules/Trackers/UniversalAnalytics';
 	 * @returns {void}
 	 */
 	function track(label, action = trackActions.click) {
-		mercuryTrack({
+		M.track({
 			trackingMethod: 'both',
 			action,
 			category: 'discussions-splash-page',

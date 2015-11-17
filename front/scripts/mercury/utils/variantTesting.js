@@ -1,4 +1,4 @@
-import {prop} from '../../baseline/mercury/utils/state';
+
 
 /**
  * Helper for variant testing using Optimizely

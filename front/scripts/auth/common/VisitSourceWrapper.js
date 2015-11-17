@@ -1,7 +1,7 @@
 /**
  * @class VisitSourceWrapper
  */
-export default class VisitSourceWrapper {
+class VisitSourceWrapper {
 	/**
 	 * @returns {VisitSource}
 	 */

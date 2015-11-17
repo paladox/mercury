@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import TrackClickMixin from 'track-click';
-import CuratedContentEditorModel from '../models/curated-content-editor';
 
-const CuratedContentEditorSortableItemsMixin = Ember.Mixin.create(
-	TrackClickMixin,
+
+
+
+App.CuratedContentEditorSortableItemsMixin = Ember.Mixin.create(
+	App.TrackClickMixin,
 	{
 		persistentSort: false,
 		sortableItems: Ember.computed('model.items', function () {
@@ -38,4 +38,4 @@ const CuratedContentEditorSortableItemsMixin = Ember.Mixin.create(
 		}
 	});
 
-export default CuratedContentEditorSortableItemsMixin;
+

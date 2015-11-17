@@ -1,8 +1,8 @@
-import Ember from 'ember';
-import ArticleContentMixin from '../mixins/article-content';
 
-const LightboxImageComponent = Ember.Component.extend(
-	ArticleContentMixin,
+
+
+App.LightboxImageComponent = Ember.Component.extend(
+	App.ArticleContentMixin,
 	{
 		classNames: ['lightbox-image', 'lightbox-content-inner'],
 		maxZoom: 5,
@@ -383,4 +383,4 @@ const LightboxImageComponent = Ember.Component.extend(
 	}
 );
 
-export default LightboxImageComponent;
+

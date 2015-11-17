@@ -1,9 +1,5 @@
-import Ember from 'ember';
-import TrackClickMixin from '../mixins/track-click';
-import {track, trackActions} from '../../mercury/utils/track';
-
-const CollapsibleMenuComponent = Ember.Component.extend(
-	TrackClickMixin,
+App.CollapsibleMenuComponent = Ember.Component.extend(
+	App.TrackClickMixin,
 	{
 		tagName: 'nav',
 		classNames: ['collapsible-menu'],
@@ -58,4 +54,4 @@ const CollapsibleMenuComponent = Ember.Component.extend(
 	}
 );
 
-export default CollapsibleMenuComponent;
+

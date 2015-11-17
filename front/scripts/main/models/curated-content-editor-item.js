@@ -1,6 +1,6 @@
-import Ember from 'ember';
-import ObjectUtilitiesMixin from '../mixins/object-utilities';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
+
+
+
 
 /**
  * CuratedContentImageCropSingleData
@@ -39,8 +39,8 @@ import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
  * @property {id} image_id
  */
 
-const CuratedContentEditorItemModel = Ember.Object.extend(
-	ObjectUtilitiesMixin,
+App.CuratedContentEditorItemModel = Ember.Object.extend(
+	App.ObjectUtilitiesMixin,
 	{
 		article_id: null,
 		image_id: null,
@@ -155,4 +155,4 @@ CuratedContentEditorItemModel.reopenClass({
 	}
 });
 
-export default CuratedContentEditorItemModel;
+

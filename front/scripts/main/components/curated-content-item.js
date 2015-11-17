@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import CuratedContentThumbnailMixin from '../mixins/curated-content-thumbnail';
-import ViewportMixin from '../mixins/viewport';
 
-const CuratedContentItemComponent = Ember.Component.extend(
-	CuratedContentThumbnailMixin,
-	ViewportMixin,
+
+
+
+App.CuratedContentItemComponent = Ember.Component.extend(
+	App.CuratedContentThumbnailMixin,
+	App.ViewportMixin,
 	{
 		tagName: 'a',
 		attributeBindings: ['href'],
@@ -70,4 +70,4 @@ const CuratedContentItemComponent = Ember.Component.extend(
 	}
 );
 
-export default CuratedContentItemComponent;
+

@@ -1,6 +1,6 @@
-import Ember from 'ember';
-import Mercury from '../../mercury/Mercury';
-import DiscussionIndexModel from '../models/discussion-index';
+
+
+
 
 const DiscussionIndexRoute = Ember.Route.extend({
 	/**
@@ -20,4 +20,4 @@ const DiscussionIndexRoute = Ember.Route.extend({
 	}
 });
 
-export default DiscussionIndexRoute;
+

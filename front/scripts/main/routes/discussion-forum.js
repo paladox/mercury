@@ -1,7 +1,7 @@
-import Ember from 'ember';
-import Mercury from '../../mercury/Mercury';
-import DiscussionRouteUpvoteMixin from '../mixins/discussion-route-upvote';
-import DiscussionForumModel from '../models/discussion-forum';
+
+
+
+
 
 const DiscussionForumRoute = Ember.Route.extend(DiscussionRouteUpvoteMixin, {
 	defaultSortType: null,
@@ -101,4 +101,4 @@ const DiscussionForumRoute = Ember.Route.extend(DiscussionRouteUpvoteMixin, {
 	}
 });
 
-export default DiscussionForumRoute;
+

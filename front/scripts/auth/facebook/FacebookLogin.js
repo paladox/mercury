@@ -1,10 +1,10 @@
-import AuthLogger from '../common/AuthLogger';
-import AuthTracker from '../common/AuthTracker';
-import AuthUtils from '../common/AuthUtils';
-import FacebookSDK from 'FacebookSDK';
-import HttpCodes from '../common/HttpCodes';
-import UrlHelper from '../common/UrlHelper';
-import {trackActions} from '../../mercury/utils/track';
+
+
+
+
+
+
+
 
 /**
  * @typedef {Object} FacebookResponse
@@ -32,7 +32,7 @@ import {trackActions} from '../../mercury/utils/track';
  * @property {AuthTracker} tracker
  * @property {AuthLogger} authLogger
  */
-export default class FacebookLogin {
+class FacebookLogin {
 	/**
 	 * @param {HTMLAnchorElement} loginButton
 	 * @returns {void}

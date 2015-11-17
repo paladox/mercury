@@ -5,7 +5,7 @@
  * @property {HTMLFormElement} form
  * @property {number} max
  */
-export default class AutoTab {
+class AutoTab {
 	/**
 	 * @constructs AutoTab
 	 *

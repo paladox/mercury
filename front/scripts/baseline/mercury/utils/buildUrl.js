@@ -1,6 +1,3 @@
-import Mercury from '../../../mercury/Mercury';
-import {prop} from 'state';
-
 /**
  * @typedef {Object} MercuryUtilsBuildUrlParams
  * @property {string} [namespace] - MediaWiki article namespace
@@ -42,7 +39,7 @@ function getQueryString(query = {}) {
  * @param {string} wiki - The new wiki, which may contain a language prefix; for example, "glee" or "es.walkingdead"
  * @returns {string} New host
  */
-export function replaceWikiInHost(host, wiki) {
+function replaceWikiInHost(host, wiki) {
 	let match;
 
 	if ((match = host.match(/^(sandbox-.+?|preview|verify)\.(.+?)\.wikia\.com($|\/|:)/)) !== null) {
@@ -85,7 +82,7 @@ export function replaceWikiInHost(host, wiki) {
  * @param {Object} [context=window] - Window context
  * @returns {string}
  */
-export function buildUrl(urlParams = {}, context = window) {
+function buildUrl(urlParams = {}, context = window) {
 	const mediawikiDomain = prop('mediawikiDomain'),
 		host = context.location.host;
 
@@ -125,6 +122,6 @@ export function buildUrl(urlParams = {}, context = window) {
  * @param {Object} [query={}]
  * @returns {string}
  */
-export function getDiscussionServiceUrl(path = '', query = {}) {
+function getDiscussionServiceUrl(path = '', query = {}) {
 	return `https://${prop('servicesDomain')}/${prop('discussionBaseRoute')}${path}${getQueryString(query)}`;
 }

@@ -1,16 +1,16 @@
-import Ember from 'ember';
-import TrackClickMixin from '../mixins/track-click';
-import ArticleModel from '../models/article';
-import Mercury from '../../mercury/Mercury';
-import {prop} from '../../baseline/mercury/utils/state';
-import {activate as variantTestingActivate} from '../../mercury/utils/variantTesting';
-import {getLinkInfo} from '../../mercury/utils/articleLink';
-import {normalizeToUnderscore} from '../../mercury/utils/string';
-import Ads from '../../mercury/modules/Ads';
+
+
+
+
+
+
+
+
+
 
 const ApplicationRoute = Ember.Route.extend(
 	Ember.TargetActionSupport,
-	TrackClickMixin,
+	App.TrackClickMixin,
 	{
 		queryParams: {
 			commentsPage: {
@@ -250,4 +250,4 @@ const ApplicationRoute = Ember.Route.extend(
 	}
 );
 
-export default ApplicationRoute;
+

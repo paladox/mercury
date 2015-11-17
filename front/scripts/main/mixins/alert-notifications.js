@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const AlertNotificationsMixin = Ember.Mixin.create({
+App.AlertNotificationsMixin = Ember.Mixin.create({
 	alertNotifications: Ember.A(),
 
 	/**
@@ -35,5 +33,3 @@ const AlertNotificationsMixin = Ember.Mixin.create({
 		this.set('alertNotifications', updatedNotifications);
 	}
 });
-
-export default AlertNotificationsMixin;

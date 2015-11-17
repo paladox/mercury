@@ -6,7 +6,7 @@
  * @property {HTMLScriptElement} script
  * @property {boolean} usesAdsContext
  */
-export default class BaseTracker {
+class BaseTracker {
 	constructor() {
 		this.script = document.getElementsByTagName('script')[0];
 		this.usesAdsContext = false;

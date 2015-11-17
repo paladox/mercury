@@ -1,8 +1,8 @@
-import Ember from 'ember';
-import {normalizeToWhitespace} from '../../mercury/utils/string';
-import {prop} from '../../baseline/mercury/utils/state';
 
-const MainPageRouteMixin = Ember.Mixin.create({
+
+
+
+App.MainPageRouteMixin = Ember.Mixin.create({
 	/**
 	 * @returns {void}
 	 */
@@ -83,4 +83,4 @@ const MainPageRouteMixin = Ember.Mixin.create({
 	}
 });
 
-export default MainPageRouteMixin;
+

@@ -1,8 +1,8 @@
-import Ember from 'ember';
-import ArticleModel from '../models/article';
-import Mercury from '../../mercury/Mercury';
-import VisibilityStateManager from '../mixins/visibility-state-manager';
-import {normalizeToUnderscore} from '../../mercury/utils/string';
+
+
+
+
+
 
 const ArticleRoute = Ember.Route.extend({
 	redirectEmptyTarget: false,
@@ -182,4 +182,4 @@ const ArticleRoute = Ember.Route.extend({
 	}
 });
 
-export default ArticleRoute;
+

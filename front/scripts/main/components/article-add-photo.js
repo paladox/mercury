@@ -1,7 +1,4 @@
-import Ember from 'ember';
-import {track as mercuryTrack, trackActions} from '../../mercury/utils/track';
-
-const ArticleAddPhotoComponent = Ember.Component.extend({
+App.ArticleAddPhotoComponent = Ember.Component.extend({
 	actions: {
 		/**
 		 * @returns {void}
@@ -32,5 +29,3 @@ const ArticleAddPhotoComponent = Ember.Component.extend({
 		});
 	},
 });
-
-export default ArticleAddPhotoComponent;

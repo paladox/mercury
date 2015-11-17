@@ -1,6 +1,6 @@
-import Krux from 'Trackers/Krux';
-import UniversalAnalytics from 'Trackers/UniversalAnalytics';
-import load from '../utils/load';
+
+
+
 
 /**
  * @typedef {Object} SourcePointDetectionModule
@@ -36,7 +36,7 @@ import load from '../utils/load';
  * @property {boolean} isLoaded
  * @property {string[][]} slotsQueue
  */
-export default class Ads {
+class Ads {
 	constructor() {
 		this.adSlots = [];
 		this.adsContext = null;

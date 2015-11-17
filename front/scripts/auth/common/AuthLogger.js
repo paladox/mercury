@@ -36,7 +36,7 @@ const AuthLoggerLevels = {
  * @property {boolean} isEnabled
  * @property {string} url
  */
-export default class AuthLogger {
+class AuthLogger {
 	/**
 	 * @returns {void}
 	 */

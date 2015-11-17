@@ -1,20 +1,20 @@
-import Ember from 'ember';
-import AlertNotificationsMixin from '../mixins/alert-notifications';
-import CuratedContentEditorLabelsMixin from '../mixins/curated-content-editor-labels';
-import CuratedContentEditorLayoutMixin from '../mixins/curated-content-editor-layout';
-import CuratedContentThumbnailMixin from '../mixins/curated-content-thumbnail';
-import TrackClickMixin from '../mixins/track-click';
-import IEIFrameFocusFixMixin from '../mixins/ieiframe-focus-fix';
-import ArticleAddPhotoModel from '../models/article-add-photo';
-import CuratedContentEditorItemModel from '../models/curated-content-editor-item';
 
-const CuratedContentEditorItemFormComponent = Ember.Component.extend(
-	AlertNotificationsMixin,
-	CuratedContentEditorLabelsMixin,
-	CuratedContentEditorLayoutMixin,
-	CuratedContentThumbnailMixin,
-	TrackClickMixin,
-	IEIFrameFocusFixMixin,
+
+
+
+
+
+
+
+
+
+App.CuratedContentEditorItemFormComponent = Ember.Component.extend(
+	App.AlertNotificationsMixin,
+	App.CuratedContentEditorLabelsMixin,
+	App.CuratedContentEditorLayoutMixin,
+	App.CuratedContentThumbnailMixin,
+	App.TrackClickMixin,
+	App.IEIFrameFocusFixMixin,
 	{
 		classNames: ['curated-content-editor-item'],
 		imageWidth: 300,
@@ -503,4 +503,4 @@ const CuratedContentEditorItemFormComponent = Ember.Component.extend(
 	}
 );
 
-export default CuratedContentEditorItemFormComponent;
+

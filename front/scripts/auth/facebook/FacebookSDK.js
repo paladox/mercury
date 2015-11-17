@@ -8,7 +8,7 @@
 /**
  * @class FacebookSDK
  */
-export default class FacebookSDK {
+class FacebookSDK {
 	/**
 	 * @returns {string}
 	 */

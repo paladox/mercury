@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import CuratedContentEditorModel from '../models/curated-content-editor';
+
+
 
 const CuratedContentEditorBlockEditItemRoute = Ember.Route.extend({
 	/**
@@ -83,4 +83,4 @@ const CuratedContentEditorBlockEditItemRoute = Ember.Route.extend({
 	}
 });
 
-export default CuratedContentEditorBlockEditItemRoute;
+

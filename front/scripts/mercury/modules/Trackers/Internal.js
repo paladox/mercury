@@ -27,7 +27,7 @@
  * @property {Function} success
  * @property {Function} error
  */
-export default class Internal {
+class Internal {
 	/**
 	 * @returns {void}
 	 */

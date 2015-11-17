@@ -1,6 +1,3 @@
-import AuthTracker from '../common/AuthTracker';
-import {trackActions} from '../../mercury/utils/track';
-
 /**
  * @class FormErrors
  *
@@ -10,7 +7,7 @@ import {trackActions} from '../../mercury/utils/track';
  * @property {string} trackingLabelPrefix
  * @property {AuthTracker} tracker
  */
-export default class FormErrors {
+class FormErrors {
 	/**
 	 * @param {HTMLFormElement} form
 	 * @param {string} [trackingLabelPrefix='formValidationErrors']

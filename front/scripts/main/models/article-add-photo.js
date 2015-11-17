@@ -1,6 +1,6 @@
-import Ember from 'ember';
-import ArticleEditMixin from '../mixins/article-edit';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
+
+
+
 
 /**
  * @typedef {Object} FileNameSeparated
@@ -8,7 +8,7 @@ import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
  * @property {string} extension
  */
 
-const ArticleAddPhotoModel = Ember.Object.extend({
+App.ArticleAddPhotoModel = Ember.Object.extend({
 	title: null,
 	sectionIndex: null,
 	photoData: null,
@@ -210,4 +210,4 @@ ArticleAddPhotoModel.reopenClass(ArticleEditMixin, {
 	}
 });
 
-export default ArticleAddPhotoModel;
+

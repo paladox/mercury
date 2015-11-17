@@ -1,13 +1,13 @@
-import Ember from 'ember';
-import FeaturedContentMixin from '../mixins/featured-content';
-import TrackClickMixin from '../mixins/track-click';
-import ThirdsClickMixin from '../mixins/thirds-click';
-import {trackEvent} from '../../mercury/utils/variantTesting';
 
-const FeaturedContentVariation3Component = Ember.Component.extend(
-	FeaturedContentMixin,
-	TrackClickMixin,
-	ThirdsClickMixin,
+
+
+
+
+
+App.FeaturedContentVariation3Component = Ember.Component.extend(
+	App.FeaturedContentMixin,
+	App.TrackClickMixin,
+	App.ThirdsClickMixin,
 	{
 		classNames: ['featured-content-variation-3'],
 		isTimeoutHandleSet: false,
@@ -110,4 +110,4 @@ const FeaturedContentVariation3Component = Ember.Component.extend(
 	}
 );
 
-export default FeaturedContentVariation3Component;
+

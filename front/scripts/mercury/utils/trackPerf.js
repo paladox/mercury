@@ -1,4 +1,4 @@
-import {prop} from '../../baseline/mercury/utils/state';
+
 
 /**
  * @typedef {Object} PerfTrackerParams

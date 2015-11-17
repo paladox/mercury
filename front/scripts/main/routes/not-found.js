@@ -1,4 +1,4 @@
-import Ember from 'ember';
+
 
 const NotFoundRoute = Ember.Route.extend({
 	/**
@@ -10,4 +10,4 @@ const NotFoundRoute = Ember.Route.extend({
 	}
 });
 
-export default NotFoundRoute;
+

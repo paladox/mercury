@@ -1,12 +1,12 @@
-import Ember from 'ember';
-import MediaComponent from 'media';
-import ArticleContentMixin from '../mixins/article-content';
-import ViewportMixin from '../mixins/viewport';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+
+
+
+
+
 
 const ImageMediaComponent = MediaComponent.extend(
-	ArticleContentMixin,
-	ViewportMixin,
+	App.ArticleContentMixin,
+	App.ViewportMixin,
 	{
 		smallImageSize: {
 			height: 64,
@@ -138,4 +138,4 @@ const ImageMediaComponent = MediaComponent.extend(
 	}
 );
 
-export default ImageMediaComponent;
+

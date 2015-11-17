@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import LanguagesMixin from '../mixins/languages';
-import {track, trackActions} from '../../mercury/utils/track';
 
-const ArticleContributionComponent = Ember.Component.extend(
-	LanguagesMixin,
+
+
+
+App.ArticleContributionComponent = Ember.Component.extend(
+	App.LanguagesMixin,
 	{
 		classNames: ['contribution-container'],
 		classNameBindings: ['uploadFeatureEnabled::no-photo'],
@@ -80,4 +80,4 @@ const ArticleContributionComponent = Ember.Component.extend(
 	}
 );
 
-export default ArticleContributionComponent;
+

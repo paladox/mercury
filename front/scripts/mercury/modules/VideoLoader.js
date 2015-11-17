@@ -1,6 +1,6 @@
-import BasePlayer from 'VideoPlayers/Base';
-import OoyalaPlayer from 'VideoPlayers/Ooyala';
-import YouTubePlayer from 'VideoPlayers/YouTube';
+
+
+
 
 const playerClassMap = {
 	base: BasePlayer,
@@ -11,7 +11,7 @@ const playerClassMap = {
 /**
  * @class VideoLoader
  */
-export default class VideoLoader {
+class VideoLoader {
 	/**
 	 * @param {*} data
 	 * @returns {void}

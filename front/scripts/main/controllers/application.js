@@ -1,11 +1,11 @@
-import Ember from 'ember';
-import AlertNotificationsMixin from '../mixins/alert-notifications';
-import MediaModel from '../models/media';
-import {track, trackActions} from '../../mercury/utils/track';
-import Mercury from '../../mercury/Mercury';
 
-const ApplicationController = Ember.Controller.extend(
-	AlertNotificationsMixin,
+
+
+
+
+
+App.ApplicationController = Ember.Controller.extend(
+	App.AlertNotificationsMixin,
 	{
 		// This has to be here because we need to access media from ArticleController model to open
 		// lightbox TODO: Should be refactored when decoupling article from application
@@ -266,4 +266,4 @@ const ApplicationController = Ember.Controller.extend(
 	}
 );
 
-export default ApplicationController;
+

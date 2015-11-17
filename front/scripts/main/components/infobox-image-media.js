@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import ImageMediaComponent from 'image-media';
-import ViewportMixin from '../mixins/viewport';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+
+
+
+
 
 const InfoboxImageMediaComponent = ImageMediaComponent.extend(
-	ViewportMixin,
+	App.ViewportMixin,
 	{
 		imageAspectRatio: 16 / 9,
 		limitHeight: true,
@@ -76,4 +76,4 @@ const InfoboxImageMediaComponent = ImageMediaComponent.extend(
 	}
 );
 
-export default InfoboxImageMediaComponent;
+

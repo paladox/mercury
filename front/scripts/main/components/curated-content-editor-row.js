@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import CuratedContentThumbnailMixin from '../mixins/curated-content-thumbnail';
-import CuratedContentEditorLabelsMixin from '../mixins/curated-content-editor-labels';
 
-const CuratedContentEditorRowComponent = Ember.Component.extend(
-	CuratedContentThumbnailMixin,
-	CuratedContentEditorLabelsMixin,
+
+
+
+App.CuratedContentEditorRowComponent = Ember.Component.extend(
+	App.CuratedContentThumbnailMixin,
+	App.CuratedContentEditorLabelsMixin,
 	{
 		classNames: ['curated-content-editor-row'],
 		imageWidth: 48,
@@ -38,4 +38,4 @@ const CuratedContentEditorRowComponent = Ember.Component.extend(
 	}
 );
 
-export default CuratedContentEditorRowComponent;
+

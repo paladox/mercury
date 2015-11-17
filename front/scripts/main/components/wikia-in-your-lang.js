@@ -1,12 +1,12 @@
-import Ember from 'ember';
-import AlertNotificationsMixin from '../mixins/alert-notifications';
-import LanguagesMixin from '../mixins/languages';
-import WikiaInYourLangModel from '../models/wikia-in-your-lang';
-import {track, trackActions} from '../../mercury/utils/track';
 
-const WikiaInYourLangComponent = Ember.Component.extend(
-	AlertNotificationsMixin,
-	LanguagesMixin,
+
+
+
+
+
+App.WikiaInYourLangComponent = Ember.Component.extend(
+	App.AlertNotificationsMixin,
+	App.LanguagesMixin,
 	{
 		alertKey: 'wikiaInYourLang.alertDismissed',
 
@@ -92,4 +92,4 @@ const WikiaInYourLangComponent = Ember.Component.extend(
 	}
 );
 
-export default WikiaInYourLangComponent;
+

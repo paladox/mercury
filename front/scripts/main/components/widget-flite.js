@@ -1,8 +1,8 @@
-import Ember from 'ember';
-import WidgetScriptStateMixin from '../mixins/widget-script-state';
 
-const WidgetFliteComponent = Ember.Component.extend(
-	WidgetScriptStateMixin,
+
+
+App.WidgetFliteComponent = Ember.Component.extend(
+	App.WidgetScriptStateMixin,
 	{
 		classNames: ['widget-flite'],
 		layoutName: 'components/widget-flite',
@@ -10,4 +10,4 @@ const WidgetFliteComponent = Ember.Component.extend(
 	}
 );
 
-export default WidgetFliteComponent;
+

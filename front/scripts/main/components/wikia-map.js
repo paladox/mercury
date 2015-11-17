@@ -1,6 +1,6 @@
-import Ember from 'ember';
-import ImageMediaComponent from 'image-media';
-import {track, trackActions} from '../../mercury/utils/track';
+
+
+
 
 const WikiaMapComponent = ImageMediaComponent.extend({
 	classNames: ['wikia-map'],
@@ -34,4 +34,4 @@ const WikiaMapComponent = ImageMediaComponent.extend({
 	},
 });
 
-export default WikiaMapComponent;
+

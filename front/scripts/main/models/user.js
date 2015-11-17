@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
+
+
 
 /**
  * @typedef {Object} UserModelFindParams
@@ -15,7 +15,7 @@ import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
  * @property {number} userId
  */
 
-const UserModel = Ember.Object.extend({
+App.UserModel = Ember.Object.extend({
 	avatarPath: null,
 	name: null,
 	userId: null,
@@ -88,4 +88,4 @@ UserModel.reopenClass({
 	}
 });
 
-export default UserModel;
+

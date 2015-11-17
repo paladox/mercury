@@ -1,8 +1,8 @@
-import Ember from 'ember';
-import ArticleEditMixin from '../mixins/article-edit';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
 
-const ArticleEditModel = Ember.Object.extend({
+
+
+
+App.ArticleEditModel = Ember.Object.extend({
 	content: null,
 	originalContent: null,
 	timestamp: null,
@@ -98,4 +98,4 @@ ArticleEditModel.reopenClass(ArticleEditMixin, {
 	}
 });
 
-export default ArticleEditModel;
+

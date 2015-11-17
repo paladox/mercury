@@ -1,11 +1,11 @@
-import Ember from 'ember';
-import ViewportMixin from '../mixins/viewport';
-import TrackClickMixin from '../mixins/track-click';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
 
-const TrendingVideosItemComponent = Ember.Component.extend(
-	ViewportMixin,
-	TrackClickMixin,
+
+
+
+
+App.TrendingVideosItemComponent = Ember.Component.extend(
+	App.ViewportMixin,
+	App.TrackClickMixin,
 	{
 		tagName: 'a',
 		classNames: ['trending-videos-item'],
@@ -62,4 +62,4 @@ const TrendingVideosItemComponent = Ember.Component.extend(
 	}
 );
 
-export default TrendingVideosItemComponent;
+

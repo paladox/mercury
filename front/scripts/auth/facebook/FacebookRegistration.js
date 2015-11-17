@@ -1,13 +1,13 @@
-import AuthLogger from '../common/AuthLogger';
-import AuthTracker from '../common/AuthTracker';
-import AuthUtils from '../common/AuthUtils';
-import FacebookSDK from 'FacebookSDK';
-import FormErrors from '../common/FormErrors';
-import HttpCodes from '../common/HttpCodes';
-import MarketingOptIn from '../signup/MarketingOptIn';
-import TermsOfUse from '../signup/TermsOfUse';
-import UrlHelper from '../common/UrlHelper';
-import {trackActions} from '../../mercury/utils/track';
+
+
+
+
+
+
+
+
+
+
 
 /**
  * @typedef {Object} Window
@@ -42,7 +42,7 @@ import {trackActions} from '../../mercury/utils/track';
  * @property {AuthTracker} tracker
  * @property {AuthLogger} authLogger
  */
-export default class FacebookRegistration {
+class FacebookRegistration {
 	/**
 	 * @param {HTMLFormElement} form
 	 * @returns {void}

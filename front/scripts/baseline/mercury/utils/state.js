@@ -1,5 +1,3 @@
-import isPrimitive from 'isPrimitive';
-
 const __props__ = {};
 
 /**
@@ -107,7 +105,7 @@ function _setProp(key, value, mutable = false) {
  * @param {boolean} [mutable=false]
  * @returns {*}
  */
-export function prop(key, value, mutable = false) {
+function prop(key, value, mutable = false) {
 	if (typeof value !== 'undefined') {
 		return _setProp(key, value, mutable);
 	}
@@ -122,7 +120,7 @@ export function prop(key, value, mutable = false) {
  * @param {boolean} [mutable=false]
  * @returns {object} __props__
  */
-export function props(value, mutable = false) {
+function props(value, mutable = false) {
 	const props = {},
 		keys = Object.keys(value);
 
@@ -155,7 +153,7 @@ export function props(value, mutable = false) {
  * @param {*} obj
  * @returns {*}
  */
-export function provide(str, obj) {
+function provide(str, obj) {
 	if (typeof str !== 'string') {
 		throw Error('Invalid string supplied to namespacer');
 	}

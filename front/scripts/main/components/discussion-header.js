@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import Mercury from '../../mercury/Mercury';
-import HeadroomMixin from '../mixins/headroom';
 
-const DiscussionHeaderComponent = Ember.Component.extend(
-	HeadroomMixin,
+
+
+
+App.DiscussionHeaderComponent = Ember.Component.extend(
+	App.HeadroomMixin,
 	{
 		classNames: ['discussion-header'],
 
@@ -42,4 +42,4 @@ const DiscussionHeaderComponent = Ember.Component.extend(
 	}
 );
 
-export default DiscussionHeaderComponent;
+

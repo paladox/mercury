@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import App from '../app';
-import MediaModel from 'media';
-import Mercury from '../../mercury/Mercury';
-import {prop} from '../../baseline/mercury/utils/state';
-import {normalizeToWhitespace} from '../../mercury/utils/string';
+
+
+
+
+
+
 
 /**
  * @typedef {Object} ArticleModelUrlParams
@@ -19,7 +19,7 @@ import {normalizeToWhitespace} from '../../mercury/utils/string';
  * @property {string} [redirect]
  */
 
-const ArticleModel = Ember.Object.extend({
+App.ArticleModel = Ember.Object.extend({
 	content: null,
 	basePath: null,
 	categories: [],
@@ -215,4 +215,4 @@ ArticleModel.reopenClass({
 	}
 });
 
-export default ArticleModel;
+

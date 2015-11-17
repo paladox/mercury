@@ -1,6 +1,6 @@
-import Ember from 'ember';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+
+
+
 
 /**
  * @typedef {Object} SearchImageResponse
@@ -37,7 +37,7 @@ import Thumbnailer from '../../mercury/modules/Thumbnailer';
  * @property {string} [thumbnailUrl]
  */
 
-const SearchImagesModel = Ember.Object.extend({
+App.SearchImagesModel = Ember.Object.extend({
 	searchLimit: 24,
 	nextBatch: 0,
 	batches: 1,
@@ -131,4 +131,4 @@ const SearchImagesModel = Ember.Object.extend({
 	}
 });
 
-export default SearchImagesModel;
+

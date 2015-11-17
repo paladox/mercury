@@ -1,16 +1,16 @@
-import Ember from 'ember';
-import AlertNotificationsMixin from '../mixins/alert-notifications';
-import CuratedContentEditorLayoutMixin from '../mixins/curated-content-editor-layout';
-import CuratedContentThumbnailMixin from '../mixins/curated-content-thumbnail';
-import TrackClickMixin from '../mixins/track-click';
-import ViewportMixin from '../mixins/viewport';
 
-const CuratedContentEditorImageCropComponent = Ember.Component.extend(
-	AlertNotificationsMixin,
-	CuratedContentEditorLayoutMixin,
-	CuratedContentThumbnailMixin,
-	TrackClickMixin,
-	ViewportMixin,
+
+
+
+
+
+
+App.CuratedContentEditorImageCropComponent = Ember.Component.extend(
+	App.AlertNotificationsMixin,
+	App.CuratedContentEditorLayoutMixin,
+	App.CuratedContentThumbnailMixin,
+	App.TrackClickMixin,
+	App.ViewportMixin,
 	{
 		imgSelector: '.curated-content-editor-photo-crop > img',
 		$imgElement: null,
@@ -159,4 +159,4 @@ const CuratedContentEditorImageCropComponent = Ember.Component.extend(
 	}
 );
 
-export default CuratedContentEditorImageCropComponent;
+

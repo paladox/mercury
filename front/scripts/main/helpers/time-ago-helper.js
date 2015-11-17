@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import DateTime from '../../mercury/utils/dateTime';
+
+
 
 /**
  * Helper to give textual representation of time interval between past date
@@ -10,7 +10,7 @@ import DateTime from '../../mercury/utils/dateTime';
  * @param {Array} params
  * @returns {string}
  */
-const TimeAgoHelper = Ember.Helper.helper((params) => {
+App.TimeAgoHelper = Ember.Helper.helper((params) => {
 	const unixTimestamp = params[0],
 		fromDate = new Date(unixTimestamp * 1000),
 		interval = DateTime.timeAgo(fromDate);
@@ -36,4 +36,4 @@ const TimeAgoHelper = Ember.Helper.helper((params) => {
 	}
 });
 
-export default TimeAgoHelper;
+

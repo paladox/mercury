@@ -1,4 +1,4 @@
-import Ember from 'ember';
+
 
 const CuratedContentEditorIndexRoute = Ember.Route.extend({
 	/**
@@ -11,4 +11,4 @@ const CuratedContentEditorIndexRoute = Ember.Route.extend({
 	}
 });
 
-export default CuratedContentEditorIndexRoute;
+

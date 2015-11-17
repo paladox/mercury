@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import MediaComponent from 'media';
-import InfoboxImageCollectionComponent from 'infobox-image-collection';
-import WikiaMapComponent from 'wikia-map';
-import PortableInfoboxComponent from 'portable-infobox';
-import AdsMixin from '../mixins/ads';
-import PollDaddyMixin from '../mixins/poll-daddy';
+
+
+
+
+
+
+
 
 /**
  * HTMLElement
@@ -12,9 +12,9 @@ import PollDaddyMixin from '../mixins/poll-daddy';
  * @property {Function} scrollIntoViewIfNeeded
  */
 
-const ArticleContentComponent = Ember.Component.extend(
-	AdsMixin,
-	PollDaddyMixin,
+App.ArticleContentComponent = Ember.Component.extend(
+	App.AdsMixin,
+	App.PollDaddyMixin,
 	{
 		tagName: 'article',
 		classNames: ['article-content', 'mw-content'],
@@ -444,4 +444,4 @@ const ArticleContentComponent = Ember.Component.extend(
 	}
 );
 
-export default ArticleContentComponent;
+

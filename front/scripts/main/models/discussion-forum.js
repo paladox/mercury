@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import DiscussionErrorMixin from '../mixins/discussion-error';
-import {buildUrl, getDiscussionServiceUrl} from '../../baseline/mercury/utils/buildUrl';
 
-const DiscussionForumModel = Ember.Object.extend(
-	DiscussionErrorMixin,
+
+
+
+App.DiscussionForumModel = Ember.Object.extend(
+	App.DiscussionErrorMixin,
 	{
 		wikiId: null,
 		forumId: null,
@@ -124,4 +124,4 @@ DiscussionForumModel.reopenClass({
 	}
 });
 
-export default DiscussionForumModel;
+

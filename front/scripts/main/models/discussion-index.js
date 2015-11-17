@@ -1,7 +1,7 @@
-import Ember from 'ember';
-import {getDiscussionServiceUrl} from '../../baseline/mercury/utils/buildUrl';
 
-const DiscussionIndexModel = Ember.Object.extend({
+
+
+App.DiscussionIndexModel = Ember.Object.extend({
 });
 
 DiscussionIndexModel.reopenClass({
@@ -21,4 +21,4 @@ DiscussionIndexModel.reopenClass({
 	}
 });
 
-export default DiscussionIndexModel;
+

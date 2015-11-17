@@ -1,9 +1,9 @@
-import AuthTracker from '../common/AuthTracker';
-import AuthLogger from '../common/AuthLogger';
-import AuthUtils from '../common/AuthUtils';
-import HttpCodes from '../common/HttpCodes';
-import UrlHelper from '../common/UrlHelper';
-import {trackActions} from '../../mercury/utils/track';
+
+
+
+
+
+
 
 /**
  * @typedef {Object} LoginCredentials
@@ -39,7 +39,7 @@ import {trackActions} from '../../mercury/utils/track';
  * @property {AuthTracker} tracker
  * @property {AuthLogger} authLogger
  */
-export default class Login {
+class Login {
 	/**
 	 * @param {Element} form
 	 * @returns {void}

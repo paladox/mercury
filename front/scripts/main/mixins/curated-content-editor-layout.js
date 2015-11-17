@@ -1,6 +1,6 @@
-import Ember from 'ember';
 
-const CuratedContentEditorLayoutMixin = Ember.Mixin.create({
+
+App.CuratedContentEditorLayoutMixin = Ember.Mixin.create({
 	imageProperties: {
 		url: '',
 		id: ''
@@ -23,4 +23,4 @@ const CuratedContentEditorLayoutMixin = Ember.Mixin.create({
 	}
 });
 
-export default CuratedContentEditorLayoutMixin;
+

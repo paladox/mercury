@@ -1,7 +1,7 @@
-import Ember from 'ember';
-import MainPageRouteMixin from '../mixins/main-page-route';
-import MetaTagsMixin from '../mixins/meta-tags';
-import CuratedContentModel from '../models/curated-content';
+
+
+
+
 
 const MainPageSectionRoute = Ember.Route.extend(MainPageRouteMixin, MetaTagsMixin, {
 	/**
@@ -49,4 +49,4 @@ const MainPageSectionRoute = Ember.Route.extend(MainPageRouteMixin, MetaTagsMixi
 	}
 });
 
-export default MainPageSectionRoute;
+

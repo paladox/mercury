@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import Mercury from '../../mercury/Mercury';
-import LanguagesMixin from '../mixins/languages';
-import TrackClickMixin from '../mixins/track-click';
-import ViewportMixin from '../mixins/viewport';
-import {track, trackActions, setTrackContext, updateTrackedUrl, trackPageView} from '../../mercury/utils/track';
-import {prop} from '../../baseline/mercury/utils/state';
+
+
+
+
+
+
+
 
 /**
  * @typedef {Object} ArticleSectionHeader
@@ -15,10 +15,10 @@ import {prop} from '../../baseline/mercury/utils/state';
  * @property {string} section
  */
 
-const ArticleWrapperComponent = Ember.Component.extend(
-	LanguagesMixin,
-	TrackClickMixin,
-	ViewportMixin,
+App.ArticleWrapperComponent = Ember.Component.extend(
+	App.LanguagesMixin,
+	App.TrackClickMixin,
+	App.ViewportMixin,
 	{
 		classNames: ['article-wrapper'],
 
@@ -248,4 +248,4 @@ const ArticleWrapperComponent = Ember.Component.extend(
 	}
 );
 
-export default ArticleWrapperComponent;
+

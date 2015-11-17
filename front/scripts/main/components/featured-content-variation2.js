@@ -1,13 +1,13 @@
-import Ember from 'ember';
-import FeaturedContentMixin from '../mixins/featured-content';
-import TrackClickMixin from '../mixins/track-click';
-import ThirdsClickMixin from '../mixins/thirds-click';
-import {trackEvent} from '../../mercury/utils/variantTesting';
 
-const FeaturedContentVariation2Component = Ember.Component.extend(
-	FeaturedContentMixin,
-	TrackClickMixin,
-	ThirdsClickMixin,
+
+
+
+
+
+App.FeaturedContentVariation2Component = Ember.Component.extend(
+	App.FeaturedContentMixin,
+	App.TrackClickMixin,
+	App.ThirdsClickMixin,
 	{
 		classNames: ['featured-content-variation-2'],
 		showChevrons: Ember.computed.readOnly('hasMultipleItems'),
@@ -56,4 +56,4 @@ const FeaturedContentVariation2Component = Ember.Component.extend(
 	}
 );
 
-export default FeaturedContentVariation2Component;
+

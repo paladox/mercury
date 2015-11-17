@@ -12,7 +12,7 @@ function loadError(error) {
  * @param {Function} [fOnload]
  * @returns {void}
  */
-export function loadScript(src, fOnload) {
+function loadScript(src, fOnload) {
 	const script = document.createElement('script');
 
 	script.type = 'text\/javascript';

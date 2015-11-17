@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import GalleryMediaComponent from 'gallery-media';
+
+
 
 const LinkedGalleryMediaComponent = GalleryMediaComponent.extend({
 	tagName: 'div',
@@ -64,4 +64,4 @@ const LinkedGalleryMediaComponent = GalleryMediaComponent.extend({
 	},
 });
 
-export default LinkedGalleryMediaComponent;
+

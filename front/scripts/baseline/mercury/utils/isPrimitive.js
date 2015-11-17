@@ -2,7 +2,7 @@
  * @param {*} val
  * @returns {boolean} isPrimitive
  */
-export default function (val) {
+function isPrimitive(val) {
 	const typeOf = typeof val;
 
 	return (val === null) ||

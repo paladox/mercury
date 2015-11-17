@@ -1,7 +1,7 @@
-import Ember from 'ember';
-import Mercury from '../../mercury/Mercury';
 
-const LanguagesMixin = Ember.Mixin.create({
+
+
+App.LanguagesMixin = Ember.Mixin.create({
 	defaultLanguage: 'en',
 
 	isJapaneseBrowser: Ember.computed(function () {
@@ -68,4 +68,4 @@ const LanguagesMixin = Ember.Mixin.create({
 	}
 });
 
-export default LanguagesMixin;
+

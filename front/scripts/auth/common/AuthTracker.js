@@ -1,13 +1,9 @@
-import getQueryParam from '../../mercury/utils/queryString';
-import {track as mercuryTrack, trackActions, trackPageView as mercuryTrackPageView, setTrackContext}
-	from '../../mercury/utils/track';
-
 /**
  * @class AuthTracker
  *
  * @property {string} gaCategory
  */
-export default class AuthTracker {
+class AuthTracker {
 	/**
 	 * @param {string} gaCategory
 	 * @param {string} pageType

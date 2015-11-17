@@ -1,6 +1,6 @@
-import Ember from 'ember';
 
-const DiscussionPostController = Ember.Controller.extend({
+
+App.DiscussionPostController = Ember.Controller.extend({
 	numRepliesLoaded: null,
 	postListSort: '',
 
@@ -59,4 +59,4 @@ const DiscussionPostController = Ember.Controller.extend({
 	}
 });
 
-export default DiscussionPostController;
+

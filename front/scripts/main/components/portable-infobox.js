@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import ArticleContentMixin from '../mixins/article-content';
-import ViewportMixin from '../mixins/viewport';
 
-const PortableInfoboxComponent = Ember.Component.extend(
-	ArticleContentMixin,
-	ViewportMixin,
+
+
+
+App.PortableInfoboxComponent = Ember.Component.extend(
+	App.ArticleContentMixin,
+	App.ViewportMixin,
 	{
 		classNames: ['portable-infobox'],
 		classNameBindings: ['collapsed'],
@@ -100,4 +100,4 @@ const PortableInfoboxComponent = Ember.Component.extend(
 	}
 );
 
-export default PortableInfoboxComponent;
+

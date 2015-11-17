@@ -1,19 +1,19 @@
-import Ember from 'ember';
-import AlertNotificationsMixin from '../mixins/alert-notifications';
-import CuratedContentEditorLabelsMixin from '../mixins/curated-content-editor-labels';
-import CuratedContentEditorLayoutMixin from '../mixins/curated-content-editor-layout';
-import CuratedContentThumbnailMixin from '../mixins/curated-content-thumbnail';
-import TrackClickMixin from '../mixins/track-click';
-import IEIFrameFocusFixMixin from '../mixins/ieiframe-focus-fix';
-import SearchImagesModel from '../models/search-images';
 
-const CuratedContentEditorImageSearchComponent = Ember.Component.extend(
-	AlertNotificationsMixin,
-	CuratedContentEditorLabelsMixin,
-	CuratedContentEditorLayoutMixin,
-	CuratedContentThumbnailMixin,
-	TrackClickMixin,
-	IEIFrameFocusFixMixin,
+
+
+
+
+
+
+
+
+App.CuratedContentEditorImageSearchComponent = Ember.Component.extend(
+	App.AlertNotificationsMixin,
+	App.CuratedContentEditorLabelsMixin,
+	App.CuratedContentEditorLayoutMixin,
+	App.CuratedContentThumbnailMixin,
+	App.TrackClickMixin,
+	App.IEIFrameFocusFixMixin,
 	{
 		classNames: ['curated-content-editor-image-search'],
 		debounceDuration: 300,
@@ -94,4 +94,4 @@ const CuratedContentEditorImageSearchComponent = Ember.Component.extend(
 	}
 );
 
-export default CuratedContentEditorImageSearchComponent;
+

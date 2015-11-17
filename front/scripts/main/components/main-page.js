@@ -1,12 +1,12 @@
-import Ember from 'ember';
-import AdsMixin from '../mixins/ads';
-import TrackClickMixin from '../mixins/track-click';
-import {getExperimentVariationNumber} from '../../mercury/utils/variantTesting';
-import {setTrackContext, updateTrackedUrl, trackPageView} from '../../mercury/utils/track';
 
-const MainPageComponent = Ember.Component.extend(
-	AdsMixin,
-	TrackClickMixin,
+
+
+
+
+
+App.MainPageComponent = Ember.Component.extend(
+	App.AdsMixin,
+	App.TrackClickMixin,
 	{
 		classNames: ['main-page-modules', 'main-page-body'],
 		tagName: 'section',
@@ -71,4 +71,4 @@ const MainPageComponent = Ember.Component.extend(
 	}
 );
 
-export default MainPageComponent;
+

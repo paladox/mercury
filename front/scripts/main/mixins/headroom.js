@@ -1,7 +1,7 @@
-import Ember from 'ember';
-import {getSystem} from '../../mercury/utils/browser';
 
-const HeadroomMixin = Ember.Mixin.create({
+
+
+App.HeadroomMixin = Ember.Mixin.create({
 	headroom: null,
 	headroomEnabled: true,
 
@@ -94,4 +94,4 @@ const HeadroomMixin = Ember.Mixin.create({
 	}
 });
 
-export default HeadroomMixin;
+

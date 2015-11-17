@@ -1,15 +1,15 @@
-import AuthTracker from '../common/AuthTracker';
-import AuthLogger from '../common/AuthLogger';
-import AuthUtils from '../common/AuthUtils';
-import Cookie from '../common/Cookie';
-import FormErrors from '../common/FormErrors';
-import HttpCodes from '../common/HttpCodes';
-import UrlHelper from '../common/UrlHelper';
-import VisitSourceWrapper from '../common/VisitSourceWrapper';
-import MarketingOptIn from '../signup/MarketingOptIn';
-import TermsOfUse from '../signup/TermsOfUse';
-import {track as mercuryTrack, trackActions} from '../../mercury/utils/track';
-import {provide} from '../../baseline/mercury/utils/state';
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * @typedef {Object} HeliosError
@@ -45,7 +45,7 @@ import {provide} from '../../baseline/mercury/utils/state';
  * @property {AuthTracker} tracker
  * @property {AuthLogger} authLogger
  */
-export default class SignupForm {
+class SignupForm {
 	/**
 	 * @param {Element} form
 	 * @returns {void}

@@ -1,8 +1,3 @@
-import Ember from 'ember';
-import App from 'app';
-import Mercury from '../mercury/Mercury';
-import {prop} from '../baseline/mercury/utils/state';
-
 /**
  * @typedef {Object} QueryUserInfoResponse
  * @property {QueryUserInfoResponseQuery} query
@@ -22,7 +17,7 @@ import {prop} from '../baseline/mercury/utils/state';
  * @property {*} options
  */
 
-const CurrentUser = Ember.Object.extend({
+App.CurrentUser = Ember.Object.extend({
 	rights: {},
 	isAuthenticated: Ember.computed.bool('userId'),
 	language: null,
@@ -40,7 +35,7 @@ const CurrentUser = Ember.Object.extend({
 		const userId = this.get('userId');
 
 		if (userId !== null) {
-			App.UserModel.find({userId})
+			UserModel.find({userId})
 				.then((result) => {
 					this.setProperties(result);
 				})
@@ -80,7 +75,7 @@ const CurrentUser = Ember.Object.extend({
 	 */
 	loadUserLanguage(result) {
 		return new Ember.RSVP.Promise((resolve) => {
-			const userLanguage = Ember.get(result, 'query.userinfo.options.language');
+			App.userLanguage = Ember.get(result, 'query.userinfo.options.language');
 
 			this.setUserLanguage(userLanguage);
 
@@ -94,7 +89,7 @@ const CurrentUser = Ember.Object.extend({
 	 */
 	loadUserRights(result) {
 		return new Ember.RSVP.Promise((resolve, reject) => {
-			const rightsArray = Ember.get(result, 'query.userinfo.rights'),
+			App.rightsArray = Ember.get(result, 'query.userinfo.rights'),
 				rights = {};
 
 			if (!Ember.isArray(rightsArray)) {
@@ -131,5 +126,3 @@ const CurrentUser = Ember.Object.extend({
 		});
 	}
 });
-
-export default CurrentUser;

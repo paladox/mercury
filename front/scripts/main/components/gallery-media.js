@@ -1,7 +1,7 @@
-import Ember from 'ember';
-import MediaComponent from 'media';
-import ArticleContentMixin from '../mixins/article-content';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+
+
+
+
 
 /**
  * ArticleMedia
@@ -12,7 +12,7 @@ import Thumbnailer from '../../mercury/modules/Thumbnailer';
  */
 
 const GalleryMediaComponent = MediaComponent.extend(
-	ArticleContentMixin,
+	App.ArticleContentMixin,
 	{
 		classNames: ['article-gallery'],
 		layoutName: 'components/gallery-media',
@@ -152,4 +152,4 @@ const GalleryMediaComponent = MediaComponent.extend(
 	}
 );
 
-export default GalleryMediaComponent;
+

@@ -1,12 +1,12 @@
-import Ember from 'ember';
-import VisibleMixin from '../mixins/visible';
-import InfoboxImageMediaComponent from 'infobox-image-media';
-import LinkedGalleryMediaComponent from 'linked-gallery-media';
-import GalleryMediaComponent from 'gallery-media';
-import VideoMediaComponent from 'video-media';
-import ImageMediaComponent from 'image-media';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
-import {track, trackActions} from '../../mercury/utils/track';
+
+
+
+
+
+
+
+
+
 
 /**
  * @typedef {Object} ThumbnailOptions
@@ -15,8 +15,8 @@ import {track, trackActions} from '../../mercury/utils/track';
  * @property {number} [height]
  */
 
-const MediaComponent = Ember.Component.extend(
-	VisibleMixin,
+App.MediaComponent = Ember.Component.extend(
+	App.VisibleMixin,
 	{
 		tagName: 'figure',
 		classNames: ['media-component'],
@@ -145,4 +145,4 @@ MediaComponent.reopenClass({
 	},
 });
 
-export default MediaComponent;
+

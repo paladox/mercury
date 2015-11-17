@@ -1,6 +1,6 @@
-import Ember from 'ember';
-import App from '../app';
-import Mercury from '../../mercury/Mercury';
+
+
+
 
 /**
  * @typedef {Object} CuratedContentItem
@@ -27,7 +27,7 @@ import Mercury from '../../mercury/Mercury';
  * @property {number} height
  */
 
-const CuratedContentModel = Ember.Object.extend({
+App.CuratedContentModel = Ember.Object.extend({
 	title: null,
 	type: null,
 	items: [],
@@ -167,4 +167,4 @@ CuratedContentModel.reopenClass({
 	}
 });
 
-export default CuratedContentModel;
+

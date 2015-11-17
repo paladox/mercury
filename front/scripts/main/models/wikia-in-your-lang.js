@@ -1,7 +1,7 @@
-import Ember from 'ember';
-import {buildUrl} from '../../baseline/mercury/utils/buildUrl';
 
-const WikiaInYourLangModel = Ember.Object.extend({
+
+
+App.WikiaInYourLangModel = Ember.Object.extend({
 	message: null,
 	nativeDomain: null
 });
@@ -80,4 +80,4 @@ WikiaInYourLangModel.reopenClass({
 	}
 });
 
-export default WikiaInYourLangModel;
+

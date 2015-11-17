@@ -1,10 +1,10 @@
-import AuthTracker from '../common/AuthTracker';
-import AuthUtils from '../common/AuthUtils';
-import FacebookSDK from 'FacebookSDK';
-import HttpCodes from '../common/HttpCodes';
-import Login from '../common/Login';
-import UrlHelper from '../common/UrlHelper';
-import {trackActions} from '../../mercury/utils/track';
+
+
+
+
+
+
+
 
 /**
  * @typedef {Object} HeliosFacebookConnectData
@@ -28,7 +28,7 @@ import {trackActions} from '../../mercury/utils/track';
  * @property {SubmitValidator} submitValidator
  * @property {AuthTracker} tracker
  */
-export default class FacebookConnect extends Login {
+class FacebookConnect extends Login {
 	/**
 	 * @param {HTMLFormElement} form
 	 * @param {SubmitValidator} submitValidator

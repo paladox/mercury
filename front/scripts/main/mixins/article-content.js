@@ -1,4 +1,4 @@
-import Ember from 'ember';
+
 
 /**
  * This object keeps track of all components which include ArticleContentMixin.
@@ -8,7 +8,7 @@ import Ember from 'ember';
  * and we update the articleContent.width value in mixin only once.
  * @type {Ember.Object}
  */
-const ArticleContentListeners = Ember.Object.create({
+App.ArticleContentListeners = Ember.Object.create({
 		initialized: false,
 		containers: [],
 		articleContentSelector: '.article-content',
@@ -120,4 +120,4 @@ const ArticleContentListeners = Ember.Object.create({
 		}
 	});
 
-export default ArticleContentMixin;
+

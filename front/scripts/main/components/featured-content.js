@@ -1,13 +1,13 @@
-import Ember from 'ember';
-import FeaturedContentMixin from '../mixins/featured-content';
-import TrackClickMixin from '../mixins/track-click';
-import ThirdsClickMixin from '../mixins/thirds-click';
-import {trackEvent} from '../../mercury/utils/variantTesting';
 
-const FeaturedContentComponent = Ember.Component.extend(
-	FeaturedContentMixin,
-	TrackClickMixin,
-	ThirdsClickMixin,
+
+
+
+
+
+App.FeaturedContentComponent = Ember.Component.extend(
+	App.FeaturedContentMixin,
+	App.TrackClickMixin,
+	App.ThirdsClickMixin,
 	{
 		// See ThirdsClickMixin
 		screenEdgeWidthRatio: (1 / 6),
@@ -67,4 +67,4 @@ const FeaturedContentComponent = Ember.Component.extend(
 	}
 );
 
-export default FeaturedContentComponent;
+

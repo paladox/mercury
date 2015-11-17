@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import MediaComponent from 'media';
-import ViewportMixin from '../mixins/viewport';
-import Thumbnailer from '../../mercury/modules/Thumbnailer';
+
+
+
+
 
 const InfoboxImageCollectionComponent = MediaComponent.extend(
-	ViewportMixin,
+	App.ViewportMixin,
 	{
 		classNames: ['pi-image-collection'],
 		classNameBindings: ['visible'],
@@ -137,4 +137,4 @@ const InfoboxImageCollectionComponent = MediaComponent.extend(
 	}
 );
 
-export default InfoboxImageCollectionComponent;
+

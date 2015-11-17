@@ -1,4 +1,4 @@
-import {prop} from '../../../baseline/mercury/utils/state';
+
 
 /**
  * @typedef {Object} TrackerOptions
@@ -28,7 +28,7 @@ import {prop} from '../../../baseline/mercury/utils/state';
  * @property {string} accountSpecial
  * @property {string} accountAds
  */
-export default class UniversalAnalytics {
+class UniversalAnalytics {
 	/**
 	 * @param {boolean} [isSpecialWiki=false]
 	 * @returns {void}

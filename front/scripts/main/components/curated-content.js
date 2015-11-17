@@ -1,9 +1,9 @@
-import Ember from 'ember';
-import TrackClickMixin from '../mixins/track-click';
-import CuratedContentModel from '../models/curated-content';
 
-const CuratedContentComponent = Ember.Component.extend(
-	TrackClickMixin,
+
+
+
+App.CuratedContentComponent = Ember.Component.extend(
+	App.TrackClickMixin,
 	{
 		classNames: ['curated-content', 'mw-content'],
 		isLoading: false,
@@ -48,4 +48,4 @@ const CuratedContentComponent = Ember.Component.extend(
 	}
 );
 
-export default CuratedContentComponent;
+

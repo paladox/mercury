@@ -8,6 +8,6 @@
  * @param {*} params
  * @returns {*}
  */
-export default function load(...params) {
+function load(...params) {
 	return $script.apply(null, params);
 }

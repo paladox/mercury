@@ -1,12 +1,10 @@
-import BasePlayer from 'Base';
-
 /**
  * @typedef {Object} YouTubeEvent
  * @property {number} data
  * @property {*} target
  */
 
-export default class YouTubePlayer extends BasePlayer {
+class YouTubePlayer extends BasePlayer {
 	/**
 	 * @param {string} provider
 	 * @param {*} params

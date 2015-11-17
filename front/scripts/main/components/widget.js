@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import WidgetScriptStateMixin from '../mixins/widget-script-state';
+
+
 
 /**
  * Widgets
@@ -19,8 +19,8 @@ import WidgetScriptStateMixin from '../mixins/widget-script-state';
  * @property {VK} [VK]
  */
 
-const WidgetVKComponent = Ember.Component.extend(
-	WidgetScriptStateMixin,
+App.WidgetVKComponent = Ember.Component.extend(
+	App.WidgetScriptStateMixin,
 	{
 		classNames: ['widget-vk'],
 		data: null,
@@ -64,4 +64,4 @@ const WidgetVKComponent = Ember.Component.extend(
 	}
 );
 
-export default WidgetVKComponent;
+
