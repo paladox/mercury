@@ -21,40 +21,21 @@ var gulp = require('gulp'),
 	tsProjects = {};
 
 gulp.task('scripts-front', folders(paths.src, function (folder) {
-	var tsStream, esStream;
+	var esStream;
 
-	// we need project per folder
-	if (!tsProjects[folder]) {
-		tsProjects[folder] = ts.createProject(options);
-	}
-
-	// build TS
-	tsStream = gulp.src([
-		'!' + path.join(paths.src, folder, paths.tsdFiles),
-		path.join(paths.src, folder, paths.tsFiles)
-	])
-	// @todo Fix in https://wikia-inc.atlassian.net/browse/XW-562
-	// .pipe(newer(path.join(paths.dest, folder + '.js')))
-	.pipe(ts(tsProjects[folder])).js
-	.on('error', function() {
-		if (gutil.env.testing && environment.isProduction) {
-			console.error('Build contains some typescript errors/warnings');
-			process.exit(1);
-		}
+	var pth = paths.jsFiles[folder].map(function(p) {
+		return path.join(paths.src, folder, p);
 	});
 
 	// build ES6
-	esStream = gulp.src([
-		path.join(paths.src, folder, paths.jsFiles)
-	])
+	esStream = gulp.src(pth)
 	// @todo Fix in https://wikia-inc.atlassian.net/browse/XW-562
 	// .pipe(newer(path.join(paths.dest, folder + '.js')))
 	.pipe(babel({
-		presets: ['es2015'],
-		plugins: ['transform-es2015-modules-umd']
+		presets: ['es2015']
 	}));
 
-	return orderedMergeStream([tsStream, esStream])
+	return esStream
 		.pipe(concat(folder + '.js'))
 		.pipe(gulpif(environment.isProduction, uglify()))
 		.pipe(gulp.dest(paths.dest));
