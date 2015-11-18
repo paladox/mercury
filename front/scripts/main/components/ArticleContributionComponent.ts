@@ -36,6 +36,7 @@ App.ArticleContributionComponent = Em.Component.extend(App.LanguagesMixin, {
 				this.sendAction('edit', this.get('title'), section);
 				console.log('sent edit action');
 			} else {
+				console.log('redirecting to login for edit');
 				this.redirectToLogin('edit-section-no-auth');
 			}
 		},
@@ -63,6 +64,7 @@ App.ArticleContributionComponent = Em.Component.extend(App.LanguagesMixin, {
 				this.sendAction('addPhoto', this.get('title'), this.get('section'), photoData);
 				console.log('sent add photo action');
 			} else {
+				console.log('redirecting to login for add photo');
 				this.redirectToLogin('add-photo-no-auth');
 			}
 		},
@@ -77,6 +79,8 @@ App.ArticleContributionComponent = Em.Component.extend(App.LanguagesMixin, {
 	 * @param trackingLabel {string} Label to use for tracking of event
 	 */
 	redirectToLogin(trackingLabel: string) {
+		console.log('redirectToLogin');
+
 		var href = `/join?redirect=${encodeURIComponent(window.location.href)}`,
 			sectionId = this.get('sectionId');
 
