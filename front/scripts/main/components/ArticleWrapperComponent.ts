@@ -155,7 +155,7 @@ App.ArticleWrapperComponent = Em.Component.extend(
 		editAllowed: Em.computed(function(): boolean {
 			var isCoppaWiki = Em.getWithDefault(Mercury, 'wiki.isCoppaWiki', false),
 				disableAnonymousEditing = Em.getWithDefault(Mercury, 'wiki.disableAnonymousEditing', false),
-				isLoggedIn = Em.get(Mercury, 'currentUser.isAuthenticated');
+				isLoggedIn = this.get('currentUser.isAuthenticated');
 
 			console.log('editAllowed');
 			console.log(`isCoppaWiki: ${isCoppaWiki}`);
@@ -176,13 +176,13 @@ App.ArticleWrapperComponent = Em.Component.extend(
 		 * @returns {boolean} True if add photo is allowed
 		 */
 		addPhotoAllowed: Em.computed(function(): boolean {
-			var isLoggedIn = Em.get(Mercury, 'currentUser.isAuthenticated');
+			var isLoggedIn = this.get('currentUser.isAuthenticated');
 
 			console.log('addPhotoAllowed');
 			console.log(`isLoggedIn: ${isLoggedIn}`);
 
 			//return true;
-			return Em.get(Mercury, 'currentUser.isAuthenticated');
+			return this.get('currentUser.isAuthenticated');
 		}),
 
 		curatedContentToolButtonVisible: Em.computed.and('model.isMainPage', 'currentUser.rights.curatedcontent'),
