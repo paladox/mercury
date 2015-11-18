@@ -21,6 +21,11 @@ App.ArticleContributionComponent = Em.Component.extend(App.LanguagesMixin, {
 		edit(): void {
 			var section = this.get('section');
 
+			var editAllowed = this.get('editAllowed');
+
+			console.log('ArticleContributionComponent edit');
+			console.log(`editAllowed: ${editAllowed}`);
+
 			if (this.get('editAllowed')) {
 				M.track({
 					action: M.trackActions.click,
@@ -29,6 +34,7 @@ App.ArticleContributionComponent = Em.Component.extend(App.LanguagesMixin, {
 					value: section
 				});
 				this.sendAction('edit', this.get('title'), section);
+				console.log('sent edit action');
 			} else {
 				this.redirectToLogin('edit-section-no-auth');
 			}
@@ -41,6 +47,11 @@ App.ArticleContributionComponent = Em.Component.extend(App.LanguagesMixin, {
 		 * @returns {void}
 		 */
 		addPhoto(): void {
+			var addPhotoAllowed = this.get('addPhotoAllowed');
+
+			console.log('ArticleContributionComponent addPhoto');
+			console.log(`addPhotoAllowed: ${addPhotoAllowed}`);
+
 			if (this.get('addPhotoAllowed')) {
 				M.track({
 					action: M.trackActions.click,
@@ -50,6 +61,7 @@ App.ArticleContributionComponent = Em.Component.extend(App.LanguagesMixin, {
 				});
 				var photoData = this.$('.file-upload-input')[0].files[0];
 				this.sendAction('addPhoto', this.get('title'), this.get('section'), photoData);
+				console.log('sent add photo action');
 			} else {
 				this.redirectToLogin('add-photo-no-auth');
 			}

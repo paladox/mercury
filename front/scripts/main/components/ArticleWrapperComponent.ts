@@ -157,6 +157,11 @@ App.ArticleWrapperComponent = Em.Component.extend(
 				disableAnonymousEditing = Em.getWithDefault(Mercury, 'wiki.disableAnonymousEditing', false),
 				isLoggedIn = Em.get(Mercury, 'currentUser.isAuthenticated');
 
+			console.log('editAllowed');
+			console.log(`isCoppaWiki: ${isCoppaWiki}`);
+			console.log(`disableAnonymousEditing: ${disableAnonymousEditing}`);
+			console.log(`isLoggedIn: ${isLoggedIn}`);
+
 			if (isLoggedIn) {
 				return true;
 			} else {
@@ -171,6 +176,12 @@ App.ArticleWrapperComponent = Em.Component.extend(
 		 * @returns {boolean} True if add photo is allowed
 		 */
 		addPhotoAllowed: Em.computed(function(): boolean {
+			var isLoggedIn = Em.get(Mercury, 'currentUser.isAuthenticated');
+
+			console.log('addPhotoAllowed');
+			console.log(`isLoggedIn: ${isLoggedIn}`);
+
+			//return true;
 			return Em.get(Mercury, 'currentUser.isAuthenticated');
 		}),
 
@@ -189,6 +200,7 @@ App.ArticleWrapperComponent = Em.Component.extend(
 			 * @returns {void}
 			 */
 			edit(title: string, sectionIndex: number): void {
+				console.log('ArticleWrapperComponent edit');
 				this.sendAction('edit', title, sectionIndex);
 			},
 
@@ -199,6 +211,7 @@ App.ArticleWrapperComponent = Em.Component.extend(
 			 * @returns {void}
 			 */
 			addPhoto(title: string, sectionIndex: number, photoData: any): void {
+				console.log('ArticleWrapperComponent addPhoto');
 				this.sendAction('addPhoto', title, sectionIndex, photoData);
 			},
 
