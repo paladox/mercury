@@ -57,7 +57,7 @@ App.initializer({
 App.initializer({
 	name: 'preload',
 	after: 'optimizely',
-	initialize(container, application) {
+	initialize(application) {
 		const $window = $(window),
 			/**
 			 * prevents fail if transitions are empty
@@ -142,7 +142,7 @@ App.initializer({
 App.initializer({
 	name: 'currentUser',
 	after: 'performanceMonitoring',
-	initialize(container, application) {
+	initialize(application) {
 		application.register('currentUser:main', CurrentUser);
 		application.inject('component', 'currentUser', 'currentUser:main');
 	}
