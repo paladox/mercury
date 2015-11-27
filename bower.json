@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "cropper": "~0.11.0",
-    "ember": "2.0.2",
+    "ember": "2.2.0",
     "ember-hammer": "1.0.2",
     "ember-performance-sender": "Wikia/ember-performance-sender#ember-2.0",
     "fastclick": "1.0.6",
@@ -28,8 +28,5 @@
     "ember-qunit": "rwjblue/ember-qunit-builds#v0.4.13",
     "sinonjs": "1.12.2",
     "sinon-qunit": "https://github.com/cjohansen/sinon-qunit.git#2.0.0"
-  },
-  "resolutions": {
-    "ember": "2.0.2"
   }
 }
