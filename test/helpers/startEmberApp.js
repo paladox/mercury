@@ -14,7 +14,7 @@ App.injectTestHelpers();
 
 App.initializer({
 	name: 'Test runner',
-	initialize: function (container, application) {
+	initialize: function () {
 		if (!karma_started) {
 			karma_started = true;
 			__karma__.start();
