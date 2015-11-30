@@ -5,7 +5,7 @@
  */
 
 function logout(request, reply) {
-	reply.unstate('access_token');
+	reply.unstate('access_token'); 
 	reply.redirect('http://ja.wikia.com');
 }
 
