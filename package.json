@@ -14,7 +14,8 @@
     "linter": "eslint .",
     "build": "rm -rf www && gulp build --type prod --nosync",
     "build-coverage": "rm -rf www && gulp build --nosync --testing",
-    "build-test": "rm -rf www && gulp build --type prod --nosync --testing"
+    "build-test": "rm -rf www && gulp build --type prod --nosync --testing",
+    "commit": "commit-wizard"
   },
   "repository": "git://github.com/Wikia/mercury.git",
   "license": "MIT",
@@ -75,9 +76,26 @@
     "karma-phantomjs-launcher": "0.x.x",
     "karma-qunit": "0.x.x",
     "multipipe": "^0.1.2",
+    "pre-git": "^2.0.1",
     "qunit": "0.x.x",
     "qunitjs": "1.20.0",
     "systemjs-builder": "^0.14.11",
     "through2": "^0.6.3"
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": [
+        "npm run test-front",
+        "npm run test-server"
+      ],
+      "pre-push": [
+        "npm run test"
+      ],
+      "post-commit": [],
+      "post-merge": [
+        "npm update"
+      ]
+    }
   }
 }
