@@ -84,7 +84,6 @@
   },
   "config": {
     "pre-git": {
-      "commit-msg": "validate-commit-msg",
       "pre-commit": [
         "npm run linter",
         "npm run test-front",
@@ -95,7 +94,8 @@
       ],
       "post-commit": [],
       "post-merge": [
-        "npm update"
+        "npm update",
+        "bower update"
       ]
     }
   }
