@@ -86,6 +86,7 @@
     "pre-git": {
       "commit-msg": "validate-commit-msg",
       "pre-commit": [
+        "npm run linter",
         "npm run test-front",
         "npm run test-server"
       ],
