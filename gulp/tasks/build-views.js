@@ -39,8 +39,12 @@ gulp.task('build-views', ['scripts-front', 'vendor', 'build-vendor', 'build-comb
 		'www/front/svg/rev-manifest-common.json',
 		'www/front/svg/rev-manifest-discussion.json',
 		'www/front/svg/rev-manifest-main.json',
-		'www/front/svg/rev-manifest-social.json'
+		'www/front/svg/rev-manifest-social.json',
+		'www/front/styles/rev-manifest-auth.json',
+		'www/front/styles/rev-manifest-discussions.json',
+		'www/front/styles/rev-manifest-main.json',
 	]);
+
 	return piper(
 		gulp.src(paths.views.src, {
 			base: paths.baseFullServer
@@ -50,7 +54,6 @@ gulp.task('build-views', ['scripts-front', 'vendor', 'build-vendor', 'build-comb
 		gulpif('**/_layouts/*.hbs', preprocess({context: preprocessContext})),
 		// Read JSON manifests written out by rev. Allows replacing file names that were reved prior to the current task
 		gulpif('**/_layouts/*.hbs', revReplace({manifest: manifest})),
-
 
 		// TODO: Leave this in for now to run the normal template based assets pipeline while we're using async scripts
 		gulpif(environment.isProduction,
