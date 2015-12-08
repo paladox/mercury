@@ -19,12 +19,12 @@
 		{{/if}}
 
 		{{#if isRtl}}
-			<!-- build:css /front/styles/main/app.rtl.css -->
-			<link rel="stylesheet" href="/front/styles/main/app.rtl.css">
+			<!-- build:css /front/styles/main/critical.rtl.css -->
+			<link rel="stylesheet" href="/front/styles/main/critical.rtl.css">
 			<!-- endbuild -->
 		{{else}}
-			<!-- build:css /front/styles/main/app.css -->
-			<link rel="stylesheet" href="/front/styles/main/app.css">
+			<!-- build:css /front/styles/main/critical.css -->
+			<link rel="stylesheet" href="/front/styles/main/critical.css">
 			<!-- endbuild -->
 		{{/if}}
 
@@ -115,6 +115,8 @@
 				'/front/vendor/main.js',
 				'/front/scripts/combined.js'
 			]);
+
+			M.loadCSS('/front/styles/main/app.css');
 		</script>
 
 		<script src="//{{server.mediawikiDomain}}/__load/-/only=scripts/wikia.ext.instantGlobals,instantGlobalsOverride,abtesting" async></script>
