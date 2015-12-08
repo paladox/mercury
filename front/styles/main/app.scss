@@ -1,79 +1,16 @@
-// DO NOT CHANGE:
-// load order of files below is intentional
-@import '../../vendor/wikia-style-guide/src/scss/main';
-@import 'settings';
-@import 'foundation-imports';
-@import 'wikia-variables';
-@import 'mixin/index';
+@import 'shared_imports';
 
-@import '../common/placeholder/index';
+// Import non-critical styles
 
-@import 'base/_chevron';
-@import 'base/_pointer';
-
-@import 'layout/article/_footer';
-@import 'layout/article/_table-of-contents';
-@import 'layout/_discussion-rail';
-@import 'layout/_wiki-container';
-
-@import 'state/_no-scroll';
-@import 'state/_slide';
-@import 'state/_touch-active';
-
-@import 'theme/_dark';
-@import 'theme/_share-icons';
-
-@import 'component/share-header';
-@import 'component/share-feature';
-@import 'component/smart-banner';
-@import 'component/side-nav';
-@import 'component/local-nav-menu';
-@import 'component/local-wikia-search';
-@import 'component/lightbox';
-@import 'component/lightbox-media';
-@import 'component/lightbox-map';
-@import 'component/featured-content';
-@import 'component/alert-notifications';
-@import 'component/curated-content';
-@import 'component/curated-content-editor';
-@import 'component/trending';
-@import 'component/trending-articles';
-@import 'component/trending-videos';
-@import 'component/wikia-stats';
-@import 'component/user-menu';
-@import 'component/modal-dialog';
-@import 'component/search';
-@import 'component/sub-head';
-@import 'component/discussion-editor';
-@import 'component/discussion-reply-editor';
-@import 'component/discussion-header';
-@import 'component/discussion-sort';
-@import 'component/discussion-hero-unit';
-@import 'component/discussion-error';
-@import 'component/user-avatar';
-@import 'component/discussion-contributors';
-@import 'component/discussion-community-badge';
-@import 'component/discussion-back-button';
-@import 'component/discussion-app-promotion';
-
-@import 'module/article/_contributors';
-@import 'module/article/_media';
-@import 'module/article/_not-found';
-@import 'module/article/_table';
-@import 'module/edit/_addphoto';
-@import 'module/edit/_edit';
-@import 'module/edit/_edit-common';
-@import 'module/wiki/_login';
-@import 'module/_ads-floor';
-@import 'module/_comments';
-@import 'module/_content-recommendations';
-@import 'module/_discussion';
-@import 'module/_loader';
-@import 'module/_site-footer';
-@import 'module/_wikia-map';
-@import 'module/_wikia-widget';
+@import 'base/index';
+@import 'layout/index';
+@import 'state/index';
+@import 'theme/index';
+@import 'component/index';
+@import 'module/index';
 
 // temporary solution while these inputs are not a part of the Style Guide
+
 @import '../auth/base/input';
 @import '../auth/module/forms';
 @import '../auth/module/form-icons';

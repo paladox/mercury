@@ -1,0 +1,11 @@
+@import 'shared_imports';
+
+// Import critical styles
+
+@import 'base/critical';
+@import 'layout/critical';
+@import 'state/critical';
+@import 'theme/critical';
+@import 'component/critical';
+@import 'module/critical';
+
