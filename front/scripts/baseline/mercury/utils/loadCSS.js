@@ -18,7 +18,8 @@ if (typeof window.M === 'undefined') {
 			link = doc.createElement('link'),
 			sheets = doc.styleSheets;
 
-		let ref;
+		let ref,
+			onloadcssdefined;
 
 		if (before) {
 			ref = before;
@@ -40,7 +41,7 @@ if (typeof window.M === 'undefined') {
 
 		// A method (exposed on return object for external use) that mimics onload by polling
 		// until document.styleSheets until it includes the new sheet.
-		const onloadcssdefined = function (cb) {
+		onloadcssdefined = function (cb) {
 			const resolvedHref = link.href;
 
 			let i = sheets.length;
@@ -51,16 +52,12 @@ if (typeof window.M === 'undefined') {
 				}
 			}
 
-			setTimeout(function () {
-				onloadcssdefined(cb);
-			});
+			setTimeout(() => onloadcssdefined(cb));
 		};
 
 		// once loaded, set link's media back to `all` so that the stylesheet applies once it loads
 		link.onloadcssdefined = onloadcssdefined;
-		onloadcssdefined(function () {
-			link.media = media;
-		});
+		onloadcssdefined(() => link.media = media);
 
 		return link;
 	};
