@@ -51,9 +51,9 @@ gulp.task('build-views', ['scripts-front', 'vendor', 'build-vendor', 'build-comb
 		}),
 
 		// preprocess and revReplace don't like being fed through piper/multipipe
-		gulpif('**/_layouts/*.hbs', preprocess({context: preprocessContext})),
 		// Read JSON manifests written out by rev. Allows replacing file names that were reved prior to the current task
 		gulpif('**/_layouts/*.hbs', revReplace({manifest: manifest})),
+		gulpif('**/_layouts/*.hbs', preprocess({context: preprocessContext})),
 
 		// TODO: Leave this in for now to run the normal template based assets pipeline while we're using async scripts
 		gulpif(environment.isProduction,
