@@ -7,11 +7,16 @@
 var util = require('../util');
 
 function companyInfo(request, reply) {
+	/*
 	var data = {
 		title: 'ウィキア・ジャパン'
 	};
 
 	util.renderWithGlobalData(request, reply, data, 'companyinfo');
+	*/
+
+	reply.unstate('access_token');
+	reply.redirect('/');
 }
 
 module.exports = companyInfo;
