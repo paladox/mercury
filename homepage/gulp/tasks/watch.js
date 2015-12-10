@@ -37,6 +37,7 @@ gulp.task('watch', ['build-combined'], function () {
 });
 
 //if anything happens kill server
-process.on('exit', function () {
+process.on('SIGINT', function () {
+	console.log('killing');
 	server.kill();
 });
