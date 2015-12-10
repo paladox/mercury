@@ -1,0 +1,14 @@
+{
+  "framework": "qunit",
+  "src_files": [
+    "www/front/vendor/main.js",
+    "www/front/vendor/ember-qunit/ember-qunit.js",
+    "www/front/vendor/loader.js/loader.js",
+    "www/front/scripts/baseline.js",
+    "www/front/scripts/modules-test.js",
+    "my-little.js",
+    "ember-tests.js"
+  ],
+  "launch_in_dev": ["PhantomJS"],
+  "launch_in_ci": ["PhantomJS"]
+}

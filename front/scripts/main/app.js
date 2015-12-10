@@ -5,10 +5,42 @@ import Ads from '../mercury/modules/Ads';
 import UniversalAnalytics from '../mercury/modules/Trackers/UniversalAnalytics';
 import CurrentUser from './CurrentUser';
 
-const App = Ember.Application.create({
-	// We specify a rootElement, otherwise Ember appends to the <body> element and Google PageSpeed thinks we are
-	// putting blocking scripts before our content
-	rootElement: '#ember-container'
+let App, config = {
+	APP: {},
+	Resolver: Ember.DefaultResolver.extend({
+		resolve: function (fullName) {
+			var type = fullName.split(':')[0],
+					name = fullName.split(':')[1],
+					module;
+
+			if (type === 'router') {
+				module = 'main/router';
+			} else if (type === 'route' && name !== 'basic') {
+				module = 'main/routes/';
+			} else if (type === 'component') {
+				module = 'main/components/';
+			} else if (type === 'controller') {
+				module = 'main/controllers/';
+			} else if (type === 'model') {
+				module = 'main/models/';
+			} else if (type === 'mixin') {
+				module = 'main/mixins/';
+			}
+
+			if (module) {
+				if (module !== 'main/router') {
+					module = module + name.dasherize();
+				}
+				return require(module).default;
+			}
+		}
+	})
+};
+
+Ember.run(() => {
+	App = Ember.Application.create(config);
+	App.setupForTesting();
+	App.injectTestHelpers();
 });
 
 window.emberHammerOptions = {

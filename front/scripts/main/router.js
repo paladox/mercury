@@ -99,3 +99,6 @@ App.Router.reopen({
 		return (ua && ua.match(/Catchpoint/)) ? 'none' : 'history';
 	})
 });
+
+
+export default App.Router;
