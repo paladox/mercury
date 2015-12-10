@@ -20,21 +20,24 @@ $(() => {
 	const headings = $('.grid-heading');
 
 	$('.hero-carousel').slick({
-		arrows: true,
+		arrows: false,
 		dots: true,
 		autoplay: true,
 		autoplaySpeed: 3000,
 		slidesToShow: 1,
 	});
 
+	// Move previous/next arrow elements inside hero-carousel.
+	// This must be done after initializing slick, otherwise the buttons will
+	// be treated as slides
+	$('.hero-prev').detach().appendTo('.hero-carousel');
+	$('.hero-next').detach().appendTo('.hero-carousel');
+
 	$('.featured-carousel').slick({
-		arrows: true,
+		arrows: false,
 		dots: false,
 		slidesToShow: 4,
 		slidesToScroll: 4,
-		speed: 300,
-		centerMode: true,
-		centerPadding: '20px',
 		responsive: [
 			{
 				breakpoint: 1140,
@@ -60,6 +63,14 @@ $(() => {
 		]
 	});
 
+	// TODO: The carousels should be encoded in a json file
+	$('#carousel-1-prev').detach().appendTo('#carousel-1');
+	$('#carousel-1-next').detach().appendTo('#carousel-1');
+	$('#carousel-2-prev').detach().appendTo('#carousel-2');
+	$('#carousel-2-next').detach().appendTo('#carousel-2');
+	$('#carousel-3-prev').detach().appendTo('#carousel-3');
+	$('#carousel-3-next').detach().appendTo('#carousel-3');
+
 	// Dynamically adjust text size to show community title without text break.
 	// bigText adjusts the size programatically and strips off css padding, so it is
 	// necessary to add it in explicitly afterwards
@@ -82,6 +93,20 @@ $('.search-wikia-form').submit((event) => {
 $('.search-wikia').click((event) => {
 	search();
 	event.preventDefault();
+});
+
+$('.hero-prev').click(function () {
+	const id = $(this).attr('id'),
+		carousel = $(`#${id}`).parent().attr('id');
+
+	$(`#${carousel}`).slick('slickPrev');
+});
+
+$('.hero-next').click(function () {
+	const id = $(this).attr('id'),
+		carousel = $(`#${id}`).parent().attr('id');
+
+	$(`#${carousel}`).slick('slickNext');
 });
 
 $('#loginIcon').click((event) => {

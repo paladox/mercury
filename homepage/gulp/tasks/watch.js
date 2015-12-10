@@ -30,10 +30,10 @@ gulp.task('watch', ['build-combined'], function () {
 	gulp.watch(paths.styles.homepage.watch, ['sass', 'lint', 'eslint', browserSync.reload]);
 
 	// Client Scripts
-	gulp.watch(paths.scripts.homepage.watch, ['sass', 'lint', 'eslint', browserSync.reload]);
+	gulp.watch(paths.scripts.homepage.watch, ['build-combined', browserSync.reload]);
 
 	// Server Scripts
-	gulp.watch(paths.server.homepage.watch, ['sass', 'lint', 'eslint', browserSync.reload]);
+	gulp.watch(paths.server.homepage.watch, ['lint', browserSync.reload]);
 });
 
 //if anything happens kill server

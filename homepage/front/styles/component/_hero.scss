@@ -41,3 +41,33 @@ $horizontal-bar-mode: $large-screen;
 	}
 }
 
+.hero-prev,
+.hero-next {
+	background: transparent;
+	border: 0;
+	color: transparent;
+	cursor: pointer;
+	display: block;
+	font-size: 0;
+	height: 40px;
+	line-height: 0;
+	outline: none;
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	width: 40px;
+}
+
+.hero-prev {
+	left: 30px;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1;
+}
+
+.hero-next {
+	right: 30px;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1;
+}
