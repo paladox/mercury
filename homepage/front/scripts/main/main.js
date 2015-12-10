@@ -1,23 +1,5 @@
 import {loadGlobalData, getLoginUrl} from './globals';
 
-const parallaxWindow = $('#js-parallax-window');
-
-/**
- * @returns {void}
- */
-function parallax() {
-	if (parallaxWindow.length > 0) {
-		const plxBackground = $('#js-parallax-background'),
-			plxWindow = $('#js-parallax-window'),
-			plxWindowTopToPageTop = $(plxWindow).offset().top,
-			windowTopToPageTop = $(window).scrollTop(),
-			plxWindowTopToWindowTop = plxWindowTopToPageTop - windowTopToPageTop,
-			plxSpeed = 0.5;
-
-		plxBackground.css('top', `${-(plxWindowTopToWindowTop * plxSpeed)}px`);
-	}
-}
-
 /**
  * @returns {void}
  */
@@ -37,22 +19,45 @@ function search() {
 $(() => {
 	const headings = $('.grid-heading');
 
-	if (parallaxWindow.length) {
-		parallax();
+	$('.hero-carousel').slick({
+		arrows: true,
+		dots: true,
+		autoplay: true,
+		autoplaySpeed: 3000,
+		slidesToShow: 1,
+	});
 
-		$(window).scroll(() => {
-			parallax();
-		});
-	}
-
-	$('.carousel').slick({
+	$('.featured-carousel').slick({
 		arrows: true,
 		dots: false,
-		infinite: false,
+		slidesToShow: 4,
+		slidesToScroll: 4,
 		speed: 300,
-		slidesToShow: 2,
-		centerMode: false,
-		variableWidth: true
+		centerMode: true,
+		centerPadding: '20px',
+		responsive: [
+			{
+				breakpoint: 1140,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 3,
+				}
+			},
+			{
+				breakpoint: 865,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				}
+			},
+			{
+				breakpoint: 615,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
+			}
+		]
 	});
 
 	// Dynamically adjust text size to show community title without text break.

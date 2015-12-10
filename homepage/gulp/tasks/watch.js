@@ -5,11 +5,8 @@
 
 var gulp = require('gulp'),
 	gutil = require('gulp-util'),
-	path = require('path'),
-	nodemon = require('gulp-nodemon'),
 	server = require('gulp-develop-server'),
 	browserSync = require('browser-sync'),
-	reload = browserSync.reload,
 	paths = require('../paths');
 
 gulp.task('watch', ['build-combined'], function () {
