@@ -49,18 +49,19 @@ Auth.prototype.login = function (username, password) {
 };
 
 Auth.prototype.getEndpointData = function (token) {
-	var address = url.resolve(this.baseUrl + '/', 'info?' +
+	var address = url.resolve(this.baseUrl, 'info?' +
 		querystring.stringify({code: token, noblockcheck: 1}));
 
 	return {
 		address: address,
 		baseUrl: this.baseUrl,
 		servicesUrl: this.servicesUrl,
+		apiUrl: this.apiUrl,
 	};
 }
 
 Auth.prototype.info = function (token) {
-	var address = url.resolve(this.baseUrl + '/', 'info?' +
+	var address = url.resolve(this.baseUrl, 'info?' +
 		querystring.stringify({code: token, noblockcheck: 1}));
 
 	return requestWrapper(address);
