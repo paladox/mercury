@@ -1,0 +1,45 @@
+$loading-indicator-color: red;
+$loading-indicator-height: 5px;
+$loading-indicator-shadow-spread: 20px 0px;
+
+@keyframes loading-indicator-animation {
+	0% {
+		left: 0;
+		right: 100%;
+	}
+
+	40% {
+		left: 25%;
+		right: 50%;
+	}
+
+	//50% {
+	//	left: 30%;
+	//	right: 30%;
+	//}
+
+	60% {
+		left: 50%;
+		right: 25%;
+	}
+
+	100% {
+		left: 100%;
+		right: 0;
+	}
+}
+
+.loading-indicator {
+	&__wrapper {
+		position: fixed;
+		top: 0;
+		z-index: $z-9;
+		animation: loading-indicator-animation 2s linear alternate infinite;
+	}
+
+	&__bar {
+		background: $loading-indicator-color;
+		height: $loading-indicator-height;
+		box-shadow: 0 0 $loading-indicator-shadow-spread $loading-indicator-color;
+	}
+}

@@ -14,6 +14,7 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 			 * @returns {void}
 			 */
 			clickItem(item) {
+				debugger;
 				const itemType = item.type;
 
 				if (itemType) {
@@ -30,6 +31,7 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 			 * @returns {void}
 			 */
 			loadMore() {
+				debugger;
 				this.set('isLoading', true);
 
 				CuratedContentModel.loadMore(this.get('model'))
