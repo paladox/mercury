@@ -52,19 +52,19 @@ export default App.ArticleContentComponent = Ember.Component.extend(
 			Ember.run.scheduleOnce('afterRender', this, () => {
 				if (content) {
 					this.hackIntoEmberRendering(content);
-					this.loadTableOfContentsData();
-					this.handleTables();
-					this.handleInfoboxes();
-					this.replaceInfoboxesWithInfoboxComponents();
-					this.replaceMapsWithMapComponents();
-					this.replaceMediaPlaceholdersWithMediaComponents(this.get('media'), 4);
-					this.replaceImageCollectionPlaceholdersWithComponents(this.get('media'));
-					this.replaceWikiaWidgetsWithComponents();
-					this.handleWikiaWidgetWrappers();
-					this.handlePollDaddy();
+					//this.loadTableOfContentsData();
+					//this.handleTables();
+					//this.handleInfoboxes();
+					//this.replaceInfoboxesWithInfoboxComponents();
+					//this.replaceMapsWithMapComponents();
+					//this.replaceMediaPlaceholdersWithMediaComponents(this.get('media'), 4);
+					//this.replaceImageCollectionPlaceholdersWithComponents(this.get('media'));
+					//this.replaceWikiaWidgetsWithComponents();
+					//this.handleWikiaWidgetWrappers();
+					//this.handlePollDaddy();
 					this.handleJumpLink();
 
-					Ember.run.later(this, () => this.replaceMediaPlaceholdersWithMediaComponents(this.get('media')), 0);
+					//Ember.run.later(this, () => this.replaceMediaPlaceholdersWithMediaComponents(this.get('media')), 0);
 				} else {
 					this.hackIntoEmberRendering(i18n.t('app.article-empty-label'));
 				}
