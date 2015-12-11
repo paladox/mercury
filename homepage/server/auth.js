@@ -11,7 +11,7 @@ var Promise = require('bluebird'),
 	localSettings = require('../config/localSettings').localSettings;
 
 function Auth() {
-	this.baseUrl     = url.resolve(localSettings.helios.host, '.');
+	this.baseUrl     = url.resolve(localSettings.helios.host + '/', '.');
 	this.servicesUrl = localSettings.servicesUrl;
 	this.apiUrl      = localSettings.apiUrl;
 }
