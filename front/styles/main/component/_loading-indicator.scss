@@ -13,11 +13,6 @@ $loading-indicator-shadow-spread: 20px 0px;
 		right: 50%;
 	}
 
-	//50% {
-	//	left: 30%;
-	//	right: 30%;
-	//}
-
 	60% {
 		left: 50%;
 		right: 25%;
@@ -34,6 +29,7 @@ $loading-indicator-shadow-spread: 20px 0px;
 		position: fixed;
 		top: 0;
 		z-index: $z-9;
+		transition: opacity .5s;
 		animation: loading-indicator-animation 2s linear alternate infinite;
 	}
 

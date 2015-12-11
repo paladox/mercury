@@ -1,5 +1,11 @@
 export default Ember.Service.extend({
-	logFoo() {
-		console.log('foo');
-	}
+	isActive: false,
+
+	activate() {
+		this.set('isActive', true);
+	},
+
+	deactivate() {
+		this.set('isActive', false);
+	},
 });

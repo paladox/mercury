@@ -14,24 +14,27 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 			 * @returns {void}
 			 */
 			clickItem(item) {
-				debugger;
-				const itemType = item.type;
-
-				if (itemType) {
-					this.trackClick('modular-main-page', `curated-content-item-${itemType}`);
-					if (itemType === 'section' || itemType === 'category') {
-						this.sendAction('openCuratedContentItem', item);
-					}
+				if (this.loadingIndicator.isActive) {
+					this.loadingIndicator.deactivate();
 				} else {
-					this.trackClick('modular-main-page', 'curated-content-item-other');
+					this.loadingIndicator.activate();
 				}
+				//const itemType = item.type;
+                //
+				//if (itemType) {
+				//	this.trackClick('modular-main-page', `curated-content-item-${itemType}`);
+				//	if (itemType === 'section' || itemType === 'category') {
+				//		this.sendAction('openCuratedContentItem', item);
+				//	}
+				//} else {
+				//	this.trackClick('modular-main-page', 'curated-content-item-other');
+				//}
 			},
 
 			/**
 			 * @returns {void}
 			 */
 			loadMore() {
-				debugger;
 				this.set('isLoading', true);
 
 				CuratedContentModel.loadMore(this.get('model'))
