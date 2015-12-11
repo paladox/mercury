@@ -65,7 +65,7 @@ exports.returnData = function(request, reply) {
 			avatarUrl: null,
 			stateReply: null
 		},
-		info = auth.getEndpointData();
+		info = auth.getEndpointData('H2dy2WbqTGKJtDIoeed0Ig');
 
 	ret = deepExtend(ret, info);
 
