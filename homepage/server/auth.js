@@ -57,6 +57,7 @@ Auth.prototype.getEndpointData = function (token) {
 		baseUrl: this.baseUrl,
 		servicesUrl: this.servicesUrl,
 		apiUrl: this.apiUrl,
+		heliosHost: localSettings.helios.host,
 	};
 }
 
