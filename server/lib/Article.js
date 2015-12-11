@@ -25,6 +25,21 @@ export class ArticleRequestError {
 ArticleRequestError.prototype = Object.create(Error.prototype);
 
 /**
+ * @class DisplayWikiaMobile
+ */
+export class DisplayWikiaMobile {
+	/**
+	 * @param {string} data
+	 * @returns {void}
+	 */
+	constructor(data) {
+		Error.apply(this, arguments);
+		this.data = data;
+	}
+}
+DisplayWikiaMobile.prototype = Object.create(Error.prototype);
+
+/**
  * @class ArticleRequestHelper
  * @property {ArticleRequestParams} params
  */
@@ -90,6 +105,10 @@ export class ArticleRequestHelper {
 				article = isArticlePromiseFulfilled ?
 					articlePromise.value() :
 					articlePromise.reason();
+
+				if (article instanceof Buffer) {
+					return reject(new DisplayWikiaMobile(article));
+				}
 
 				wikiVariables = isWikiVariablesPromiseFulfilled ?
 					wikiVariablesPromise.value() :

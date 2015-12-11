@@ -127,6 +127,9 @@ function getArticle(request, reply, article, allowCache) {
 
 			outputResponse(request, reply, data, allowCache, errorCode);
 		})
+		.catch(Article.DisplayWikiaMobile, (redirect) => {
+			reply(redirect.data).type('text/html');
+		})
 		/**
 		 * @returns {void}
 		 */
