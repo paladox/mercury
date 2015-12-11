@@ -1,0 +1,12 @@
+{
+  "name": "Wikia push web notifications hackaton",
+  "short_name": "Wikia",
+  "icons": [{
+    "src": "/front/images/brackets.svg",
+    "sizes": "185x185",
+    "type": "image/svg"
+  }],
+  "start_url": "/",
+  "display": "standalone",
+  "gcm_sender_id": "355523640761"
+}
