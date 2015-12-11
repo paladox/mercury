@@ -6,6 +6,7 @@ import Logger from './Logger';
 import Wreck from 'wreck';
 import Promise from 'bluebird';
 import Url from 'url';
+import deepExtend from 'deep-extend';
 
 /**
  * Create request URL
@@ -44,9 +45,10 @@ export function createUrl(wikiDomain, path, params = {}) {
  * @param {string} [host='']
  * @param {number} [redirects=1] - the number of redirects to follow, default 1
  * @param {*} [headers={}]
+ * @param {Object} [originalHeaders={}]
  * @returns {Promise}
  */
-export function fetch(url, host = '', redirects = 1, headers = {}) {
+export function fetch(url, host = '', redirects = 1, headers = {}, originalHeaders = {}) {
 	/**
 	 * We send requests to Consul URL and the target wiki is passed in the Host header.
 	 * When Wreck gets a redirection response it updates URL only, not headers.
@@ -64,9 +66,15 @@ export function fetch(url, host = '', redirects = 1, headers = {}) {
 		if (redirectHost) {
 			redirectOptions.headers.Host = redirectHost;
 		}
+
+		// Proxy to WikiaMobile
+		if (statusCode === 307) {
+			redirectOptions.headers['User-Agent'] = originalHeaders['user-agent'];
+			redirectOptions.headers['Cookie'] = originalHeaders['cookie'];
+		}
 	};
 
-	headers.Host = host;
+	headers['Host'] = host;
 	headers['User-Agent'] = 'mercury';
 	headers['X-Wikia-Internal-Request'] = 'mercury';
 
@@ -145,6 +153,7 @@ class BaseRequest {
 	constructor(params) {
 		this.wikiDomain = params.wikiDomain;
 		this.headers = params.headers;
+		this.originalHeaders = params.originalHeaders;
 	}
 
 	/**
@@ -152,7 +161,7 @@ class BaseRequest {
 	 * @returns {Promise.<any>}
 	 */
 	fetch(url) {
-		return fetch(url, this.wikiDomain, this.redirects, this.headers);
+		return fetch(url, this.wikiDomain, this.redirects, this.headers, this.originalHeaders);
 	}
 }
 

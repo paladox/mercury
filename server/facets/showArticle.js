@@ -155,8 +155,9 @@ export default function showArticle(request, reply) {
 	const path = request.path,
 		wikiDomain = Utils.getCachedWikiDomainName(localSettings, request),
 		params = {
+			originalHeaders: request.headers,
+			redirect: request.query.redirect,
 			wikiDomain,
-			redirect: request.query.redirect
 		};
 
 	let article,
