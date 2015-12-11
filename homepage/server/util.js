@@ -64,7 +64,10 @@ exports.returnData = function(request, reply) {
 			userName: null,
 			avatarUrl: null,
 			stateReply: null
-		};
+		},
+		info = auth.getEndpointData();
+
+	ret = deepExtend(ret, info);
 
 	this.getLoginState(request).then(function (data) {
 		request.log('info', 'Got valid access token (user id: ' + data.user_id + ')');  // jshint ignore:line

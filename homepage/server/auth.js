@@ -48,6 +48,17 @@ Auth.prototype.login = function (username, password) {
 	return requestWrapper(address);
 };
 
+Auth.prototype.getEndpointData = function (token) {
+	var address = url.resolve(this.baseUrl + '/', 'info?' +
+		querystring.stringify({code: token, noblockcheck: 1}));
+
+	return {
+		address: address,
+		baseUrl: this.baseUrl,
+		servicesUrl: this.servicesUrl,
+	};
+}
+
 Auth.prototype.info = function (token) {
 	var address = url.resolve(this.baseUrl + '/', 'info?' +
 		querystring.stringify({code: token, noblockcheck: 1}));
