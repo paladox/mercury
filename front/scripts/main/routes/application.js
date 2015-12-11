@@ -21,9 +21,7 @@ export default App.ApplicationRoute = Ember.Route.extend(
 			 * @returns {void}
 			 */
 			loading() {
-				if (this.controller) {
-					this.controller.set('isLoading', true);
-				}
+				this.loadingIndicator.activate();
 			},
 
 			/**
@@ -33,9 +31,7 @@ export default App.ApplicationRoute = Ember.Route.extend(
 				// Activate any A/B tests for the new route
 				variantTestingActivate();
 
-				if (this.controller) {
-					this.controller.set('isLoading', false);
-				}
+				this.loadingIndicator.deactivate();
 
 				// Clear notification alerts for the new route
 				this.controller.clearNotifications();
@@ -56,9 +52,7 @@ export default App.ApplicationRoute = Ember.Route.extend(
 			 * @returns {void}
 			 */
 			error(error) {
-				if (this.controller) {
-					this.controller.set('isLoading', false);
-				}
+				this.loadingIndicator.deactivate();
 
 				Ember.Logger.error('Route error', error);
 			},

@@ -60,7 +60,7 @@ export default App.ArticleAddPhotoController = Ember.Controller.extend({
 			type: 'alert'
 		});
 
-		appController.set('isLoading', false);
+		this.loadingIndicator.deactivate();
 
 		track({
 			action: trackActions.impression,
@@ -74,7 +74,7 @@ export default App.ArticleAddPhotoController = Ember.Controller.extend({
 		 * @returns {void}
 		 */
 		upload() {
-			this.get('application').set('isLoading', true);
+			this.loadingIndicator.activate();
 
 			ArticleAddPhotoModel.upload(this.get('model')).then(
 				this.handleUploadSuccess.bind(this),

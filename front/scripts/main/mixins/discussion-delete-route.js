@@ -22,9 +22,9 @@ export default App.DiscussionDeleteRouteMixin = Ember.Mixin.create({
 		deletePost(post) {
 			const loadingSpinnerContainer = this.getLoadingSpinnerContainer(post);
 
-			Ember.set(loadingSpinnerContainer, 'isLoading', true);
+			this.loadingIndicator.activate();
 			this.modelFor(this.get('routeName')).deletePost(post).then(() => {
-				Ember.set(loadingSpinnerContainer, 'isLoading', false);
+				this.loadingIndicator.deactivate();
 			});
 		},
 
@@ -36,9 +36,9 @@ export default App.DiscussionDeleteRouteMixin = Ember.Mixin.create({
 		undeletePost(post) {
 			const loadingSpinnerContainer = this.getLoadingSpinnerContainer(post);
 
-			Ember.set(loadingSpinnerContainer, 'isLoading', true);
+			this.loadingIndicator.activate();
 			this.modelFor(this.get('routeName')).undeletePost(post).then(() => {
-				Ember.set(loadingSpinnerContainer, 'isLoading', false);
+				this.loadingIndicator.deactivate();
 			});
 		},
 
@@ -48,9 +48,9 @@ export default App.DiscussionDeleteRouteMixin = Ember.Mixin.create({
 		 * @returns {void}
 		 */
 		deleteReply(reply) {
-			Ember.set(reply, 'isLoading', true);
+			this.loadingIndicator.activate();
 			this.modelFor(this.get('routeName')).deleteReply(reply).then(() => {
-				Ember.set(reply, 'isLoading', false);
+				this.loadingIndicator.deactivate();
 			});
 		},
 
@@ -60,9 +60,9 @@ export default App.DiscussionDeleteRouteMixin = Ember.Mixin.create({
 		 * @returns {void}
 		 */
 		undeleteReply(reply) {
-			Ember.set(reply, 'isLoading', true);
+			this.loadingIndicator.activate();
 			this.modelFor(this.get('routeName')).undeleteReply(reply).then(() => {
-				Ember.set(reply, 'isLoading', false);
+				this.loadingIndicator.deactivate();
 			});
 		}
 	}

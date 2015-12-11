@@ -6,7 +6,6 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 	TrackClickMixin,
 	{
 		classNames: ['curated-content', 'mw-content'],
-		isLoading: false,
 
 		actions: {
 			/**
@@ -14,28 +13,23 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 			 * @returns {void}
 			 */
 			clickItem(item) {
-				if (this.loadingIndicator.isActive) {
-					this.loadingIndicator.deactivate();
+				const itemType = item.type;
+
+				if (itemType) {
+					this.trackClick('modular-main-page', `curated-content-item-${itemType}`);
+					if (itemType === 'section' || itemType === 'category') {
+						this.sendAction('openCuratedContentItem', item);
+					}
 				} else {
-					this.loadingIndicator.activate();
+					this.trackClick('modular-main-page', 'curated-content-item-other');
 				}
-				//const itemType = item.type;
-                //
-				//if (itemType) {
-				//	this.trackClick('modular-main-page', `curated-content-item-${itemType}`);
-				//	if (itemType === 'section' || itemType === 'category') {
-				//		this.sendAction('openCuratedContentItem', item);
-				//	}
-				//} else {
-				//	this.trackClick('modular-main-page', 'curated-content-item-other');
-				//}
 			},
 
 			/**
 			 * @returns {void}
 			 */
 			loadMore() {
-				this.set('isLoading', true);
+				this.loadingIndicator.activate();
 
 				CuratedContentModel.loadMore(this.get('model'))
 					.catch((reason) => {
@@ -46,7 +40,7 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 						Ember.Logger.error(reason);
 					})
 					.finally(() => {
-						this.set('isLoading', false);
+						this.loadingIndicator.deactivate();
 					});
 			},
 		},

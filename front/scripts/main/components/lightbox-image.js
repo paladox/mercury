@@ -22,7 +22,6 @@ export default App.LightboxImageComponent = Ember.Component.extend(
 
 		isZoomed: Ember.computed.gt('scale', 1),
 		loadingError: false,
-		isLoading: false,
 
 		/**
 		 * This is performance critical place, we will update property 'manually' by calling notifyPropertyChange
@@ -327,7 +326,7 @@ export default App.LightboxImageComponent = Ember.Component.extend(
 		load(url) {
 			const image = new Image();
 
-			this.set('isLoading', true);
+			this.loadingIndicator.activate();
 			image.src = url;
 
 			if (image.complete) {
@@ -352,9 +351,9 @@ export default App.LightboxImageComponent = Ember.Component.extend(
 		 */
 		update(imageSrc, loadingError = false) {
 			if (!this.get('isDestroyed')) {
+				this.loadingIndicator.deactivate();
 				this.setProperties({
 					imageSrc,
-					isLoading: false,
 					loadingError,
 					visible: true
 				});
