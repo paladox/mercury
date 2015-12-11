@@ -85,6 +85,38 @@ export default App.PushNotificationsButtonComponent = Ember.Component.extend(
 		},
 
 		actions: {
+			subscribe() {
+				this.disable = true;
+
+				navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
+					serviceWorkerRegistration.subscribe().then(function(subscription) {
+						// The subscription was successful
+						isPushEnabled = true;
+						this.set('text', 'Disable Push Messages');
+						this.set('disabled', false);
+
+						// TODO: Send the subscription.endpoint to your server
+						// and save it to send a push message at a later date
+						return sendSubscriptionToServer(subscription);
+					}).catch(function(e) {
+						if (Notification.permission === 'denied') {
+							// The user denied the notification permission which
+							// means we failed to subscribe and the user will need
+							// to manually change the notification permission to
+							// subscribe to push messages
+							console.warn('Permission for Notifications was denied');
+							this.set('disabled', true);
+						} else {
+							// A problem occurred with the subscription; common reasons
+							// include network errors, and lacking gcm_sender_id and/or
+							// gcm_user_visible_only in the manifest.
+							console.error('Unable to subscribe to push.', e);
+							this.set('disabled', false);
+							this.set('text', 'Enable Push Messages');
+						}
+					});
+				});
+			}
 		},
 	}
 );
