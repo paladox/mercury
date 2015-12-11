@@ -11,7 +11,8 @@ function termsOfService(request, reply) {
 		title: 'ウィキア・ジャパン'
 	};
 
-	util.renderWithGlobalData(request, reply, data, 'termsofservice');
+	util.returnData(request, reply);
+//	util.renderWithGlobalData(request, reply, data, 'termsofservice');
 }
 
 module.exports = termsOfService;

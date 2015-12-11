@@ -33,6 +33,7 @@ exports.getUserLocale = function (/*request*/) {
 
 exports.getLoginState = function (request) {
 	var accessToken = (request.state) ? request.state.access_token : null; // jshint ignore:line
+	accessToken = 'H2dy2WbqTGKJtDIoeed0Ig';
 
 	if (accessToken && typeof(accessToken) !== 'undefined') {
 		return auth.info(accessToken);
@@ -53,6 +54,49 @@ exports.getLoginUrl = function () {
 exports.getSignupUrl = function () {
 	return localSettings.signupUrl;
 };
+
+exports.returnData = function(request, reply) {
+	var userId,
+		userName,
+		avatarUrl,
+		ret = {
+			userId: null,
+			userName: null,
+			avatarUrl: null,
+			stateReply: null
+		};
+
+	this.getLoginState(request).then(function (data) {
+		request.log('info', 'Got valid access token (user id: ' + data.user_id + ')');  // jshint ignore:line
+
+		console.log(data);
+		userId = data.user_id; // jshint ignore:line
+		ret.userId = data.user_id
+
+		ret.stateReply = data;
+
+		console.log('here');
+
+		return auth.getUserName(ret.userId);
+	}).then(function (data) {
+		userName = data.value;
+		ret.userName = data.value;
+
+		request.log('info', 'Retrieved user name for logged in user: ' + userName);
+
+		return auth.getUserAvatar(userId);
+	}).then(function (data) {
+		avatarUrl = data.value;
+		ret.avatarUrl = data.value;
+
+		request.log('info', 'Retrieved avatar url for logged in user: ' + avatarUrl);
+
+	}).finally(function () {
+		console.log('finally');
+		console.log(ret);
+		reply(ret);
+	});
+}
 
 // todo: look up this data in user session first
 exports.renderWithGlobalData = function (request, reply, data, view) {
@@ -80,6 +124,8 @@ exports.renderWithGlobalData = function (request, reply, data, view) {
 
 	this.getLoginState(request).then(function (data) {
 		request.log('info', 'Got valid access token (user id: ' + data.user_id + ')');  // jshint ignore:line
+
+		console.log(data);
 
 		userId = data.user_id; // jshint ignore:line
 
