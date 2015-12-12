@@ -6,14 +6,13 @@ export default App.LoadingSpinnerComponent = Ember.Component.extend({
 
 	active: false,
 	overlay: true,
-	radius: 30,
-	strokeWidth: 6,
+	radius: 100,
 
-	fullRadius: Ember.computed('radius', function () {
-		return this.get('radius') + (this.get('strokeWidth') / 2);
+	halfRadius: Ember.computed('radius', function () {
+		return this.get('radius') / 2;
 	}),
 
-	fullDiameter: Ember.computed('radius', function () {
-		return this.get('radius') * 2 + this.get('strokeWidth');
+	strokeWidth: Ember.computed('radius', function () {
+		return 4 * this.get('radius') / 100;
 	}),
 });
