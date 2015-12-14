@@ -45,6 +45,56 @@ export default App.DiscussionForumModel = DiscussionBaseModel.extend(DiscussionD
 		});
 	},
 
+	updateView(sortBy) {
+		const oldPosts = this.get('posts');
+
+		return new Ember.RSVP.Promise((resolve) => {
+			Ember.$.ajax({
+				url: M.getDiscussionServiceUrl(`/${this.wikiId}/forums/${this.forumId}`),
+				data: {
+					limit: oldPosts.length + 10,
+					sortKey: this.getSortKey(sortBy),
+					viewableOnly: false
+				},
+				xhrFields: {
+					withCredentials: true,
+				},
+				success: (data) => {
+					const contributors = [],
+						totalPosts = data.threadCount,
+						lastOldPost = oldPosts[oldPosts.length - 1];
+					let posts = data._embedded['doc:threads'];
+
+					posts = posts.filter((post) => {
+						return post.creationDate.epochSecond >= lastOldPost.creationDate.epochSecond;
+					});
+					posts.forEach((post) => {
+						if (post.hasOwnProperty('createdBy')) {
+							post.createdBy.profileUrl = M.buildUrl({
+								namespace: 'User',
+								title: post.createdBy.name
+							});
+							contributors.push(post.createdBy);
+						}
+					});
+
+					this.setProperties({
+						contributors,
+						name: data.name,
+						posts,
+						totalPosts
+					});
+
+					resolve(this);
+				},
+				error: (err) => {
+					this.setErrorProperty(err);
+					resolve(this);
+				}
+			});
+		});
+	},
+
 	/**
 	 * @param {string} sortBy
 	 * @returns {string}
