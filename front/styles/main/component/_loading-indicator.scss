@@ -24,6 +24,12 @@ $loading-indicator-shadow-spread: 20px 0px;
 	}
 }
 
+@mixin loading-indicator-bar($color) {
+	background: $color;
+	height: $loading-indicator-height;
+	box-shadow: 0 0 $loading-indicator-shadow-spread $color;
+}
+
 .loading-indicator {
 	&__wrapper {
 		position: fixed;
@@ -33,9 +39,11 @@ $loading-indicator-shadow-spread: 20px 0px;
 		animation: loading-indicator-animation 2s linear alternate infinite;
 	}
 
-	&__bar {
-		background: $loading-indicator-color;
-		height: $loading-indicator-height;
-		box-shadow: 0 0 $loading-indicator-shadow-spread $loading-indicator-color;
-	}
+	&__bar-comics { @include loading-indicator-bar($color-hub-comics); }
+	&__bar-games { @include loading-indicator-bar($color-hub-games); }
+	&__bar-books { @include loading-indicator-bar($color-hub-books); }
+	&__bar-movies { @include loading-indicator-bar($color-hub-movies); }
+	&__bar-lifestyle { @include loading-indicator-bar($color-hub-lifestyle); }
+	&__bar-music { @include loading-indicator-bar($color-hub-music); }
+	&__bar-tv { @include loading-indicator-bar($color-hub-tv); }
 }
