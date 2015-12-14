@@ -33,16 +33,10 @@ export default App.DiscussionForumController = Ember.Controller.extend(Discussio
 		return filtered.length ? filtered[0].messageKey : sortTypes[0].messageKey;
 	}),
 
-	willDestroy () {
-		this._super();
-
-		clearInterval(this.get('intervalId'));
-	},
-
-	init () {
+	init(...rest) {
 		let context, intervalId;
 
-		this._super();
+		this._super(...rest);
 
 		if (!this.get('intervalId')) {
 			context = this;

@@ -10,16 +10,16 @@ export default App.DiscussionPostController = Ember.Controller.extend(Discussion
 		return model.get('replies.length') < model.get('postCount');
 	}),
 
-	willDestroy () {
-		this._super();
-
+	resetController(...rest) {
+		console.log('post exit');
+		this._super(...rest);
 		clearInterval(this.get('intervalId'));
 	},
 
-	init () {
+	init(...rest) {
 		let context, intervalId;
 
-		this._super();
+		this._super(...rest);
 
 		if (!this.get('intervalId')) {
 			context = this;

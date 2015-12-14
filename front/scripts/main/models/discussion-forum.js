@@ -46,9 +46,11 @@ export default App.DiscussionForumModel = DiscussionBaseModel.extend(DiscussionD
 	},
 
 	updateView(sortBy) {
-		const oldPosts = this.get('posts');
+		console.log('updateView - forum');
 
 		return new Ember.RSVP.Promise((resolve) => {
+			const oldPosts = this.get('posts');
+
 			Ember.$.ajax({
 				url: M.getDiscussionServiceUrl(`/${this.wikiId}/forums/${this.forumId}`),
 				data: {

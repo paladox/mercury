@@ -35,6 +35,12 @@ export default App.DiscussionForumRoute = DiscussionBaseRoute.extend(
 			controller.set('sortBy', transition.params['discussion.forum'].sortBy || this.defaultSortType);
 		},
 
+		resetController(...rest) {
+			this._super(...rest);
+
+			clearInterval(this.controllerFor('discussionForum').get('intervalId'));
+		},
+
 		/**
 		 * @param {string} sortBy
 		 * @returns {EmberStates.Transition}
