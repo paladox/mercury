@@ -12,7 +12,7 @@ import localSettings from '../../config/localSettings';
 /**
  * @class ArticleRequestError
  */
-export class ArticleRequestError {
+export class ArticleRequestError extends Error {
 	/**
 	 * @param {ArticlePageData} data
 	 * @returns {void}
@@ -22,7 +22,6 @@ export class ArticleRequestError {
 		this.data = data;
 	}
 }
-ArticleRequestError.prototype = Object.create(Error.prototype);
 
 /**
  * @class ArticleRequestHelper

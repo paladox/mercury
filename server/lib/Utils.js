@@ -302,7 +302,7 @@ export function getStaticAssetPath(localSettings, request) {
 /**
  * @class RedirectedToCanonicalHost
  */
-export class RedirectedToCanonicalHost {
+export class RedirectedToCanonicalHost extends Error {
 	/**
 	 * @param {*} data
 	 * @returns {void}
@@ -312,7 +312,6 @@ export class RedirectedToCanonicalHost {
 		this.data = data;
 	}
 }
-RedirectedToCanonicalHost.prototype = Object.create(Error.prototype);
 
 /**
  * If user tried to load wiki by its alternative URL then redirect to the primary one based on wikiVariables.basePath
