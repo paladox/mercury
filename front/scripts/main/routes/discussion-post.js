@@ -19,12 +19,6 @@ export default App.DiscussionPostRoute = DiscussionBaseRoute.extend(
 			return DiscussionPostModel.find(Mercury.wiki.id, params.postId);
 		},
 
-		resetController(...rest) {
-			this._super(...rest);
-
-			clearInterval(this.controllerFor('discussionPost').get('intervalId'));
-		},
-
 		/**
 		 * @param {DiscussionPostModel} model
 		 * @returns {void}
@@ -61,6 +55,20 @@ export default App.DiscussionPostRoute = DiscussionBaseRoute.extend(
 				enableShareHeader: false
 			});
 			this._super();
+		},
+
+		setupController(controller, model, transition) {
+			this._super(controller, model, transition);
+
+			controller.set('intervalId', setInterval(function () {model.updateView();}, 10000));
+		},
+
+		resetController(controller, isExitting) {
+			this._super.apply(this, arguments);
+
+			if (isExitting && controller.get('intervalId')) {
+				clearInterval(controller.get('intervalId'));
+			}
 		},
 
 		actions: {

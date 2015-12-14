@@ -33,12 +33,20 @@ export default App.DiscussionForumRoute = DiscussionBaseRoute.extend(
 		setupController(controller, model, transition) {
 			this._super(controller, model, transition);
 			controller.set('sortBy', transition.params['discussion.forum'].sortBy || this.defaultSortType);
+
+			controller.set('intervalId',
+				setInterval(function () {
+					model.updateView(controller.get('sortBy'));
+				}, 10000)
+			);
 		},
 
-		resetController(...rest) {
-			this._super(...rest);
+		resetController(controller, isExitting) {
+			this._super.apply(this, arguments);
 
-			clearInterval(this.controllerFor('discussionForum').get('intervalId'));
+			if (isExitting && controller.get('intervalId')) {
+				clearInterval(controller.get('intervalId'));
+			}
 		},
 
 		/**
