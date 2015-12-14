@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "Wikia Web Application",
   "main": "server.js",
+  "engines": {
+    "node": "v5.2.0",
+    "npm": "3.3.12"
+  },
   "scripts": {
     "dev": "rm -rf www && gulp --nosync",
     "local": "rm -rf www && gulp",
