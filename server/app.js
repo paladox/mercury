@@ -12,6 +12,9 @@ import fs from 'fs';
 import crumb from 'crumb';
 import i18next from 'hapi-i18next';
 import handlebars from 'handlebars';
+import vision from 'vision';
+import inert from 'inert';
+import h2o2 from 'h2o2';
 
 /* eslint no-process-env: 0 */
 
@@ -24,7 +27,7 @@ if (process.env.NEW_RELIC_ENABLED === 'true') {
 }
 
 const isDevbox = localSettings.environment === Environment.Dev,
-	// Creates new `hapi` server
+// Creates new `hapi` server
 	server = new Server({
 		connections: {
 			router: {
@@ -140,7 +143,7 @@ function setupLogging(server) {
 		// If there is an error and headers are not present, set the response time to -1 to make these
 		// errors easy to discover
 		const responseTime = request.response.headers &&
-			request.response.headers.hasOwnProperty('x-backend-response-time') ?
+		request.response.headers.hasOwnProperty('x-backend-response-time') ?
 			parseFloat(request.response.headers['x-backend-response-time']) :
 			-1;
 
@@ -154,6 +157,8 @@ function setupLogging(server) {
 		}, 'Response');
 	});
 }
+
+setupLogging(server);
 
 /**
  * Get list of supported languages based on locales directories
@@ -191,6 +196,15 @@ plugins = [
 				lowerCaseLng: true
 			}
 		}
+	},
+	{
+		register: vision
+	},
+	{
+		register: inert
+	},
+	{
+		register: h2o2
 	}
 ];
 
@@ -204,9 +218,9 @@ server.connection({
 	}
 });
 
-setupLogging(server);
-
 /**
+ * This has to run after server.connection
+ *
  * @param {*} err
  * @returns {void}
  */
@@ -214,35 +228,35 @@ server.register(plugins, (err) => {
 	if (err) {
 		Logger.error(err);
 	}
+
+	server.views({
+		engines: {
+			hbs: handlebars
+		},
+		isCached: true,
+		layout: 'ember-main',
+		helpersPath: path.join(__dirname, 'views', '_helpers'),
+		layoutPath: path.join(__dirname, 'views', '_layouts'),
+		path: path.join(__dirname, 'views'),
+		partialsPath: path.join(__dirname, 'views', '_partials'),
+		context: {
+			i18n: {
+				translateWithCache: server.methods.i18n.translateWithCache,
+				getInstance: server.methods.i18n.getInstance
+			}
+		}
+	});
+
+	// Initialize cookies
+	server.state('access_token', {
+		isHttpOnly: true,
+		clearInvalid: true,
+		domain: localSettings.authCookieDomain
+	});
 });
 
 server.auth.scheme('wikia', wikiaSessionScheme);
 server.auth.strategy('session', 'wikia');
-
-server.views({
-	engines: {
-		hbs: handlebars
-	},
-	isCached: true,
-	layout: 'ember-main',
-	helpersPath: path.join(__dirname, 'views', '_helpers'),
-	layoutPath: path.join(__dirname, 'views', '_layouts'),
-	path: path.join(__dirname, 'views'),
-	partialsPath: path.join(__dirname, 'views', '_partials'),
-	context: {
-		i18n: {
-			translateWithCache: server.methods.i18n.translateWithCache,
-			getInstance: server.methods.i18n.getInstance
-		}
-	}
-});
-
-// Initialize cookies
-server.state('access_token', {
-	isHttpOnly: true,
-	clearInvalid: true,
-	domain: localSettings.authCookieDomain
-});
 
 // instantiate routes
 server.route(routes);

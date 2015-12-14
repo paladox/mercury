@@ -40,7 +40,7 @@ module.exports = {
 		}
 	},
 	views: {
-		src: 'server/views/**/*.+(hbs|js)',
+		src: 'server/views/**/*.hbs',
 		dest: basePath + '/server/views'
 	},
 	templates: {
