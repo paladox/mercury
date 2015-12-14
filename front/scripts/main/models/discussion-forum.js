@@ -46,8 +46,6 @@ export default App.DiscussionForumModel = DiscussionBaseModel.extend(DiscussionD
 	},
 
 	updateView(sortBy) {
-		console.log('updateView - forum');
-
 		return new Ember.RSVP.Promise((resolve) => {
 			const oldPosts = this.get('posts');
 

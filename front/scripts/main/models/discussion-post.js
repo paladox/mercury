@@ -57,8 +57,6 @@ export default App.DiscussionPostModel = DiscussionBaseModel.extend(DiscussionDe
 	},
 
 	updateView() {
-		console.log('updateView - post');
-
 		return new Ember.RSVP.Promise((resolve) => {
 			const oldReplies = this.get('replies');
 
