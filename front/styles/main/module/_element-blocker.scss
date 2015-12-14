@@ -1,0 +1,78 @@
+$wikia-logo-font-color: #ffffff;
+$wikia-logo-background-color: #082040;
+
+.loading-overlay {
+	background: rgba(white, .5);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: $z-6;
+}
+
+@keyframes pop-out {
+	0% {
+		transform: scale(0);
+	}
+}
+
+@keyframes bounce {
+	0% {
+		animation-timing-function: ease-in;
+		transform: translateY(-20px);
+	}
+
+	40% {
+		transform: translateY(0) scale(1);
+	}
+
+	50% {
+		transform: scale(1.25, .75);
+	}
+
+	60% {
+		animation-timing-function: ease-out;
+		transform: scale(.75, 1.25);
+	}
+}
+
+.wikia-logo-blocker {
+	animation-duration: .5s;
+	animation-iteration-count: 1;
+	animation-name: pop-out;
+	animation-timing-function: cubic-bezier(0, 0, 0, 1.75);
+	background: url('../../images/wikia-logo-only-brackets.svg') no-repeat;
+	background-size: cover;
+	height: 100px;
+	left: 50%;
+	margin: -50px 0 0 -50px;
+	position: absolute;
+	top: 50%;
+	width: 100px;
+
+	.dot-left,
+	.dot-right {
+		animation-duration: 1s;
+		animation-iteration-count: infinite;
+		animation-name: bounce;
+		background: $wikia-logo-font-color;
+		border: 4px solid $wikia-logo-background-color;
+		border-radius: 50%;
+		height: 18%;
+		position: absolute;
+		top: 21%;
+		transform: translateY(-20px);
+		transform-origin: bottom;
+		width: 18%;
+	}
+
+	.dot-left {
+		left: 24%;
+	}
+
+	.dot-right {
+		animation-delay: -.5s;
+		right: 24%;
+	}
+}
