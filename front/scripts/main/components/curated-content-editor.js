@@ -75,6 +75,7 @@ export default App.CuratedContentEditorComponent = Ember.Component.extend(
 		 * @returns {void}
 		 */
 		validateAndSave() {
+			this.set('isLoading', true);
 			this.loadingIndicator.activate();
 
 			CuratedContentEditorModel.save(this.get('model'))
@@ -113,6 +114,7 @@ export default App.CuratedContentEditorComponent = Ember.Component.extend(
 					}
 				})
 				.finally(() => {
+					this.set('isLoading', false);
 					this.loadingIndicator.deactivate();
 				});
 		},
