@@ -21,7 +21,6 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 		maxLabelLength: 48,
 		debounceDuration: 250,
 		imageMenuVisible: false,
-		isLoading: false,
 
 		// Force one way binding
 		model: Ember.computed.oneWay('attrs.model'),
@@ -155,7 +154,6 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 			 */
 			setTitleFocusedOut() {
 				this.validateTitle();
-				this.loadingIndicator.deactivate();
 				this.setProperties({
 					isTitleFocused: false,
 					isLoading: false
@@ -218,7 +216,6 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 			fileUpload(files) {
 				this.trackClick('curated-content-editor', 'item-file-upload');
 				this.set('isLoading', true);
-				this.loadingIndicator.activate();
 
 				ArticleAddPhotoModel.load(files[0])
 					.then((photoModel) => ArticleAddPhotoModel.upload(photoModel))
@@ -245,7 +242,6 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 					})
 					.finally(() => {
 						this.set('isLoading', false);
-						this.loadingIndicator.deactivate();
 					});
 			},
 
@@ -395,7 +391,6 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 				})
 				.finally(() => {
 					this.set('isLoading', false);
-					this.loadingIndicator.deactivate();
 				});
 		},
 
@@ -404,7 +399,6 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 		 */
 		getImageDebounced() {
 			this.set('isLoading', true);
-			this.loadingIndicator.activate();
 			Ember.run.debounce(this, this.getImage, this.get('debounceDuration'));
 		},
 
@@ -415,7 +409,6 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 		 */
 		validateAndDone(item, methodName) {
 			this.set('isLoading', true);
-			this.loadingIndicator.activate();
 
 			CuratedContentEditorItemModel.validateServerData(item, methodName)
 				.then((data) => {
@@ -439,7 +432,6 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 				})
 				.finally(() => {
 					this.set('isLoading', false);
-					this.loadingIndicator.deactivate();
 				});
 		},
 
