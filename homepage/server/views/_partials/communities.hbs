@@ -1,116 +1,28 @@
 <section class="featured">
-	<h1>
-		人気のコミュニティ
-	</h1>
-	<div id="carousel-1" class="featured-carousel">
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+1">
+	{{#each sliders}}
+		<h1>
+			{{title}}
+		</h1>
+		<div id="{{id}}" class="featured-carousel">
+			{{#each entries}}
+				<div>
+					<a href="/companyinfo">
+						<img src="{{image}}">
+						<div class="hero-text-overlay">
+							{{text}}
+						</div>
+						{{#if english}}
+							<div class="hero-english-overlay"></div>
+						{{/if}}
+					</a>
+				</div>
+			{{/each}}
 		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+2">
+		<div id="{{id}}-prev" class="hero-prev">
+			<img src="/images/slider-back-button.png">
 		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+3">
+		<div id="{{id}}-next" class="hero-next">
+			<img src="/images/slider-fwd-button.png">
 		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+4">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+5">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+6">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+7">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+8">
-		</div>
-	</div>
-
-	<div id="carousel-1-prev" class="hero-prev">
-		<img src="/images/slider-back-button.png">
-	</div>
-	<div id="carousel-1-next" class="hero-next">
-		<img src="/images/slider-fwd-button.png">
-	</div>
-</section>
-
-<section class="featured">
-	<h1>
-		ゲーム
-	</h1>
-	<div id="carousel-2" class="featured-carousel">
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+1">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+2">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+3">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+4">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+5">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+6">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+7">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+8">
-		</div>
-	</div>
-
-	<div id="carousel-2-prev" class="hero-prev">
-		<img src="/images/slider-back-button.png">
-	</div>
-	<div id="carousel-2-next" class="hero-next">
-		<img src="/images/slider-fwd-button.png">
-	</div>
-</section>
-
-<section class="featured">
-	<h1>
-		映画・ドラマ
-	</h1>
-	<div id="carousel-3" class="featured-carousel">
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+1">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+2">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+3">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+4">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+5">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+6">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+7">
-		</div>
-		<div>
-			<img src="http://placehold.it/250x140?text=Slide+8">
-		</div>
-	</div>
-
-	<div id="carousel-3-prev" class="hero-prev">
-		<img src="/images/slider-back-button.png">
-	</div>
-	<div id="carousel-3-next" class="hero-next">
-		<img src="/images/slider-fwd-button.png">
-	</div>
+	{{/each}}
 </section>

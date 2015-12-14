@@ -1,5 +1,5 @@
 // Default Variables
-$slick-font-path: '/vendor/slick.js/slick/fonts/';
+$slick-font-path: '/vendor/slick-carousel/slick/fonts/';
 $slick-font-family: 'slick' !default;
 $slick-arrow-color: white !default;
 $slick-dot-color: #c8c8c8 !default;
@@ -32,7 +32,7 @@ $slick-opacity-not-active: .75 !default;
 .slick-list {
 	.slick-loading & {
 		$background-color: white;
-		background: $background-color url('/vendor/slick.js/slick/ajax-loader.gif') center center no-repeat;
+		background: $background-color url('/vendor/slick-carousel/slick/ajax-loader.gif') center center no-repeat;
 	}
 }
 

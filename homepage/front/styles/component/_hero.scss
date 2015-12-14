@@ -2,6 +2,10 @@
 $large-screen: 800px;
 $horizontal-bar-mode: $large-screen;
 
+.featured {
+	margin-top: 4em;
+}
+
 .hero {
 	display: block;
 	margin-left: auto;
@@ -33,6 +37,39 @@ $horizontal-bar-mode: $large-screen;
 		font-size: 1em;
 		line-height: 1;
 	}
+}
+
+.hero-text-overlay {
+	background-color: black;
+	bottom: 0;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	height: 48px;
+	left: 0;
+	opacity: 0.6;
+	padding-left: 5px;
+	padding-top: 3px;
+	position: absolute;
+	width: 250px;
+}
+
+.hero-english-overlay {
+	background-color: blue;
+	top: 0;
+	color: white;
+	font-size: 15px;
+	height: 24px;
+	left: 0;
+	opacity: 0.6;
+	padding-top: 1px;
+	position: absolute;
+	text-align: center;
+	width: 50px;
+}
+
+.hero-english-overlay:after {
+	content: "英語";
 }
 
 .hero-mobile {

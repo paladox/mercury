@@ -1,36 +1,20 @@
 <p class="hero-mobile"></p>
 <div class="hero">
 	<div id="carousel-hero" class="hero-carousel">
-		<div>
-			<img src="/images/heroslider/slider-1.jpg">
-			<div class="hero-text">
-				<h1>#MayTheFansBeWithYou</h1>
-				<h2>ファンと共にあらんことを！12月1日世界同時オープン</h2>
-				<h3>
-					<input type="button" value="スペシャルサイトはこちら" id="whatIsWikia">
-				</h3>
+		{{#each heroSlider}}
+			<div>
+				<img src="{{image}}">
+				<div class="hero-text">
+					<h1>{{title}}</h1>
+					<h2>{{subtitle}}</h2>
+					{{#if button}}
+						<h3>
+							<input type="button" value="{{buttonText}}" id="{{buttonId}}">
+						</h3>
+					{{/if}}
+				</div>
 			</div>
-		</div>
-		<div>
-			<img src="/images/heroslider/slider-2.jpg">
-			<div class="hero-text">
-				<h1>The Home of Fandom</h1>
-				<h2>初めまして。ウィキアへようこそ!</h2>
-				<h3>
-					<input type="button" value="スペシャルサイトはこちら" id="whatIsWikia">
-				</h3>
-			</div>
-		</div>
-		<div>
-			<img src="/images/heroslider/slider-3.jpg">
-			<div class="hero-text">
-				<h1>Heading Heading</h1>
-				<h2>Subheading</h2>
-				<h3>
-					<input type="button" value="スペシャルサイトはこちら" id="whatIsWikia">
-				</h3>
-			</div>
-		</div>
+		{{/each}}
 	</div>
 	<div id="hero-prev" class="hero-prev">
 		<img src="/images/slider-back-button.png">
