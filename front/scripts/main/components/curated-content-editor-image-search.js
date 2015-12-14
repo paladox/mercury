@@ -15,8 +15,6 @@ export default App.CuratedContentEditorImageSearchComponent = Ember.Component.ex
 	{
 		classNames: ['curated-content-editor-image-search'],
 		debounceDuration: 300,
-		spinnerOverlay: false,
-		isLoading: false,
 		searchPlaceholder: Ember.computed(() =>
 			i18n.t('app.curated-content-editor-search-images-placeholder')
 		),
@@ -29,7 +27,7 @@ export default App.CuratedContentEditorImageSearchComponent = Ember.Component.ex
 			}));
 
 			if (!Ember.isEmpty(searchQuery)) {
-				this.set('isLoading', true);
+				this.loadingIndicator.activate();
 
 				Ember.run.debounce(this, this.getNextBatch, this.debounceDuration);
 			}
@@ -64,10 +62,7 @@ export default App.CuratedContentEditorImageSearchComponent = Ember.Component.ex
 			 */
 			loadMore() {
 				this.trackClick('curated-content-editor', 'image-search-load-more');
-				this.setProperties({
-					spinnerOverlay: true,
-					isLoading: true,
-				});
+				this.loadingIndicator.deactivate();
 				this.getNextBatch();
 			}
 		},
@@ -83,10 +78,7 @@ export default App.CuratedContentEditorImageSearchComponent = Ember.Component.ex
 					this.set('searchMessage', i18n.t('app.curated-content-editor-no-images-found'));
 				})
 				.finally(() => {
-					this.setProperties({
-						spinnerOverlay: false,
-						isLoading: false,
-					});
+					this.loadingIndicator.deactivate();
 				});
 		}
 	}
