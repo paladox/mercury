@@ -17,19 +17,19 @@ export default App.TimeAgoHelper = Ember.Helper.helper((params) => {
 
 	switch (interval.type) {
 	case dateTimeInterval.Now:
-		return i18n.t('app.now-label');
+		return i18next.t('app.now-label');
 	case dateTimeInterval.Second:
-		return i18n.t('app.seconds-ago-label', {count: interval.value});
+		return i18next.t('app.seconds-ago-label', {count: interval.value});
 	case dateTimeInterval.Minute:
-		return i18n.t('app.minutes-ago-label', {count: interval.value});
+		return i18next.t('app.minutes-ago-label', {count: interval.value});
 	case dateTimeInterval.Hour:
-		return i18n.t('app.hours-ago-label', {count: interval.value});
+		return i18next.t('app.hours-ago-label', {count: interval.value});
 	case dateTimeInterval.Day:
-		return i18n.t('app.days-ago-label', {count: interval.value});
+		return i18next.t('app.days-ago-label', {count: interval.value});
 	case dateTimeInterval.Month:
-		return i18n.t('app.months-ago-label', {count: interval.value});
+		return i18next.t('app.months-ago-label', {count: interval.value});
 	case dateTimeInterval.Year:
-		return i18n.t('app.years-ago-label', {count: interval.value});
+		return i18next.t('app.years-ago-label', {count: interval.value});
 	default:
 		Ember.Logger.error('Unexpected date interval for timestamp', unixTimestamp);
 		return '';

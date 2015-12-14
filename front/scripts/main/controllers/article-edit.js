@@ -33,7 +33,7 @@ export default App.ArticleEditController = Ember.Controller.extend({
 
 		this.transitionToRoute('article', title).then(() => {
 			this.get('application').addAlert({
-				message: i18n.t('app.edit-success', {
+				message: i18next.t('app.edit-success', {
 					pageTitle: title
 				}),
 				type: 'success'
@@ -57,7 +57,7 @@ export default App.ArticleEditController = Ember.Controller.extend({
 			errorMsg = this.errorCodeMap[error] || 'app.edit-publish-error';
 
 		appController.addAlert({
-			message: i18n.t(errorMsg),
+			message: i18next.t(errorMsg),
 			type: 'alert'
 		});
 

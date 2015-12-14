@@ -18,7 +18,7 @@ export default App.ArticleAddPhotoRoute = Ember.Route.extend(FullPageMixin, {
 		 */
 		error() {
 			this.controllerFor('application').addAlert({
-				message: i18n.t('app.addphoto-load-error'),
+				message: i18next.t('app.addphoto-load-error'),
 				type: 'alert'
 			});
 

@@ -31,13 +31,13 @@ export default App.MainPageSectionRoute = Ember.Route.extend(MainPageRouteMixin,
 		error(error) {
 			if (error && error.status === 404) {
 				this.controllerFor('application').addAlert({
-					message: i18n.t('app.curated-content-error-section-not-found'),
+					message: i18next.t('app.curated-content-error-section-not-found'),
 					type: 'warning',
 					persistent: true,
 				});
 			} else {
 				this.controllerFor('application').addAlert({
-					message: i18n.t('app.curated-content-error-other'),
+					message: i18next.t('app.curated-content-error-other'),
 					type: 'warning',
 					persistent: true,
 				});

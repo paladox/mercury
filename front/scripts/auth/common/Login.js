@@ -160,7 +160,7 @@ export default class Login {
 		const errorElement = document.createElement('small');
 
 		errorElement.classList.add('error');
-		errorElement.innerHTML = i18n.t(messageKey);
+		errorElement.innerHTML = i18next.t(messageKey);
 		this.form.appendChild(errorElement);
 	}
 

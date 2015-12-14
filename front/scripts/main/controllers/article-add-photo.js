@@ -24,7 +24,7 @@ export default App.ArticleAddPhotoController = Ember.Controller.extend({
 
 		this.transitionToRoute('article', title).then(() => {
 			this.get('application').addAlert({
-				message: i18n.t('app.add-photo-success'),
+				message: i18next.t('app.add-photo-success'),
 				type: 'success'
 			});
 		});
@@ -56,7 +56,7 @@ export default App.ArticleAddPhotoController = Ember.Controller.extend({
 			errorMsg = this.errorCodeMap[error] || 'app.add-photo-error';
 
 		appController.addAlert({
-			message: i18n.t(errorMsg),
+			message: i18next.t(errorMsg),
 			type: 'alert'
 		});
 

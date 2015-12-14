@@ -27,7 +27,7 @@ export default App.ArticleEditRoute = Ember.Route.extend(FullPageMixin, {
 		 */
 		error() {
 			this.controllerFor('application').addAlert({
-				message: i18n.t('app.edit-load-error'),
+				message: i18next.t('app.edit-load-error'),
 				type: 'alert'
 			});
 

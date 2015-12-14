@@ -91,7 +91,7 @@ export default App.DiscussionEditorComponent = Ember.Component.extend(ViewportMi
 	 */
 	errorMessageObserver: Ember.observer('errorMessage', function () {
 		if (this.get('errorMessage')) {
-			alert(i18n.t(this.get('errorMessage'), {ns: 'discussion'}));
+			alert(i18next.t(this.get('errorMessage'), {ns: 'discussion'}));
 		}
 		this.set('isLoading', false);
 	}),

@@ -67,9 +67,9 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 
 		pageNameTooltip: Ember.computed('isCategory', function () {
 			if (this.get('isCategory')) {
-				return i18n.t('app.curated-content-editor-enter-category-name-tooltip');
+				return i18next.t('app.curated-content-editor-enter-category-name-tooltip');
 			}
-			return i18n.t('app.curated-content-editor-enter-page-name-tooltip');
+			return i18next.t('app.curated-content-editor-enter-page-name-tooltip');
 		}),
 
 		searchSuggestionsResult: [],
@@ -81,11 +81,11 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 		searchSuggestionsMessage: Ember.computed('suggestionsError', function () {
 			if (this.get('suggestionsError')) {
 				if (this.get('isCategory')) {
-					return i18n.t('app.curated-content-editor-no-categories-found');
+					return i18next.t('app.curated-content-editor-no-categories-found');
 				}
-				return i18n.t('app.curated-content-editor-no-articles-found');
+				return i18next.t('app.curated-content-editor-no-articles-found');
 			}
-			return i18n.t('app.curated-content-editor-suggestions-loading');
+			return i18next.t('app.curated-content-editor-suggestions-loading');
 		}),
 
 		/**
@@ -203,7 +203,7 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 				const trackLabel = this.get('isSection') ? 'section-delete' : 'item-delete';
 
 				this.trackClick('curated-content-editor', trackLabel);
-				if (confirm(i18n.t('app.curated-content-editor-remove-item-confirmation'))) {
+				if (confirm(i18next.t('app.curated-content-editor-remove-item-confirmation'))) {
 					this.sendAction('deleteItem');
 				}
 			},
@@ -234,12 +234,12 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 							this.sendAction('changeLayout', this.get('imageCropLayout.name'));
 						} else {
 							Ember.Logger.error('Image Data Object is malformed. Url or article_id is missing');
-							this.set('imageErrorMessage', i18n.t('app.curated-content-image-upload-error'));
+							this.set('imageErrorMessage', i18next.t('app.curated-content-image-upload-error'));
 						}
 					})
 					.catch((err) => {
 						Ember.Logger.error(err);
-						this.set('imageErrorMessage', i18n.t('app.curated-content-image-upload-error'));
+						this.set('imageErrorMessage', i18next.t('app.curated-content-image-upload-error'));
 					})
 					.finally(() => {
 						this.set('isLoading', false);
@@ -314,7 +314,7 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 			let errorMessage = null;
 
 			if (!imageUrl) {
-				errorMessage = i18n.t('app.curated-content-editor-image-missing-error');
+				errorMessage = i18next.t('app.curated-content-editor-image-missing-error');
 			}
 
 			this.set('imageErrorMessage', errorMessage);
@@ -338,7 +338,7 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 				errorMessage = 'app.curated-content-editor-label-in-use-error';
 			}
 
-			this.set('labelErrorMessage', i18n.t(errorMessage));
+			this.set('labelErrorMessage', i18next.t(errorMessage));
 
 			return !errorMessage;
 		},
@@ -355,8 +355,8 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 
 				if (Ember.isEmpty(title)) {
 					errorMessage = this.get('isCategory') ?
-						i18n.t('app.curated-content-editor-missing-category-title-error') :
-						i18n.t('app.curated-content-editor-missing-page-title-error');
+						i18next.t('app.curated-content-editor-missing-category-title-error') :
+						i18next.t('app.curated-content-editor-missing-page-title-error');
 				}
 
 				this.set('titleErrorMessage', errorMessage);
@@ -383,12 +383,12 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 							'model.image_crop': null
 						});
 					} else if (!this.get('model.image_url')) {
-						this.set('imageErrorMessage', i18n.t('app.curated-content-editor-image-missing-error'));
+						this.set('imageErrorMessage', i18next.t('app.curated-content-editor-image-missing-error'));
 					}
 				})
 				.catch((err) => {
 					Ember.Logger.error(err);
-					this.set('imageErrorMessage', i18n.t('app.curated-content-error-other'));
+					this.set('imageErrorMessage', i18next.t('app.curated-content-error-other'));
 				})
 				.finally(() => {
 					this.set('isLoading', false);
@@ -419,7 +419,7 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 						data.errors.forEach((error) => this.processValidationError(error));
 					} else {
 						this.addAlert({
-							message: i18n.t('app.curated-content-error-other'),
+							message: i18next.t('app.curated-content-error-other'),
 							type: 'alert'
 						});
 					}
@@ -427,7 +427,7 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 				.catch((err) => {
 					Ember.Logger.error(err);
 					this.addAlert({
-						message: i18n.t('app.curated-content-error-other'),
+						message: i18next.t('app.curated-content-error-other'),
 						type: 'alert'
 					});
 				})
@@ -443,7 +443,7 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 		processValidationError(errorMessage) {
 			switch (errorMessage) {
 			case 'articleNotFound':
-				this.set('titleErrorMessage', i18n.t('app.curated-content-editor-article-not-found-error'));
+				this.set('titleErrorMessage', i18next.t('app.curated-content-editor-article-not-found-error'));
 				break;
 			case 'emptyLabel':
 			case 'tooLongLabel':
@@ -451,19 +451,19 @@ export default App.CuratedContentEditorItemFormComponent = Ember.Component.exten
 				this.validateLabel();
 				break;
 			case 'videoNotSupportProvider':
-				this.set('titleErrorMessage', i18n.t('app.curated-content-editor-video-provider-not-supported-error'));
+				this.set('titleErrorMessage', i18next.t('app.curated-content-editor-video-provider-not-supported-error'));
 				break;
 			case 'notSupportedType':
-				this.set('titleErrorMessage', i18n.t('app.curated-content-editor-unsupported-page-type-error'));
+				this.set('titleErrorMessage', i18next.t('app.curated-content-editor-unsupported-page-type-error'));
 				break;
 			case 'duplicatedLabel':
-				this.set('labelErrorMessage', i18n.t('app.curated-content-editor-label-in-use-error'));
+				this.set('labelErrorMessage', i18next.t('app.curated-content-editor-label-in-use-error'));
 				break;
 			case 'noCategoryInTag':
-				this.set('titleErrorMessage', i18n.t('app.curated-content-editor-only-categories-supported-error'));
+				this.set('titleErrorMessage', i18next.t('app.curated-content-editor-only-categories-supported-error'));
 				break;
 			case 'imageMissing':
-				this.set('imageErrorMessage', i18n.t('app.curated-content-editor-image-missing-error'));
+				this.set('imageErrorMessage', i18next.t('app.curated-content-editor-image-missing-error'));
 				break;
 			default:
 				// none

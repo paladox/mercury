@@ -44,11 +44,11 @@ export default App.SmartBannerComponent = Ember.Component.extend({
 	}),
 
 	labelInStore: Ember.computed('system', function () {
-		return i18n.t(`app.smartbanner-store-${this.get('system')}`);
+		return i18next.t(`app.smartbanner-store-${this.get('system')}`);
 	}),
 
 	labelInstall: Ember.computed('system', function () {
-		return i18n.t(`app.smartbanner-install-${this.get('system')}`);
+		return i18next.t(`app.smartbanner-install-${this.get('system')}`);
 	}),
 
 	link: Ember.computed('appId', 'dbName', 'system', function () {

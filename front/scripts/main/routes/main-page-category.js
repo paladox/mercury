@@ -33,13 +33,13 @@ export default App.MainPageCategoryRoute = Ember.Route.extend(MainPageRouteMixin
 			// and code comes from MercuryApiController in MW and server side code in Mercury app
 			if (error && (error.status === 404 || error.code === 404)) {
 				this.controllerFor('application').addAlert({
-					message: i18n.t('app.curated-content-error-category-not-found'),
+					message: i18next.t('app.curated-content-error-category-not-found'),
 					type: 'warning',
 					persistent: true,
 				});
 			} else {
 				this.controllerFor('application').addAlert({
-					message: i18n.t('app.curated-content-error-other'),
+					message: i18next.t('app.curated-content-error-other'),
 					type: 'warning',
 					persistent: true,
 				});

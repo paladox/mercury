@@ -125,7 +125,7 @@ export default class FormErrors {
 	 * @returns {string}
 	 */
 	translateValidationError(errCode) {
-		return i18n.t(`errors.${errCode}`);
+		return i18next.t(`errors.${errCode}`);
 	}
 
 	/**

@@ -29,7 +29,7 @@ export default App.IEIFrameFocusFixMixin = Ember.Mixin.create({
 					Ember.Logger.error('Ponto error:', err);
 
 					this.controllerFor('application').addAlert({
-						message: i18n.t('app.curated-content-error-other'),
+						message: i18next.t('app.curated-content-error-other'),
 						type: 'alert'
 					});
 				},

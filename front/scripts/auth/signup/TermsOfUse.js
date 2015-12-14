@@ -43,7 +43,7 @@ export default class TermsOfUse {
 			checkbox.id = 'termsOfUseCheckbox';
 			checkbox.required = true;
 			label.appendChild(checkbox);
-			label.innerHTML += i18n.t(
+			label.innerHTML += i18next.t(
 				'labels.terms-of-use-and-privacy-policy-text',
 				{
 					termsOfUseLink: pageParams.termsOfUseLink,

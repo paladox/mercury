@@ -144,14 +144,14 @@ export default App.CuratedContentEditorRoute = Ember.Route.extend(
 			error(error) {
 				if (error.status === 403) {
 					this.controllerFor('application').addAlert({
-						message: i18n.t('app.curated-content-editor-error-no-access-permissions'),
+						message: i18next.t('app.curated-content-editor-error-no-access-permissions'),
 						type: 'warning'
 					});
 					this.handleTransitionToMainPage();
 				} else {
 					Ember.Logger.error(error);
 					this.controllerFor('application').addAlert({
-						message: i18n.t('app.curated-content-error-other'),
+						message: i18next.t('app.curated-content-error-other'),
 						type: 'warning'
 					});
 					this.transitionTo('curatedContentEditor');
@@ -172,7 +172,7 @@ export default App.CuratedContentEditorRoute = Ember.Route.extend(
 					CuratedContentEditorModel.isDirty &&
 					!isStayingOnEditor &&
 					!this.get('publish') &&
-					!confirm(i18n.t('app.curated-content-editor-exit-prompt'))
+					!confirm(i18next.t('app.curated-content-editor-exit-prompt'))
 				) {
 					transition.abort();
 				}
@@ -224,7 +224,7 @@ export default App.CuratedContentEditorRoute = Ember.Route.extend(
 			if (
 				CuratedContentEditorModel.isDirty &&
 				!dataSaved &&
-				!confirm(i18n.t('app.curated-content-editor-exit-prompt'))
+				!confirm(i18next.t('app.curated-content-editor-exit-prompt'))
 			) {
 				return;
 			}
@@ -245,7 +245,7 @@ export default App.CuratedContentEditorRoute = Ember.Route.extend(
 					Ember.Logger.error('Ponto error:', err);
 
 					this.controllerFor('application').addAlert({
-						message: i18n.t('app.curated-content-error-other'),
+						message: i18next.t('app.curated-content-error-other'),
 						type: 'alert'
 					});
 				},

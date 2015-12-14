@@ -19,6 +19,9 @@ var gulp = require('gulp'),
 	paths = require('../paths'),
 	options = require('../options'),
 	environment = require('../utils/environment'),
+	assets = useref.assets({
+		searchPath: paths.base
+	}),
 	preprocessContext = {
 		base: paths.baseFull
 	},
@@ -44,30 +47,35 @@ gulp.task('build-views', ['scripts-front', 'vendor', 'build-vendor', 'build-comb
 		}),
 
 		// preprocess and revReplace don't like being fed through piper/multipipe
-		preprocess({context: preprocessContext}),
+		gulpif('**/_layouts/*.hbs', preprocess({context: preprocessContext})),
 		// Read JSON manifests written out by rev. Allows replacing file names that were reved prior to the current task
-		revReplace({manifest: manifest}),
+		gulpif('**/_layouts/*.hbs', revReplace({manifest: manifest})),
+
 
 		// TODO: Leave this in for now to run the normal template based assets pipeline while we're using async scripts
 		gulpif(environment.isProduction,
 			gulpif('**/_layouts/*.hbs', piper(
-				useref({searchPath: paths.base}),
+				assets,
 				//before running build I can not know what files from vendor to minify
 				gulpif('**/*.js', uglify()),
 				rev(),
 				gulp.dest(paths.base),
+				assets.restore(),
+				useref(),
 				revReplace()
-			)
-		)),
+				)
+			)),
+
+		gulpif('**/_layouts/*.hbs', gulp.dest('www/server/views/_layouts')),
 
 		// for ember-main.hbs, find the file paths in the template source and replace them for prod CDN
 		gulpif(environment.isProduction, piper(
-			replace(options.replace.find, options.replace.replace),
-			replace(options.replace.find, options.replace.replace),
+			gulpif(options.replace.selector.layouts, replace(options.replace.find, options.replace.replace)),
+			gulpif(options.replace.selector.partials, replace(options.replace.find, options.replace.replace)),
 			minifyHTML({
 				quotes: true
 			})
 		)),
-		gulp.dest(paths.views.dest)
+		gulpif('**/views/**/*.hbs', gulp.dest(paths.views.dest))
 	);
 });

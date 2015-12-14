@@ -16,7 +16,7 @@ if (typeof window.translations === 'undefined') {
 	window.translations = {};
 }
 
-i18n.init({
+i18next.init({
 	fallbackLng: 'en',
 	lng: window.language,
 	lowerCaseLng: true,

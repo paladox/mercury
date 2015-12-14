@@ -82,19 +82,19 @@ export default App.CuratedContentEditorComponent = Ember.Component.extend(
 				.then((data) => {
 					if (data.status) {
 						this.addAlert({
-							message: i18n.t('app.curated-content-editor-changes-saved'),
+							message: i18next.t('app.curated-content-editor-changes-saved'),
 							type: 'info'
 						});
 
 						this.sendAction('openMainPage', true);
 					} else if (data.error) {
 						this.addAlert({
-							message: i18n.t('app.curated-content-editor-error-inside-items-message'),
+							message: i18next.t('app.curated-content-editor-error-inside-items-message'),
 							type: 'alert'
 						});
 					} else {
 						this.addAlert({
-							message: i18n.t('app.curated-content-error-other'),
+							message: i18next.t('app.curated-content-error-other'),
 							type: 'alert'
 						});
 					}
@@ -102,13 +102,13 @@ export default App.CuratedContentEditorComponent = Ember.Component.extend(
 				.catch((err) => {
 					if (err.status === 403) {
 						this.addAlert({
-							message: i18n.t('app.curated-content-editor-error-no-save-permissions'),
+							message: i18next.t('app.curated-content-editor-error-no-save-permissions'),
 							type: 'warning'
 						});
 					} else {
 						Ember.Logger.error(err);
 						this.addAlert({
-							message: i18n.t('app.curated-content-error-other'),
+							message: i18next.t('app.curated-content-error-other'),
 							type: 'alert'
 						});
 					}

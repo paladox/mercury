@@ -99,7 +99,7 @@ export default App.ArticleRoute = Ember.Route.extend({
 
 			if (this.get('redirectEmptyTarget')) {
 				this.controllerFor('application').addAlert({
-					message: i18n.t('app.article-redirect-empty-target'),
+					message: i18next.t('app.article-redirect-empty-target'),
 					type: 'warning'
 				});
 			}
@@ -118,7 +118,7 @@ export default App.ArticleRoute = Ember.Route.extend({
 			}
 
 			this.controllerFor('application').addAlert({
-				message: i18n.t('app.article-error'),
+				message: i18next.t('app.article-error'),
 				type: 'alert'
 			});
 

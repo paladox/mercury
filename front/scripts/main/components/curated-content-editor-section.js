@@ -64,7 +64,7 @@ export default App.CuratedContentEditorSectionComponent = Ember.Component.extend
 					this.validateAndDone();
 				} else {
 					this.addAlert({
-						message: i18n.t('app.curated-content-editor-empty-section-error'),
+						message: i18next.t('app.curated-content-editor-empty-section-error'),
 						type: 'alert'
 					});
 				}
@@ -93,7 +93,7 @@ export default App.CuratedContentEditorSectionComponent = Ember.Component.extend
 					data.errors.forEach((error) => this.processValidationError(error));
 				} else {
 					this.addAlert({
-						message: i18n.t('app.curated-content-error-other'),
+						message: i18next.t('app.curated-content-error-other'),
 						type: 'alert'
 					});
 				}
@@ -101,7 +101,7 @@ export default App.CuratedContentEditorSectionComponent = Ember.Component.extend
 			.catch((err) => {
 				Ember.Logger.error(err);
 				this.addAlert({
-					message: i18n.t('app.curated-content-error-other'),
+					message: i18next.t('app.curated-content-error-other'),
 					type: 'alert'
 				});
 			})
@@ -117,13 +117,13 @@ export default App.CuratedContentEditorSectionComponent = Ember.Component.extend
 		processValidationError(errorMessage) {
 			if (errorMessage === 'itemsMissing') {
 				this.addAlert({
-					message: i18n.t('app.curated-content-editor-empty-section-error'),
+					message: i18next.t('app.curated-content-editor-empty-section-error'),
 					type: 'alert'
 				});
 			} else {
 				// if other items occur that means user somehow bypassed validation of one or more items earlier
 				this.addAlert({
-					message: i18n.t('app.curated-content-editor-general-section-error'),
+					message: i18next.t('app.curated-content-editor-general-section-error'),
 					type: 'alert'
 				});
 			}

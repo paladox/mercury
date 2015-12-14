@@ -57,7 +57,7 @@ App.initializer({
 App.initializer({
 	name: 'preload',
 	after: 'optimizely',
-	initialize(container, application) {
+	initialize(application) {
 		const $window = $(window),
 			/**
 			 * prevents fail if transitions are empty
@@ -88,15 +88,13 @@ App.initializer({
 			LOG_TRANSITIONS_INTERNAL: debug
 		});
 
-		i18n.init({
+		i18next.init({
 			debug,
-			detectLngQS: 'uselang',
 			fallbackLng: 'en',
 			lng: application.get('language'),
 			lowerCaseLng: true,
-			ns: 'main',
-			resStore: loadedTranslations,
-			useLocalStorage: false
+			defaultNS: 'main',
+			resources: loadedTranslations,
 		});
 
 		// FastClick disables the 300ms delay on iOS and some Android devices. It also uses clicks so that
@@ -142,7 +140,7 @@ App.initializer({
 App.initializer({
 	name: 'currentUser',
 	after: 'performanceMonitoring',
-	initialize(container, application) {
+	initialize(application) {
 		application.register('currentUser:main', CurrentUser);
 		application.inject('component', 'currentUser', 'currentUser:main');
 	}

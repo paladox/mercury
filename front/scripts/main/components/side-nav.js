@@ -10,7 +10,7 @@ export default App.SideNavComponent = Ember.Component.extend({
 	isInSearchMode: false,
 	searchQuery: '',
 	searchPlaceholderLabel: Ember.computed(() => {
-		return i18n.t('app.search-label');
+		return i18next.t('app.search-label');
 	}),
 
 	shouldBeVisibleObserver: Ember.observer('shouldBeVisible', function () {

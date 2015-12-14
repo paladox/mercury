@@ -35,7 +35,7 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 				CuratedContentModel.loadMore(this.get('model'))
 					.catch((reason) => {
 						this.controllerFor('application').addAlert({
-							message: i18n.t('app.curated-content-error-load-more-items'),
+							message: i18next.t('app.curated-content-error-load-more-items'),
 							type: 'error'
 						});
 						Ember.Logger.error(reason);

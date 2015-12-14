@@ -27,7 +27,7 @@ export default App.DiscussionPostRoute = DiscussionBaseRoute.extend(
 			let title = model.get('title');
 
 			if (!title) {
-				title = i18n.t('main.share-default-title', {siteName: Mercury.wiki.siteName, ns: 'discussion'});
+				title = i18next.t('main.share-default-title', {siteName: Mercury.wiki.siteName, ns: 'discussion'});
 			}
 
 			this.controllerFor('application').set('currentTitle', title);

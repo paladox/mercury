@@ -66,7 +66,7 @@ export default App.ArticleContentComponent = Ember.Component.extend(
 
 					Ember.run.later(this, () => this.replaceMediaPlaceholdersWithMediaComponents(this.get('media')), 0);
 				} else {
-					this.hackIntoEmberRendering(i18n.t('app.article-empty-label'));
+					this.hackIntoEmberRendering(i18next.t('app.article-empty-label'));
 				}
 
 				this.injectAds();

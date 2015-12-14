@@ -18,7 +18,7 @@ export default App.CuratedContentEditorImageSearchComponent = Ember.Component.ex
 		spinnerOverlay: false,
 		isLoading: false,
 		searchPlaceholder: Ember.computed(() =>
-			i18n.t('app.curated-content-editor-search-images-placeholder')
+			i18next.t('app.curated-content-editor-search-images-placeholder')
 		),
 
 		searchQueryObserver: Ember.observer('searchQuery', function () {
@@ -80,7 +80,7 @@ export default App.CuratedContentEditorImageSearchComponent = Ember.Component.ex
 				.catch((error) => {
 					Ember.Logger.error(error);
 
-					this.set('searchMessage', i18n.t('app.curated-content-editor-no-images-found'));
+					this.set('searchMessage', i18next.t('app.curated-content-editor-no-images-found'));
 				})
 				.finally(() => {
 					this.setProperties({

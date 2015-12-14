@@ -115,6 +115,6 @@ export default App.DiscussionDeleteModelMixin = Ember.Mixin.create({
 	},
 
 	displayError() {
-		alert(i18n.t('editor.post-error-general-error', {ns: 'discussion'}));
+		alert(i18next.t('editor.post-error-general-error', {ns: 'discussion'}));
 	}
 });
