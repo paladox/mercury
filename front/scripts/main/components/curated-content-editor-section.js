@@ -18,7 +18,6 @@ export default App.CuratedContentEditorSectionComponent = Ember.Component.extend
 			return this.generateThumbUrl(this.get('model.image_url'));
 		}),
 		notEmptyItems: Ember.computed.notEmpty('model.items'),
-		isLoading: false,
 
 		actions: {
 			/**
@@ -75,7 +74,7 @@ export default App.CuratedContentEditorSectionComponent = Ember.Component.extend
 		 * @returns {void}
 		 */
 		validateAndDone() {
-			this.set('isLoading', true);
+			this.loadingIndicator.activate();
 
 			CuratedContentEditorItemModel.validateServerData(
 				this.get('model'), 'validateCuratedContentSectionWithItems'
@@ -106,7 +105,7 @@ export default App.CuratedContentEditorSectionComponent = Ember.Component.extend
 				});
 			})
 			.finally(() => {
-				this.set('isLoading', false);
+				this.loadingIndicator.deactivate();
 			});
 		},
 

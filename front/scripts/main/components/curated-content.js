@@ -6,7 +6,6 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 	TrackClickMixin,
 	{
 		classNames: ['curated-content', 'mw-content'],
-		isLoading: false,
 
 		actions: {
 			/**
@@ -30,7 +29,7 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 			 * @returns {void}
 			 */
 			loadMore() {
-				this.set('isLoading', true);
+				this.loadingIndicator.activate();
 
 				CuratedContentModel.loadMore(this.get('model'))
 					.catch((reason) => {
@@ -41,7 +40,7 @@ export default App.CuratedContentComponent = Ember.Component.extend(
 						Ember.Logger.error(reason);
 					})
 					.finally(() => {
-						this.set('isLoading', false);
+						this.loadingIndicator.deactivate();
 					});
 			},
 		},

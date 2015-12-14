@@ -12,7 +12,6 @@ export default App.CuratedContentEditorImageCropComponent = Ember.Component.exte
 	{
 		imgSelector: '.curated-content-editor-photo-crop > img',
 		$imgElement: null,
-		isLoading: false,
 		cropperInitialized: false,
 		imagePropertiesUrl: Ember.computed('imageProperties.url', 'model.image_url', function () {
 			const imagePropertiesUrl = this.get('imageProperties.url');
@@ -103,7 +102,7 @@ export default App.CuratedContentEditorImageCropComponent = Ember.Component.exte
 			let image;
 
 			if (url) {
-				this.set('isLoading', true);
+				this.loadingIndicator.activate();
 
 				image = new Image();
 				image.onload = () => this.onImageLoaded();
@@ -136,8 +135,8 @@ export default App.CuratedContentEditorImageCropComponent = Ember.Component.exte
 			if (!this.get('cropperInitialized')) {
 				$imgElement.cropper(this.get('currentCropperSettings'));
 
+				this.loadingIndicator.deactivate();
 				this.setProperties({
-					isLoading: false,
 					cropperInitialized: true,
 					$imgElement
 				});

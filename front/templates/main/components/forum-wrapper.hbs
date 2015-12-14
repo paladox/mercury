@@ -20,14 +20,6 @@
 	}}
 {{/each}}
 {{#if hasMore}}
-	{{#if isLoading }}
-		{{loading-spinner
-			active=true
-			overlay=false
-			radius=32
-			strokeWidth=2
-		}}
-	{{/if}}
 	<div class="load-more">
 		{{i18n 'main.loading-more-posts' ns='discussion'}}
 	</div>

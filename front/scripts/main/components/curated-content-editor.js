@@ -8,7 +8,6 @@ export default App.CuratedContentEditorComponent = Ember.Component.extend(
 	TrackClickMixin,
 	{
 		classNames: ['curated-content-editor'],
-		isLoading: false,
 
 		/**
 		 * When user enters curated content editor we want to clear all notifications that might be still there
@@ -76,7 +75,7 @@ export default App.CuratedContentEditorComponent = Ember.Component.extend(
 		 * @returns {void}
 		 */
 		validateAndSave() {
-			this.set('isLoading', true);
+			this.loadingIndicator.activate();
 
 			CuratedContentEditorModel.save(this.get('model'))
 				.then((data) => {
@@ -114,7 +113,7 @@ export default App.CuratedContentEditorComponent = Ember.Component.extend(
 					}
 				})
 				.finally(() => {
-					this.set('isLoading', false);
+					this.loadingIndicator.deactivate();
 				});
 		},
 	}

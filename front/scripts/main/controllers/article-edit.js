@@ -61,7 +61,7 @@ export default App.ArticleEditController = Ember.Controller.extend({
 			type: 'alert'
 		});
 
-		appController.set('isLoading', false);
+		this.loadingIndicator.deactivate();
 
 		this.set('isPublishing', false);
 
@@ -78,7 +78,7 @@ export default App.ArticleEditController = Ember.Controller.extend({
 		 */
 		publish() {
 			this.set('isPublishing', true);
-			this.get('application').set('isLoading', true);
+			this.loadingIndicator.activate();
 
 			ArticleEditModel.publish(this.get('model')).then(
 				this.handlePublishSuccess.bind(this),

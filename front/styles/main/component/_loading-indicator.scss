@@ -1,0 +1,49 @@
+$loading-indicator-color: red;
+$loading-indicator-height: 5px;
+$loading-indicator-shadow-spread: 20px 0px;
+
+@keyframes loading-indicator-animation {
+	0% {
+		left: 0;
+		right: 100%;
+	}
+
+	40% {
+		left: 25%;
+		right: 50%;
+	}
+
+	60% {
+		left: 50%;
+		right: 25%;
+	}
+
+	100% {
+		left: 100%;
+		right: 0;
+	}
+}
+
+@mixin loading-indicator-bar($color) {
+	background: $color;
+	height: $loading-indicator-height;
+	box-shadow: 0 0 $loading-indicator-shadow-spread $color;
+}
+
+.loading-indicator {
+	&__wrapper {
+		position: fixed;
+		top: 0;
+		z-index: $z-9;
+		transition: opacity .5s;
+		animation: loading-indicator-animation 2s linear alternate infinite;
+	}
+
+	&__bar-comics { @include loading-indicator-bar($color-hub-comics); }
+	&__bar-games { @include loading-indicator-bar($color-hub-games); }
+	&__bar-books { @include loading-indicator-bar($color-hub-books); }
+	&__bar-movies { @include loading-indicator-bar($color-hub-movies); }
+	&__bar-lifestyle { @include loading-indicator-bar($color-hub-lifestyle); }
+	&__bar-music { @include loading-indicator-bar($color-hub-music); }
+	&__bar-tv { @include loading-indicator-bar($color-hub-tv); }
+}

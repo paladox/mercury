@@ -4,6 +4,7 @@ import {integrateOptimizelyWithUA} from '../mercury/utils/variantTesting';
 import Ads from '../mercury/modules/Ads';
 import UniversalAnalytics from '../mercury/modules/Trackers/UniversalAnalytics';
 import CurrentUser from './CurrentUser';
+import loadingIndicator from './services/loading-indicator';
 
 const App = Ember.Application.create({
 	// We specify a rootElement, otherwise Ember appends to the <body> element and Google PageSpeed thinks we are
@@ -36,6 +37,17 @@ App.initializer({
 			(new VisitSource('WikiaSessionSource', M.prop('cookieDomain'))).checkAndStore();
 			(new VisitSource('WikiaLifetimeSource', M.prop('cookieDomain'), false)).checkAndStore();
 		}
+	}
+});
+
+App.initializer({
+	name: 'services',
+	initialize(container, app) {
+		app.register('service:loadingindicator', loadingIndicator);
+		// Inject into all routes and controllers
+		app.inject('route', 'loadingIndicator', 'service:loadingindicator');
+		app.inject('controller', 'loadingIndicator', 'service:loadingindicator');
+		app.inject('component', 'loadingIndicator', 'service:loadingindicator');
 	}
 });
 
