@@ -43,14 +43,16 @@ export default App.DiscussionForumController = Ember.Controller.extend(Discussio
 		let context, intervalId;
 
 		this._super();
-		context = this;
 
-		intervalId = setInterval(function() {
-			const model = context.get('model');
-			model.updateView(context.get('sortBy'));
-		}, 10000);
+		if (!this.get('intervalId')) {
+			context = this;
+			intervalId = setInterval(function () {
+				const model = context.get('model');
+				model.updateView(context.get('sortBy'));
+			}, 10000);
 
-		this.set('intervalId', intervalId);
+			this.set('intervalId', intervalId);
+		}
 	},
 
 	actions: {

@@ -56,6 +56,72 @@ export default App.DiscussionPostModel = DiscussionBaseModel.extend(DiscussionDe
 		});
 	},
 
+	updateView() {
+		return new Ember.RSVP.Promise((resolve) => {
+			const oldReplies = this.get('replies');
+
+			Ember.$.ajax({
+				url: M.getDiscussionServiceUrl(`/${this.wikiId}/threads/${this.postId}`, {
+					responseGroup: 'full',
+					sortDirection: 'descending',
+					sortKey: 'creation_date',
+					limit: oldReplies.length + 10,
+					viewableOnly: false
+				}),
+				dataType: 'json',
+				xhrFields: {
+					withCredentials: true
+				},
+				success: (data) => {
+					const contributors = [],
+						lastOldReply = oldReplies[0];
+					let pivotId,
+						replies = data._embedded['doc:posts'];
+
+					// If there are no replies to the first post, 'doc:posts' will not be returned
+					if (replies) {
+						replies = replies.filter((reply) => {
+							return reply.creationDate.epochSecond >= lastOldReply.creationDate.epochSecond;
+						});
+
+						pivotId = replies[0].id;
+
+						// See note in previous reverse above on why this is necessary
+						replies.reverse();
+
+						replies.forEach((reply) => {
+							if (reply.hasOwnProperty('createdBy')) {
+								reply.createdBy.profileUrl = M.buildUrl({
+									namespace: 'User',
+									title: reply.createdBy.name
+								});
+								contributors.push(reply.createdBy);
+							}
+						});
+					}
+					this.setProperties({
+						contributors,
+						forumId: data.forumId,
+						firstPost: data._embedded.firstPost[0],
+						id: data.id,
+						isDeleted: data.isDeleted,
+						page: 0,
+						pivotId,
+						postCount: data.postCount,
+						replies: replies || [],
+						title: data.title,
+						upvoteCount: data.upvoteCount
+					});
+					resolve(this);
+				},
+				error: (err) => {
+					this.setErrorProperty(err);
+					resolve(this);
+				}
+			});
+		});
+	},
+
 	createReply(replyData) {
 		this.setFailedState(null);
 		replyData.threadId = this.get('postId');
