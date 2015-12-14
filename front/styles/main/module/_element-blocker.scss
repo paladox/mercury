@@ -1,5 +1,5 @@
 $wikia-logo-font-color: #ffffff;
-$wikia-logo-background-color: #082040;
+$wikia-logo-background-color: #092140;
 
 .loading-overlay {
 	background: rgba(white, .5);
@@ -20,20 +20,21 @@ $wikia-logo-background-color: #082040;
 @keyframes bounce {
 	0% {
 		animation-timing-function: ease-in;
-		transform: translateY(-20px);
-	}
-
-	40% {
 		transform: translateY(0) scale(1);
 	}
 
-	50% {
+	10% {
 		transform: scale(1.25, .75);
 	}
 
-	60% {
+	20% {
 		animation-timing-function: ease-out;
 		transform: scale(.75, 1.25);
+	}
+
+	60% {
+		animation-timing-function: ease-in;
+		transform: translateY(-20px);
 	}
 }
 
@@ -41,7 +42,6 @@ $wikia-logo-background-color: #082040;
 	animation-duration: .5s;
 	animation-iteration-count: 1;
 	animation-name: pop-out;
-	animation-timing-function: cubic-bezier(0, 0, 0, 1.75);
 	background: url('../../images/wikia-logo-only-brackets.svg') no-repeat;
 	background-size: cover;
 	height: 100px;
@@ -62,7 +62,6 @@ $wikia-logo-background-color: #082040;
 		height: 18%;
 		position: absolute;
 		top: 21%;
-		transform: translateY(-20px);
 		transform-origin: bottom;
 		width: 18%;
 	}
