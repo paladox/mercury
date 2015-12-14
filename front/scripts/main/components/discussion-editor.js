@@ -10,6 +10,7 @@ export default App.DiscussionEditorComponent = Ember.Component.extend(ViewportMi
 	isActive: false,
 	isSticky: false,
 
+	isLoading: false,
 	showSuccess: false,
 	hasError: false,
 
@@ -92,6 +93,7 @@ export default App.DiscussionEditorComponent = Ember.Component.extend(ViewportMi
 		if (this.get('errorMessage')) {
 			alert(i18n.t(this.get('errorMessage'), {ns: 'discussion'}));
 		}
+		this.set('isLoading', false);
 		this.loadingIndicator.deactivate();
 	}),
 
@@ -141,6 +143,7 @@ export default App.DiscussionEditorComponent = Ember.Component.extend(ViewportMi
 	handleNewItemCreated(newItem) {
 		this.loadingIndicator.deactivate();
 		this.setProperties({
+			isLoading: false,
 			showSuccess: true
 		});
 
@@ -195,6 +198,7 @@ export default App.DiscussionEditorComponent = Ember.Component.extend(ViewportMi
 		 */
 		create() {
 			if (!this.get('submitDisabled')) {
+				this.set('isLoading', true);
 				this.loadingIndicator.activate();
 
 				this.sendAction('create', {

@@ -54,6 +54,7 @@
 			<small class="error">{{imageErrorMessage}}</small>
 		{{/if}}
 		{{svg 'photo-icon' role='img' class='icon photo-icon'}}
+		{{element-blocker active=isLoading}}
 	</div>
 	{{#modal-dialog isVisible=imageMenuVisible type='menu'}}
 		<ul>

@@ -11,6 +11,9 @@
 	{{user-avatar
 		avatarUrl=currentUser.avatarPath
 	}}
+	{{#if post.isLoading}}
+		{{element-blocker active=post.isLoading}}
+	{{/if}}
 	{{#if showSuccess}}
 		<div class="loading-overlay">
 			{{svg 'success' class='success' viewBox='0 0 80 80'}}

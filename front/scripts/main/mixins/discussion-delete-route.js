@@ -1,6 +1,18 @@
 import App from '../app';
 
 export default App.DiscussionDeleteRouteMixin = Ember.Mixin.create({
+	/**
+	 * Get loading spinner container.
+	 * On post list it's post, on post-details it's applicationController to overlay entire page
+	 * @param {object} post
+	 * @returns {object}
+	 */
+		getLoadingSpinnerContainer(post) {
+		return this.get('postDeleteFullScreenOverlay') ?
+			this.controllerFor('application') :
+			post;
+	},
+
 	actions: {
 		/**
 		 * Pass post deletion to model
@@ -8,9 +20,14 @@ export default App.DiscussionDeleteRouteMixin = Ember.Mixin.create({
 		 * @returns {void}
 		 */
 		deletePost(post) {
+			const loadingSpinnerContainer = this.getLoadingSpinnerContainer(post);
+
 			this.loadingIndicator.activate();
+			Ember.set(loadingSpinnerContainer, 'isLoading', true);
+
 			this.modelFor(this.get('routeName')).deletePost(post).then(() => {
 				this.loadingIndicator.deactivate();
+				Ember.set(loadingSpinnerContainer, 'isLoading', false);
 			});
 		},
 
@@ -20,9 +37,14 @@ export default App.DiscussionDeleteRouteMixin = Ember.Mixin.create({
 		 * @returns {void}
 		 */
 		undeletePost(post) {
+			const loadingSpinnerContainer = this.getLoadingSpinnerContainer(post);
+
 			this.loadingIndicator.activate();
+			Ember.set(loadingSpinnerContainer, 'isLoading', true);
+
 			this.modelFor(this.get('routeName')).undeletePost(post).then(() => {
 				this.loadingIndicator.deactivate();
+				Ember.set(loadingSpinnerContainer, 'isLoading', false);
 			});
 		},
 

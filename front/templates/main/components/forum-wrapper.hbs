@@ -20,6 +20,9 @@
 	}}
 {{/each}}
 {{#if hasMore}}
+	{{#if post.isLoading}}
+		{{element-blocker active=post.isLoading}}
+	{{/if}}
 	<div class="load-more">
 		{{i18n 'main.loading-more-posts' ns='discussion'}}
 	</div>

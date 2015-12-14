@@ -25,3 +25,6 @@
 		{{{parsedContent}}}
 	</div>
 </div>
+{{#if post.isLoading}}
+	{{element-blocker active=post.isLoading}}
+{{/if}}

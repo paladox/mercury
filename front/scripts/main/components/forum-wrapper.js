@@ -9,6 +9,7 @@ export default App.ForumWrapperComponent = Ember.Component.extend(
 		totalPosts: 0,
 		pageNum: null,
 		currentlyLoadingPage: false,
+		isLoading: true,
 
 		hasMore: Ember.computed('totalPosts', 'postsDisplayed', function () {
 			return this.get('totalPosts') > this.get('postsDisplayed');
