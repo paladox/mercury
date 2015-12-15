@@ -148,7 +148,7 @@ App.DiscussionForumModel.reopenClass({
 					resolve(forumInstance);
 				},
 				error: (err) => {
-					forumInstance.setErrorProperty(err);
+					//forumInstance.setErrorProperty(err);
 					resolve(forumInstance);
 				}
 			});

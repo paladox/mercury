@@ -21,6 +21,10 @@ export default App.UserMenuComponent = Ember.Component.extend({
 					title: 'UserLogout',
 				}),
 				textKey: 'user-menu-log-out',
+			},
+			{
+				href: 'https://services-poz.wikia-dev.com/notification/',
+				textKey: 'manage-push',
 			}
 		];
 	}),

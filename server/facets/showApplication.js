@@ -46,9 +46,11 @@ function getDistilledDiscussionsSplashPageConfig(hostName) {
  */
 export default function showApplication(request, reply) {
 	const wikiDomain = Utils.getCachedWikiDomainName(localSettings, request),
-		wikiVariables = new MW.WikiRequest({wikiDomain}).wikiVariables(),
+		wikiVariables = new MW.WikiRequest({wikiDomain: 'fallout.damian.wikia-dev.com'}).wikiVariables(),
 		context = {},
 		hostName = Utils.getWikiaSubdomain(request.info.host);
+
+	console.log(wikiDomain);
 
 	// @todo These transforms could be better abstracted, as such, this is a lot like prepareArticleData
 	context.server = Utils.createServerData(localSettings, wikiDomain);
@@ -66,7 +68,7 @@ export default function showApplication(request, reply) {
 			let contentDir,
 				displayTitle;
 
-			Utils.redirectToCanonicalHostIfNeeded(localSettings, request, reply, wikiVariables);
+		//	Utils.redirectToCanonicalHostIfNeeded(localSettings, request, reply, wikiVariables);
 
 			context.wikiVariables = wikiVariables;
 			if (context.wikiVariables.language) {

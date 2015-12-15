@@ -57,9 +57,9 @@ function showSplashPage(request, reply, discussionsConfig) {
 export default function showDiscussions(request, reply) {
 	const discussionsConfig = getConfigFromUrl(request.headers.host);
 
-	if (!discussionsConfig) {
-		return reply('Not Found').code(404);
-	}
+	//if (!discussionsConfig) {
+	//	return reply('Not Found').code(404);
+	//}
 
 	if (localSettings.enableDiscussions) {
 		showApplication(request, reply);

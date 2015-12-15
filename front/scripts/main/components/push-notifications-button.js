@@ -21,13 +21,15 @@ export default App.PushNotificationsButtonComponent = Ember.Component.extend(
 			if ('serviceWorker' in navigator) {
 				console.log('registered')
 				navigator.serviceWorker.register('/front/images/push-service-worker.js')
-					.then(this.initialiseState);
+					.then((registration) => {
+						console.log(registration);
+						this.initialiseState()});
 			} else {
 				console.warn('Service workers aren\'t supported in this browser.');
 			}
 		},
 
-		initiliseState() {
+		initialiseState() {
 			console.log('initialize');
 			// Are Notifications supported in the service worker?
 			if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
