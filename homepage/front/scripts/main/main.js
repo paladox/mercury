@@ -27,11 +27,21 @@ $(() => {
 		slidesToShow: 1,
 	});
 
+	$('.hero-carousel-mobile').slick({
+		arrows: false,
+		dots: true,
+		autoplay: true,
+		autoplaySpeed: 3000,
+		slidesToShow: 1,
+	});
+
 	// Move previous/next arrow elements inside hero-carousel.
 	// This must be done after initializing slick, otherwise the buttons will
 	// be treated as slides
 	$('.hero-prev').detach().appendTo('.hero-carousel');
 	$('.hero-next').detach().appendTo('.hero-carousel');
+	$('.hero-prev-mobile').detach().appendTo('.hero-carousel-mobile');
+	$('.hero-next-mobile').detach().appendTo('.hero-carousel-mobile');
 
 	$('.featured-carousel').slick({
 		arrows: false,

@@ -1,9 +1,46 @@
 
-$large-screen: 800px;
-$horizontal-bar-mode: $large-screen;
+$horizontal-bar-mode: 800px;
+$mobile-slider:  new-breakpoint(max-width 615px);
+$desktop-slider: new-breakpoint(min-width 615px);
 
 .featured {
 	margin-top: 4em;
+
+	@include media ($mobile-slider) {
+		display: none;
+	}
+}
+
+.featured-mobile {
+	display: none;
+
+	@include media ($mobile-slider) {
+		display: block;
+	}
+}
+
+.featured-title {
+	font-size: 26px;
+
+	@include media ($mobile-slider) {
+		text-align: center;
+	}
+}
+
+.featured-title-large {
+	font-size: 36px;
+}
+
+.featured-mobile-slide {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	width: 250px;
+}
+
+.featured-mobile-slide-padding {
+	height: 1em;
+	width: 100%;
 }
 
 .hero {
@@ -47,7 +84,7 @@ $horizontal-bar-mode: $large-screen;
 	font-weight: bold;
 	height: 48px;
 	left: 0;
-	opacity: 0.6;
+	opacity: .6;
 	padding-left: 5px;
 	padding-top: 3px;
 	position: absolute;
@@ -56,24 +93,36 @@ $horizontal-bar-mode: $large-screen;
 
 .hero-english-overlay {
 	background-color: blue;
-	top: 0;
 	color: white;
 	font-size: 15px;
 	height: 24px;
 	left: 0;
-	opacity: 0.6;
+	opacity: .6;
 	padding-top: 1px;
 	position: absolute;
 	text-align: center;
+	top: 0;
 	width: 50px;
 }
 
 .hero-english-overlay:after {
-	content: "英語";
+	content: '英語';
 }
 
-.hero-mobile {
+.hero-mobile-padding {
 	@include media ($horizontal-bar-mode) {
+		display: none;
+	}
+}
+
+.hero-image-desktop {
+	@include media ($mobile-slider) {
+		display: none;
+	}
+}
+
+.hero-image-mobile {
+	@include media ($desktop-slider) {
 		display: none;
 	}
 }

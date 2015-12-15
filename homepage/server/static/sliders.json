@@ -3,6 +3,7 @@
   "data": [
     {
       "title": "人気のコミュニティ",
+      "largeTitle": true,
       "id": "carousel-1",
       "entries": [
         {
