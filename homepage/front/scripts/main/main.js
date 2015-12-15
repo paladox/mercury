@@ -38,10 +38,10 @@ $(() => {
 	// Move previous/next arrow elements inside hero-carousel.
 	// This must be done after initializing slick, otherwise the buttons will
 	// be treated as slides
-	$('.hero-prev').detach().appendTo('.hero-carousel');
-	$('.hero-next').detach().appendTo('.hero-carousel');
-	$('.hero-prev-mobile').detach().appendTo('.hero-carousel-mobile');
-	$('.hero-next-mobile').detach().appendTo('.hero-carousel-mobile');
+	$('#hero-prev').detach().appendTo('#hero-carousel');
+	$('#hero-next').detach().appendTo('#hero-carousel');
+	$('#hero-prev-mobile').detach().appendTo('#hero-carousel-mobile');
+	$('#hero-next-mobile').detach().appendTo('#hero-carousel-mobile');
 
 	$('.featured-carousel').slick({
 		arrows: false,
@@ -73,13 +73,11 @@ $(() => {
 		]
 	});
 
-	// TODO: The carousels should be encoded in a json file
-	$('#carousel-1-prev').detach().appendTo('#carousel-1');
-	$('#carousel-1-next').detach().appendTo('#carousel-1');
-	$('#carousel-2-prev').detach().appendTo('#carousel-2');
-	$('#carousel-2-next').detach().appendTo('#carousel-2');
-	$('#carousel-3-prev').detach().appendTo('#carousel-3');
-	$('#carousel-3-next').detach().appendTo('#carousel-3');
+	// TODO: The number of carousels should be encoded in a json file
+	for (let i = 1; i <= 3; i++) {
+		$(`#carousel-${i}-prev`).detach().appendTo(`#carousel-${i}`);
+		$(`#carousel-${i}-next`).detach().appendTo(`#carousel-${i}`);
+	}
 
 	// Dynamically adjust text size to show community title without text break.
 	// bigText adjusts the size programatically and strips off css padding, so it is
