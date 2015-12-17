@@ -5,6 +5,7 @@
 
 var gulp = require('gulp'),
 	gutil = require('gulp-util'),
+	path = require('path'),
 	server = require('gulp-develop-server'),
 	browserSync = require('browser-sync'),
 	paths = require('../paths');
