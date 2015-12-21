@@ -70,7 +70,7 @@ let routes,
 		},
 		{
 			method: 'GET',
-			path: '/front/{path*}',
+			path: '/assets/{path*}',
 			handler: assetsHandler
 		},
 		{
