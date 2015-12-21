@@ -163,7 +163,7 @@ function setupLogging(server) {
  * @returns {string[]}
  */
 function getSupportedLangs() {
-	return fs.readdirSync('front/locales');
+	return fs.readdirSync(path.join(__dirname, '..', 'assets/locales'));
 }
 
 plugins = [
@@ -171,7 +171,7 @@ plugins = [
 		register: i18next,
 		options: {
 			i18nextOptions: {
-				resGetPath: path.join(__dirname, '..', 'front/locales/__lng__/__ns__.json'),
+				resGetPath: path.join(__dirname, '..', 'assets/locales/__lng__/__ns__.json'),
 				ns: {
 					namespaces: ['main', 'auth', 'discussion'],
 					defaultNs: 'main'
@@ -217,11 +217,10 @@ server.views({
 	engines: {
 		hbs: handlebars
 	},
-	isCached: true,
-	layout: 'ember-main',
+	layout: 'main',
+	path: path.join(__dirname, 'views'),
 	helpersPath: path.join(__dirname, 'views', '_helpers'),
 	layoutPath: path.join(__dirname, 'views', '_layouts'),
-	path: path.join(__dirname, 'views'),
 	partialsPath: path.join(__dirname, 'views', '_partials'),
 	context: {
 		i18n: {

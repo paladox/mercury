@@ -4,7 +4,7 @@
   "description": "Wikia Web Application",
   "main": "server.js",
   "scripts": {
-    "dev": "rm -rf www && gulp --nosync",
+    "dev": "cd main && ember serve",
     "local": "rm -rf www && gulp",
     "start": "npm run build && node www/server/server.js",
     "test": "npm run build-test && npm run test-front && npm run test-server",
