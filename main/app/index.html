@@ -66,17 +66,19 @@ DO NOT REMOVE THE FOLLOWING LINE:
 
 <script>
     M.loadScripts([
-        '/front/vendor/main.js',
-        '/front/scripts/combined.js'
+        '/assets/vendor.js',
+        '/assets/baseline.js'
+        '/assets/mercury.js'
+        '/assets/main.js'
     ]);
-    M.loadDOMResource('/front/svg/main.svg');
-    M.loadDOMResource('/front/svg/common.svg');
+    M.loadDOMResource('/assets/svg/main.svg');
+    M.loadDOMResource('/assets/svg/common.svg');
 </script>
 
 <script src="//{{server.mediawikiDomain}}/__load/-/only=scripts/wikia.ext.instantGlobals,instantGlobalsOverride,abtesting"
         async></script>
-{{> tracking-pixels}}
 
 {{content-for 'body-footer'}}
+{{> tracking-pixels}}
 </body>
 </html>
