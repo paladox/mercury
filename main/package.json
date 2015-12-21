@@ -19,9 +19,12 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
     "broccoli-asset-rev": "^2.2.0",
     "broccoli-babel-transpiler": "^5.5.0",
     "broccoli-concat": "^2.0.3",
+    "broccoli-funnel": "^1.0.1",
+    "broccoli-merge-trees": "^1.1.0",
     "ember-cli": "1.13.13",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-babel": "^5.1.5",
@@ -37,6 +40,9 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-data": "1.13.15",
     "ember-disable-proxy-controllers": "^1.0.1",
-    "ember-export-application-global": "^1.0.4"
+    "ember-export-application-global": "^1.0.4",
+    "express": "^4.13.3",
+    "glob": "^4.5.3",
+    "morgan": "^1.6.1"
   }
 }

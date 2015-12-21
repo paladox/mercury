@@ -1,6 +1,7 @@
 front/scripts/main/resolver/
 front/vendor/
 gulp/
+server/gulp/
 node_modules/
 test/
 www/

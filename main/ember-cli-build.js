@@ -1,11 +1,21 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app'),
+	Funnel = require('broccoli-funnel'),
 	babel = require('broccoli-babel-transpiler'),
+	BroccoliMergeTrees = require('broccoli-merge-trees'),
 	concat = require('broccoli-concat');
 
 module.exports = function (defaults) {
 	var app = new EmberApp(defaults, {
-		// Add options here
+		outputPaths: {
+			app: {
+				html: 'main.hbs'
+			}
+		},
+		fingerprint: {
+			
+			prepend: 'http://localhost:4200'
+		}
 	});
 
 	// Use `app.import` to add additional libraries to the generated
@@ -20,6 +30,9 @@ module.exports = function (defaults) {
 	// modules that you would like to import into your application
 	// please specify an object with the list of modules as keys
 	// along with the exports of each module as its value.
+
+
+	//Mercury modules
 	var mercuryModulesTranspiled = new babel('../front/scripts/mercury', {
 			modules: 'amd',
 			moduleIds: true,
@@ -50,5 +63,37 @@ module.exports = function (defaults) {
 	app.import(app.bowerDirectory + '/Autolinker.js/dist/Autolinker.min.js');
 	app.import(app.bowerDirectory + '/ember-performance-sender/dist/ember-performance-sender.js');
 
-	return app.toTree([mercuryModulesConcatenated, baselineConcatenated]);
+	//Server
+	var server = new Funnel('../server', {
+		include: ['**/*.js', '**/*.hbs'],
+		exclude: ['gulp/**/*', 'node_modules/**/*'],
+		destDir: 'server'
+	});
+
+	var js = babel(server);
+
+	var nodeModules = new Funnel('../server', {
+		include: ['node_modules/**/*'],
+		destDir: 'server'
+	});
+
+	var configTree = new Funnel('../config', {
+		include: ['*.js'],
+		destDir: 'config'
+	});
+
+	var config = babel(configTree);
+
+	var locales = new Funnel('app/locales', {
+		destDir: 'assets/locales'
+	});
+
+	var appp = app.toTree([js, nodeModules, config, locales, mercuryModulesConcatenated, baselineConcatenated]);
+
+	var mhm = new Funnel(appp, {
+		include: ['main.hbs'],
+		destDir: 'server/views/_layouts'
+	});
+
+	return new BroccoliMergeTrees([appp, mhm]);
 };
