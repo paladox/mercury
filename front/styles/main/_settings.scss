@@ -2,6 +2,7 @@
 @import '../../vendor/wikia-style-guide/src/scss/lib/settings';
 
 // source: svg/images/brackets.svg (it's better to inline this very small file than request it)
+// @todo threat it as a temporary solution - see https://wikia-inc.atlassian.net/browse/XW-869
 $brackets-svg-image: url('data:image/svg+xml;<svg xmlns="http://www.w3.org/2000/svg" width="185" height="185" viewBox="0 0 185 185"><path d="M66.8 112.894H54.84V72.167H66.8V57.353H33.146v70.292H66.8zm61.566-55.54h-10.158v14.813h11.948v40.224h-11.948v15.255h33.648v-70.29z" fill="#fff"/></svg>');
 
 $auth-content-background-color: $color-white;
