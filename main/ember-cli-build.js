@@ -11,10 +11,6 @@ module.exports = function (defaults) {
 			app: {
 				html: 'main.hbs'
 			}
-		},
-		fingerprint: {
-			
-			prepend: 'http://localhost:4200'
 		}
 	});
 
