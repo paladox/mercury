@@ -1,4 +1,5 @@
 {
+  "extends": "ember",
   "env": {
     "node": true,
     "embertest": true
@@ -7,6 +8,7 @@
     "sinon": true,
     "Qunit": true,
     "test": true,
-    "moduleForComponent": true
+    "moduleForComponent": true,
+    "moduleFor": true
   }
 }

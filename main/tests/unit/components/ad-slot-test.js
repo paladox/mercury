@@ -1,7 +1,10 @@
+import { test, moduleForComponent } from 'ember-qunit';
+import ads from 'mercury/modules/Ads';
+
 moduleForComponent('ad-slot', 'AdSlotComponent', {
 	unit: true,
 	teardown: function () {
-		mrequire('mercury/modules/Ads').default.getInstance().adSlots = [];
+		ads.getInstance().adSlots = [];
 	}
 });
 
@@ -95,7 +98,7 @@ test('behaves correctly depending on noAds value', function () {
 			var component = self.subject();
 			component.setProperties(testCase.properties);
 			component.didInsertElement();
-			equal(mrequire('mercury/modules/Ads').default.getInstance().adSlots.length, testCase.expectedLength, testCase.message);
+			equal(ads.getInstance().adSlots.length, testCase.expectedLength, testCase.message);
 		});
 	});
 });

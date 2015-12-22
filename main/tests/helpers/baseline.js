@@ -3,7 +3,7 @@
  * @description Sets up baseline first load experience to mirror the main web client
  */
 
-function resetMercuryBaseline() {
+export default function() {
 	var M = window.M;
 
 	M.prop('apiBase', '/api/mercury', true);
@@ -14,4 +14,3 @@ function resetMercuryBaseline() {
 	});
 }
 
-resetMercuryBaseline();
