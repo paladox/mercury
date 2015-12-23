@@ -1,0 +1,15 @@
+<div {{action 'close'}} class="overlay"></div>
+<div class="user-menu-header">
+	<figure class="avatar user-avatar">
+		<img src={{currentUser.avatarPath}} alt={{currentUser.name}}>
+	</figure>
+	<a class="user-name">Bkowalczyknew</a>
+</div>
+
+<ul class="drawer">
+	{{#each links as |link|}}
+		<li>
+			<a href="{{unbound link.href}}" class="external">{{i18n 'app' link.textKey}}</a>
+		</li>
+	{{/each}}
+</ul>

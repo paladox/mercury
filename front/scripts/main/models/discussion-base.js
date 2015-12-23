@@ -7,8 +7,10 @@ export default Ember.Object.extend({
 	},
 	errorClass: 'discussion-error-page',
 	errorMessage: null,
+	hasErrorMessage: false,
 	connectionError: null,
 	notFoundError: null,
+	modalDialogService: Ember.inject.service('modal-dialog'),
 
 	/*
 	 * Set minorError to true, when you don't want to display error message e.g.:
@@ -16,16 +18,6 @@ export default Ember.Object.extend({
 	 * 404 on "view older replies" button, when unable to load non-existing or deleted replies
 	 */
 	minorError: false,
-
-	/**
-	 * Display error message on failure
-	 */
-	errorMessageObserver: Ember.observer('errorMessage', function () {
-		if (this.get('errorMessage')) {
-			alert(i18n.t(this.get('errorMessage'), {ns: 'discussion'}));
-		}
-		this.set('isLoading', false);
-	}),
 
 	/**
 	 * @param {Object} err
@@ -58,5 +50,6 @@ export default Ember.Object.extend({
 	 */
 	setFailedState(errorMessage) {
 		this.set('errorMessage', errorMessage);
+		this.get('modalDialogService').open(errorMessage);
 	}
 });
